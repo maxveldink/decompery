@@ -1,0 +1,14 @@
+require:
+  - rubocop-rspec
+  - rubocop-rails
+  - rubocop-sorbet
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.1
+
+Style/Documentation:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
