@@ -76,5 +76,6 @@ end
 group :test do
   gem "capybara"
   gem "cuprite"
+  gem "rails-controller-testing"
   gem "shoulda"
 end

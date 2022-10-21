@@ -10,8 +10,9 @@ Rails.application.load_tasks
 require "bundler/plumber/task"
 Bundler::Plumber::Task.new
 
-require "rubocop/rake_task"
-RuboCop::RakeTask.new
+task :rubocop do # rubocop:disable Rails/RakeEnvironment
+  sh "bin/rubocop -A"
+end
 
 task :sorbet do # rubocop:disable Rails/RakeEnvironment
   sh "bundle exec srb tc"
@@ -19,4 +20,4 @@ end
 
 task code_quality: %i[bundle:leak sorbet rubocop]
 
-task default: %i[code_quality test]
+task default: %i[code_quality test:all]
