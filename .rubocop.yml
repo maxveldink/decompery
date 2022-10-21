@@ -1,5 +1,4 @@
 require:
-  - rubocop-rspec
   - rubocop-rails
   - rubocop-sorbet
 
@@ -12,3 +11,7 @@ Style/Documentation:
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
+Sorbet/ValidSigil:
+  RequireSigilOnAllFiles: true
+  SuggestedStrictness: strict
