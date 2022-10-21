@@ -65,8 +65,16 @@ group :development do
 
   gem "bundler-leak", require: false
   gem "rubocop", require: false
+  gem "rubocop-minitest", require: false
+  gem "rubocop-performance", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-sorbet", require: false
   gem "sorbet"
   gem "tapioca", require: false
+end
+
+group :test do
+  gem "capybara"
+  gem "cuprite"
+  gem "shoulda"
 end

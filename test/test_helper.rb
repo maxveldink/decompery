@@ -1,4 +1,4 @@
-# typed: strict
+# typed: true
 # frozen_string_literal: true
 
 ENV["RAILS_ENV"] ||= "test"
@@ -11,5 +11,12 @@ module ActiveSupport
     parallelize(workers: :number_of_processors, with: :threads)
 
     fixtures :all
+  end
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :minitest
+    with.library :rails
   end
 end

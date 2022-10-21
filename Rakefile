@@ -19,4 +19,4 @@ end
 
 task code_quality: %i[bundle:leak sorbet rubocop]
 
-task default: %i[code_quality spec]
+task default: %i[code_quality test]

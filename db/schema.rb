@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_21_094029) do
   enable_extension "plpgsql"
 
   create_table "decomps", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.text "topic"
+    t.text "topic", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
