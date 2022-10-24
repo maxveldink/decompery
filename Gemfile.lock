@@ -227,6 +227,11 @@ GEM
       sorbet-runtime
       syntax_tree (>= 3.6.3)
     ruby-progressbar (1.11.0)
+    sentry-rails (5.5.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.5.0)
+    sentry-ruby (5.5.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     shoulda (4.0.0)
       shoulda-context (~> 2.0)
       shoulda-matchers (~> 4.0)
@@ -312,6 +317,8 @@ DEPENDENCIES
   rubocop-rails
   rubocop-sorbet
   ruby-lsp (~> 0.3.4)
+  sentry-rails
+  sentry-ruby
   shoulda
   sorbet
   sorbet-runtime

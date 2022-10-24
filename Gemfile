@@ -34,6 +34,9 @@ gem "jbuilder"
 
 gem "sorbet-runtime"
 
+gem "sentry-rails"
+gem "sentry-ruby"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
