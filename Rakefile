@@ -7,8 +7,10 @@ require_relative "config/application"
 
 Rails.application.load_tasks
 
-require "bundler/plumber/task"
-Bundler::Plumber::Task.new
+unless Rails.env.production?
+  require "bundler/plumber/task"
+  Bundler::Plumber::Task.new
+end
 
 task :rubocop do # rubocop:disable Rails/RakeEnvironment
   sh "bin/rubocop -A"
