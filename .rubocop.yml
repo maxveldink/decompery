@@ -8,6 +8,9 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 3.1
 
+Minitest/MultipleAssertions:
+  Max: 4
+
 Style/Documentation:
   Enabled: false
 

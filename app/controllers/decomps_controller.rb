@@ -8,6 +8,7 @@ class DecompsController < ApplicationController
 
   def show
     @decomp = Decomp.find(params[:id])
+    session[:last_decomp_id] = @decomp.id
   end
 
   def new

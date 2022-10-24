@@ -17,4 +17,22 @@ class DecompsTest < ApplicationSystemTestCase
 
     assert_text "Testing 123"
   end
+
+  test "link to existing decomp appears once visited" do
+    visit root_url
+
+    assert_no_text "currently decomposing"
+
+    click_on "New decomp"
+    fill_in "Topic", with: "Testing 123"
+    click_on "Create Decomp"
+    assert_text "Testing 123"
+
+    visit root_url
+
+    assert_text "currently decomposing"
+
+    click_on "currently decomposing"
+    assert_text "Testing 123"
+  end
 end

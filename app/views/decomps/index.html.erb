@@ -3,12 +3,14 @@
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
+  <% if session[:last_decomp_id].present? %>
+    <%= link_to decomp_path(session[:last_decomp_id]) do %>
+      <h2 class="font-medium text-center hover:text-emerald-600 mb-6">🍄 Looks like you're currently decomposing. Jump back in?</h2>
+    <% end %>
+  <% end %>
+
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Decomps</h1>
     <%= link_to 'New decomp', new_decomp_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-
-  <div id="decomps" class="min-w-full">
-    <%= render @decomps %>
   </div>
 </div>

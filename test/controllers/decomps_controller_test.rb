@@ -14,6 +14,7 @@ class DecompsControllerTest < ActionDispatch::IntegrationTest
     get decomp_path(decomps(:roasting_max))
 
     assert_template :show
+    assert_equal decomps(:roasting_max).id, session[:last_decomp_id]
   end
 
   test "new renders" do
