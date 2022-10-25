@@ -4,5 +4,7 @@
 Rails.application.routes.draw do
   root "decomps#index"
 
-  resources :decomps
+  resources :decomps, only: %i[index show new create] do
+    resources :stages, only: %i[new create]
+  end
 end

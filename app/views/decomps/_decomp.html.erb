@@ -1,11 +1,13 @@
 <div id="<%= dom_id decomp %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Topic:</strong>
-    <%= decomp.topic %>
+    <strong class="font-medium mb-1">Topic:</strong> <%= decomp.topic %>
   </p>
 
-  <% if action_name != "show" %>
-    <%= link_to "Show this decomp", decomp, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
+  <%= turbo_frame_tag "stages" do %>
+    <%= render decomp.stages %>
+  <% end %>
+
+  <%= turbo_frame_tag "new_stage" do %>
+    <%= link_to "Decompose more", new_decomp_stage_path(decomp), class: "btn-amber" %>
   <% end %>
 </div>

@@ -1,0 +1,2 @@
+<%= turbo_stream.append(:stages, partial: "stages/stage", locals: { stage: @stage}) %>
+<%= turbo_stream.replace(:new_stage, partial: "stages/form", locals: { stage: Stage.new(decomp_id: @stage.decomp_id) }) %>
