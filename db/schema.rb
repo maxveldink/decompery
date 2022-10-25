@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_21_094029) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_25_093115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -21,4 +21,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_21_094029) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "stages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "decomp_id", null: false
+    t.text "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decomp_id"], name: "index_stages_on_decomp_id"
+  end
+
+  add_foreign_key "stages", "decomps"
 end
