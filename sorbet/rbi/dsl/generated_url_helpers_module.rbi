@@ -9,16 +9,19 @@ module GeneratedUrlHelpersModule
   include ::ActionDispatch::Routing::PolymorphicRoutes
 
   sig { params(args: T.untyped).returns(String) }
+  def decomp_stages_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def decomp_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def decomps_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def edit_decomp_url(*args); end
+  def edit_rails_conductor_inbound_email_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def edit_rails_conductor_inbound_email_url(*args); end
+  def new_decomp_stage_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def new_decomp_url(*args); end

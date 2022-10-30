@@ -4,3 +4,7 @@
 
 module ::Turbo::Streams::ActionHelper
 end
+
+class ApplicationRecord
+  def self.broadcasts_to(*); end
+end
