@@ -82,3 +82,5 @@ group :test do
   gem "rails-controller-testing"
   gem "shoulda"
 end
+
+gem "good_job", "~> 3.6"

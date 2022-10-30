@@ -36,5 +36,8 @@ module Decompery
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.active_job.queue_adapter = :good_job
+    config.good_job.on_thread_error = ->(exception) { Sentry.capture_exception(exception) }
   end
 end

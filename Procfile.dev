@@ -1,3 +1,4 @@
 web: bin/rails server -p 3000
+worker: bundle exec good_job start
 redis: redis-server
 css: bin/rails tailwindcss:watch

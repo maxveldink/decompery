@@ -1,9 +1,10 @@
-# fly.toml file generated for decompery on 2022-10-24T06:41:59-04:00
-
 app = "decompery"
 kill_signal = "SIGINT"
 kill_timeout = 5
-processes = []
+
+[processes]
+  web = "bin/rails fly:server"
+  worker = "bundle exec good_job start"
 
 [build]
   [build.args]
@@ -23,7 +24,7 @@ processes = []
 [[services]]
   http_checks = []
   internal_port = 8080
-  processes = ["app"]
+  processes = ["web"]
   protocol = "tcp"
   script_checks = []
   [services.concurrency]
