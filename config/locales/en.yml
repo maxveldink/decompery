@@ -33,3 +33,5 @@ en:
   decomps:
     create:
       success: "Decomp created!"
+    show:
+      missing: "Decomp has expired or does not exist."

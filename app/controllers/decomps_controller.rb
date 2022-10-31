@@ -2,13 +2,14 @@
 # frozen_string_literal: true
 
 class DecompsController < ApplicationController
+  before_action :check_decomp_access, only: %i[show]
+
   def index
     @decomps = Decomp.all
   end
 
   def show
-    @decomp = Decomp.find(params[:id])
-    session[:last_decomp_id] = @decomp.id
+    put_decomp_in_session
   end
 
   def new
@@ -19,6 +20,7 @@ class DecompsController < ApplicationController
     @decomp = Decomp.new(decomp_params)
 
     if @decomp.save
+      put_decomp_in_session
       redirect_to decomp_url(@decomp), notice: t(".success")
     else
       render :new, status: :unprocessable_entity
@@ -27,7 +29,19 @@ class DecompsController < ApplicationController
 
   private
 
+  def check_decomp_access
+    @decomp = Decomp.find_by(id: params[:id])
+    passed_token = session[:last_decomp_invite_token] || params[:invite_token]
+
+    redirect_to decomps_path, notice: t(".missing") if @decomp.blank? || @decomp.invite_token != passed_token
+  end
+
   def decomp_params
     params.require(:decomp).permit(:topic)
+  end
+
+  def put_decomp_in_session
+    session[:last_decomp_id] = @decomp.id
+    session[:last_decomp_invite_token] = @decomp.invite_token
   end
 end
