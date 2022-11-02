@@ -1,12 +1,12 @@
 <div class="w-full">
   <% if session[:last_decomp_id].present? %>
     <%= link_to decomp_path(session[:last_decomp_id]) do %>
-      <h2 class="font-medium text-center hover:text-emerald-600 mb-6">🍄 Looks like you're currently decomposing. Jump back in?</h2>
+      <h2 class="font-medium text-center hover:text-emerald-500 mb-6">🍄 Looks like you're currently decomposing. Jump back in?</h2>
     <% end %>
   <% end %>
 
   <div class="flex items-center">
     <h1 class="font-bold text-4xl mr-4">Decomps</h1>
-    <%= link_to 'New decomp', new_decomp_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to 'New decomp', new_decomp_path, class: "btn-sky" %>
   </div>
 </div>

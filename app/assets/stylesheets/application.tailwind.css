@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 @layer components {
-  .btn-amber {
-    @apply rounded-lg p-3 bg-amber-200 hover:bg-amber-400 inline-block font-medium;
+  .btn-rose {
+    @apply rounded-lg p-3 bg-rose-500 hover:bg-rose-700 inline-block font-medium;
   }
 
-  .btn-emerald {
-    @apply rounded-lg p-3 bg-emerald-200 hover:bg-emerald-400 inline-block font-medium;
+  .btn-sky {
+    @apply rounded-lg p-3 bg-sky-500 hover:bg-sky-700 inline-block font-medium;
   }
 }

@@ -1,15 +1,17 @@
 <%= turbo_stream_from [decomp, "stages"] %>
 
 <div id="<%= dom_id decomp %>">
-  <p class="my-5">
+  <p class="my-5 text-xl">
     <strong class="font-medium mb-1">Topic:</strong> <%= decomp.topic %>
   </p>
+
+  <hr>
 
   <%= turbo_frame_tag "stages" do %>
     <%= render decomp.stages %>
   <% end %>
 
   <%= turbo_frame_tag "new_stage" do %>
-    <%= link_to "Decompose more", new_decomp_stage_path(decomp), class: "btn-amber" %>
+    <%= link_to "Decompose more", new_decomp_stage_path(decomp), class: "btn-sky" %>
   <% end %>
 </div>
