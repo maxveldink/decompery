@@ -19,6 +19,16 @@ class StagesController < ApplicationController
     end
   end
 
+  def destroy
+    @stage = Stage.find(params[:id])
+    @stage.destroy
+
+    respond_to do |format|
+      format.html { redirect_to decomp_url(@stage.decomp) }
+      format.turbo_stream
+    end
+  end
+
   private
 
   def stage_params

@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   root "decomps#index"
 
   resources :decomps, only: %i[index show new create] do
-    resources :stages, only: %i[new create]
+    resources :stages, only: %i[new create destroy]
   end
 end

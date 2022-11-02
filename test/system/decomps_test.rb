@@ -55,4 +55,16 @@ class DecompsTest < ApplicationSystemTestCase
 
     assert_text "A sub bullet"
   end
+
+  test "deleting a stage works" do
+    decomp = Decomp.create(topic: "Banana")
+    stage = Stage.create(decomp:, description: "Testing")
+
+    visit decomp_path(decomp) + "?invite_token=#{decomp.invite_token}"
+
+    click_on "❌"
+
+    assert_no_text "Testing"
+    assert_nil Stage.find_by(id: stage.id)
+  end
 end

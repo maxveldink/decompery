@@ -15,4 +15,12 @@ class StagesControllerTest < ActionDispatch::IntegrationTest
       post decomp_stages_path(Decomp.first), params: { stage: { description: "Hello!" } }
     end
   end
+
+  test "delete stage" do
+    stage = Stage.create(decomp: Decomp.first, description: "Testing")
+
+    delete decomp_stage_path(stage.decomp, stage)
+
+    assert_nil Stage.find_by(id: stage.id)
+  end
 end
