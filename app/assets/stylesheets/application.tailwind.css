@@ -10,4 +10,8 @@
   .btn-sky {
     @apply rounded-lg p-3 bg-sky-500 hover:bg-sky-700 inline-block font-medium;
   }
+
+  .btn-emerald {
+    @apply rounded-lg p-3 bg-emerald-500 hover:bg-emerald-700 inline-block font-medium;
+  }
 }
