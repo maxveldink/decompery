@@ -1,6 +1,16 @@
 <%= turbo_stream_from [decomp, "stages"] %>
 
-<div id="<%= dom_id decomp %>">
+<%= turbo_frame_tag @decomp do %>
+  <%= link_to '⬅ Decay something else', decomps_path, class: "btn-rose mr-4" %>
+  <div
+    class="btn-emerald cursor-pointer mr-4"
+    data-controller="clipboard"
+    data-action="click->clipboard#copy"
+    data-clipboard-contents-to-copy-value="<%= "#{decomp_url(@decomp)}?invite_token=#{@decomp.invite_token}" %>">
+    🔗 Invite Others
+  </div>
+  <%= link_to '🌱 Edit Decomp', edit_decomp_path(@decomp), class: "btn-sky" %>
+
   <p class="my-5 text-xl">
     <%= decomp.topic %>
   </p>
@@ -14,4 +24,4 @@
   <%= turbo_frame_tag "new_stage" do %>
     <%= link_to "Decompose more", new_decomp_stage_path(decomp), class: "mt-4 btn-sky" %>
   <% end %>
-</div>
+<% end %>

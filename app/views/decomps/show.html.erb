@@ -1,12 +1,3 @@
 <div>
-  <%= link_to '⬅ Decay something else', decomps_path, class: "btn-rose mr-4" %>
-  <div
-    class="btn-emerald cursor-pointer"
-    data-controller="clipboard"
-    data-action="click->clipboard#copy"
-    data-clipboard-contents-to-copy-value="<%= "#{decomp_url(@decomp)}?invite_token=#{@decomp.invite_token}" %>">
-    🔗 Invite Others
-  </div>
-
   <%= render @decomp %>
 </div>

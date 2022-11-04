@@ -56,6 +56,19 @@ class DecompsTest < ApplicationSystemTestCase
     assert_text "A sub bullet"
   end
 
+  test "editing a decomp" do
+    decomp = Decomp.create(topic: "Banana")
+
+    visit decomp_path(decomp) + "?invite_token=#{decomp.invite_token}"
+
+    click_on "Edit Decomp"
+
+    fill_in "Topic", with: "Apples"
+    click_on "Update Decomp"
+
+    assert_text "Apples"
+  end
+
   test "deleting a stage works" do
     decomp = Decomp.create(topic: "Banana")
     stage = Stage.create(decomp:, description: "Testing")

@@ -48,4 +48,18 @@ class DecompsControllerTest < ActionDispatch::IntegrationTest
     assert_not_nil session[:last_decomp_id]
     assert_not_nil session[:last_decomp_invite_token]
   end
+
+  test "edit renders" do
+    get edit_decomp_path(decomps(:roasting_max))
+
+    assert_template :edit
+  end
+
+  test "update decomp" do
+    decomp = Decomp.create(topic: "Banana")
+
+    patch decomp_path(decomp) + "?invite_token=#{decomp.invite_token}", params: { decomp: { topic: "Apples" } }
+
+    assert_equal "Apples", Decomp.find(decomp.id).topic
+  end
 end

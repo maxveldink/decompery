@@ -2,7 +2,7 @@
 # frozen_string_literal: true
 
 class DecompsController < ApplicationController
-  before_action :check_decomp_access, only: %i[show]
+  before_action :check_decomp_access, only: %i[show edit update]
 
   def index
     @decomps = Decomp.all
@@ -16,6 +16,8 @@ class DecompsController < ApplicationController
     @decomp = Decomp.new
   end
 
+  def edit; end
+
   def create
     @decomp = Decomp.new(decomp_params)
 
@@ -24,6 +26,14 @@ class DecompsController < ApplicationController
       redirect_to decomp_url(@decomp), notice: t(".success")
     else
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @decomp.update(decomp_params)
+      redirect_to decomp_url(@decomp)
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
