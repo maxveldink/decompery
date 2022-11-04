@@ -49,6 +49,17 @@ class DecompsControllerTest < ActionDispatch::IntegrationTest
     assert_not_nil session[:last_decomp_invite_token]
   end
 
+  test "create decomp with invalid data" do
+    assert_no_changes -> { Decomp.count } do
+      post decomps_path, params: { decomp: { fruit: "Hello!" } }
+    end
+
+    assert_response(:unprocessable_entity)
+
+    assert_nil session[:last_decomp_id]
+    assert_nil session[:last_decomp_invite_token]
+  end
+
   test "edit renders" do
     get edit_decomp_path(decomps(:roasting_max))
 
@@ -60,6 +71,14 @@ class DecompsControllerTest < ActionDispatch::IntegrationTest
 
     patch decomp_path(decomp) + "?invite_token=#{decomp.invite_token}", params: { decomp: { topic: "Apples" } }
 
-    assert_equal "Apples", Decomp.find(decomp.id).topic
+    assert_equal "Apples", decomp.reload.topic
+  end
+
+  test "update decomp with invalid data" do
+    decomp = Decomp.create(topic: "Banana")
+
+    patch decomp_path(decomp) + "?invite_token=#{decomp.invite_token}", params: { decomp: { fruit: "Apples" } }
+
+    assert_equal "Banana", decomp.reload.topic
   end
 end
