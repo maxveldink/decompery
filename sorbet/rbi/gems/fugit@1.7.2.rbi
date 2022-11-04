@@ -965,13 +965,13 @@ module Fugit::Nat::Parser
   # source://fugit//lib/fugit/nat.rb#106
   def _on(i); end
 
-  # source://fugit//lib/fugit/nat.rb#233
+  # source://fugit//lib/fugit/nat.rb#235
   def _point(i); end
 
-  # source://fugit//lib/fugit/nat.rb#359
+  # source://fugit//lib/fugit/nat.rb#361
   def _rewrite_sub(t, key = T.unsafe(nil)); end
 
-  # source://fugit//lib/fugit/nat.rb#356
+  # source://fugit//lib/fugit/nat.rb#358
   def _rewrite_subs(t, key = T.unsafe(nil)); end
 
   # source://fugit//lib/fugit/nat.rb#123
@@ -989,16 +989,18 @@ module Fugit::Nat::Parser
   # source://fugit//lib/fugit/nat.rb#116
   def _to_or_dash(i); end
 
-  # source://fugit//lib/fugit/nat.rb#478
-  def adjust_h(h, ap); end
+  # Try to follow https://en.wikipedia.org/wiki/12-hour_clock#Confusion_at_noon_and_midnight
+  #
+  # source://fugit//lib/fugit/nat.rb#486
+  def adjust_h(h, m, ap); end
 
-  # source://fugit//lib/fugit/nat.rb#205
+  # source://fugit//lib/fugit/nat.rb#200
   def ampm(i); end
 
   # source://fugit//lib/fugit/nat.rb#149
   def and_dmin(i); end
 
-  # source://fugit//lib/fugit/nat.rb#259
+  # source://fugit//lib/fugit/nat.rb#261
   def at(i); end
 
   # at five
@@ -1008,52 +1010,55 @@ module Fugit::Nat::Parser
   # at noon
   # at 18:00 UTC <-- ...tz
   #
-  # source://fugit//lib/fugit/nat.rb#252
+  # source://fugit//lib/fugit/nat.rb#254
   def at_object(i); end
 
-  # source://fugit//lib/fugit/nat.rb#255
+  # source://fugit//lib/fugit/nat.rb#257
   def at_objects(i); end
 
-  # source://fugit//lib/fugit/nat.rb#239
+  # source://fugit//lib/fugit/nat.rb#241
   def at_p(i); end
 
-  # source://fugit//lib/fugit/nat.rb#242
+  # source://fugit//lib/fugit/nat.rb#244
   def at_point(i); end
 
-  # source://fugit//lib/fugit/nat.rb#183
+  # source://fugit//lib/fugit/nat.rb#184
   def city_tz(i); end
 
   # source://fugit//lib/fugit/nat.rb#125
   def count(i); end
 
-  # source://fugit//lib/fugit/nat.rb#235
+  # source://fugit//lib/fugit/nat.rb#237
   def counts(i); end
 
-  # source://fugit//lib/fugit/nat.rb#208
+  # source://fugit//lib/fugit/nat.rb#203
   def dark(i); end
 
-  # source://fugit//lib/fugit/nat.rb#189
+  # source://fugit//lib/fugit/nat.rb#190
   def delta_tz(i); end
 
-  # source://fugit//lib/fugit/nat.rb#199
+  # source://fugit//lib/fugit/nat.rb#207
+  def digital_h(i); end
+
+  # source://fugit//lib/fugit/nat.rb#210
   def digital_hour(i); end
 
-  # source://fugit//lib/fugit/nat.rb#338
+  # source://fugit//lib/fugit/nat.rb#340
   def every(i); end
 
   # every day
   # every 1 minute
   #
-  # source://fugit//lib/fugit/nat.rb#269
+  # source://fugit//lib/fugit/nat.rb#271
   def every_interval(i); end
 
-  # source://fugit//lib/fugit/nat.rb#324
+  # source://fugit//lib/fugit/nat.rb#326
   def every_named(i); end
 
-  # source://fugit//lib/fugit/nat.rb#328
+  # source://fugit//lib/fugit/nat.rb#330
   def every_object(i); end
 
-  # source://fugit//lib/fugit/nat.rb#334
+  # source://fugit//lib/fugit/nat.rb#336
   def every_objects(i); end
 
   # every 1st of the month
@@ -1062,29 +1067,29 @@ module Fugit::Nat::Parser
   # Every second of the month
   # every 15th of the month
   #
-  # source://fugit//lib/fugit/nat.rb#320
+  # source://fugit//lib/fugit/nat.rb#322
   def every_of_the_month(i); end
 
-  # source://fugit//lib/fugit/nat.rb#273
+  # source://fugit//lib/fugit/nat.rb#275
   def every_single_interval(i); end
 
   # every monday
   # every Fri-Sun
   # every Monday and Tuesday
   #
-  # source://fugit//lib/fugit/nat.rb#307
+  # source://fugit//lib/fugit/nat.rb#309
   def every_weekday(i); end
 
-  # source://fugit//lib/fugit/nat.rb#300
+  # source://fugit//lib/fugit/nat.rb#302
   def from(i); end
 
-  # source://fugit//lib/fugit/nat.rb#294
+  # source://fugit//lib/fugit/nat.rb#296
   def from_object(i); end
 
-  # source://fugit//lib/fugit/nat.rb#297
+  # source://fugit//lib/fugit/nat.rb#299
   def from_objects(i); end
 
-  # source://fugit//lib/fugit/nat.rb#263
+  # source://fugit//lib/fugit/nat.rb#265
   def interval(i); end
 
   # source://fugit//lib/fugit/nat.rb#130
@@ -1093,25 +1098,25 @@ module Fugit::Nat::Parser
   # source://fugit//lib/fugit/nat.rb#138
   def monthdays(i); end
 
-  # source://fugit//lib/fugit/nat.rb#226
+  # source://fugit//lib/fugit/nat.rb#228
   def named_h(i); end
 
-  # source://fugit//lib/fugit/nat.rb#229
+  # source://fugit//lib/fugit/nat.rb#231
   def named_hour(i); end
 
-  # source://fugit//lib/fugit/nat.rb#219
+  # source://fugit//lib/fugit/nat.rb#221
   def named_m(i); end
 
-  # source://fugit//lib/fugit/nat.rb#222
+  # source://fugit//lib/fugit/nat.rb#224
   def named_min(i); end
 
-  # source://fugit//lib/fugit/nat.rb#186
+  # source://fugit//lib/fugit/nat.rb#187
   def named_tz(i); end
 
-  # source://fugit//lib/fugit/nat.rb#345
+  # source://fugit//lib/fugit/nat.rb#347
   def nat(i); end
 
-  # source://fugit//lib/fugit/nat.rb#342
+  # source://fugit//lib/fugit/nat.rb#344
   def nat_elt(i); end
 
   # source://fugit//lib/fugit/nat.rb#127
@@ -1128,7 +1133,7 @@ module Fugit::Nat::Parser
   #
   # every month on the 1st
   #
-  # source://fugit//lib/fugit/nat.rb#179
+  # source://fugit//lib/fugit/nat.rb#180
   def on(i); end
 
   # source://fugit//lib/fugit/nat.rb#162
@@ -1155,114 +1160,114 @@ module Fugit::Nat::Parser
   # source://fugit//lib/fugit/nat.rb#163
   def on_weekdays(i); end
 
-  # source://fugit//lib/fugit/nat.rb#311
+  # source://fugit//lib/fugit/nat.rb#313
   def otm(i); end
 
-  # source://fugit//lib/fugit/nat.rb#524
+  # source://fugit//lib/fugit/nat.rb#542
   def rewrite_at(t); end
 
-  # source://fugit//lib/fugit/nat.rb#403
+  # source://fugit//lib/fugit/nat.rb#405
   def rewrite_at_p(t); end
 
-  # source://fugit//lib/fugit/nat.rb#484
+  # source://fugit//lib/fugit/nat.rb#499
   def rewrite_digital_hour(t); end
 
-  # source://fugit//lib/fugit/nat.rb#364
+  # source://fugit//lib/fugit/nat.rb#366
   def rewrite_dmin(t); end
 
-  # source://fugit//lib/fugit/nat.rb#528
+  # source://fugit//lib/fugit/nat.rb#546
   def rewrite_every(t); end
 
-  # source://fugit//lib/fugit/nat.rb#424
+  # source://fugit//lib/fugit/nat.rb#426
   def rewrite_every_interval(t); end
 
-  # source://fugit//lib/fugit/nat.rb#444
+  # source://fugit//lib/fugit/nat.rb#446
   def rewrite_every_named(t); end
 
-  # source://fugit//lib/fugit/nat.rb#416
+  # source://fugit//lib/fugit/nat.rb#418
   def rewrite_every_single_interval(t); end
 
-  # source://fugit//lib/fugit/nat.rb#395
+  # source://fugit//lib/fugit/nat.rb#397
   def rewrite_monthday(t); end
 
-  # source://fugit//lib/fugit/nat.rb#496
+  # source://fugit//lib/fugit/nat.rb#516
   def rewrite_named_hour(t); end
 
-  # source://fugit//lib/fugit/nat.rb#532
+  # source://fugit//lib/fugit/nat.rb#550
   def rewrite_nat(t); end
 
-  # source://fugit//lib/fugit/nat.rb#399
+  # source://fugit//lib/fugit/nat.rb#401
   def rewrite_omonthday(t); end
 
-  # source://fugit//lib/fugit/nat.rb#391
+  # source://fugit//lib/fugit/nat.rb#393
   def rewrite_on(t); end
 
-  # source://fugit//lib/fugit/nat.rb#387
+  # source://fugit//lib/fugit/nat.rb#389
   def rewrite_on_days(t); end
 
-  # source://fugit//lib/fugit/nat.rb#368
+  # source://fugit//lib/fugit/nat.rb#370
   def rewrite_on_minutes(t); end
 
-  # source://fugit//lib/fugit/nat.rb#384
+  # source://fugit//lib/fugit/nat.rb#386
   def rewrite_on_thes(t); end
 
-  # source://fugit//lib/fugit/nat.rb#375
+  # source://fugit//lib/fugit/nat.rb#377
   def rewrite_on_thex(t); end
 
-  # source://fugit//lib/fugit/nat.rb#461
+  # source://fugit//lib/fugit/nat.rb#465
   def rewrite_on_weekdays(t); end
 
-  # source://fugit//lib/fugit/nat.rb#490
+  # source://fugit//lib/fugit/nat.rb#508
   def rewrite_simple_hour(t); end
 
-  # source://fugit//lib/fugit/nat.rb#514
+  # source://fugit//lib/fugit/nat.rb#532
   def rewrite_to_hour(t); end
 
-  # source://fugit//lib/fugit/nat.rb#473
+  # source://fugit//lib/fugit/nat.rb#479
   def rewrite_to_omonthday(t); end
 
-  # source://fugit//lib/fugit/nat.rb#467
+  # source://fugit//lib/fugit/nat.rb#472
   def rewrite_to_weekday(t); end
 
-  # source://fugit//lib/fugit/nat.rb#453
+  # source://fugit//lib/fugit/nat.rb#455
   def rewrite_tz(t); end
 
-  # source://fugit//lib/fugit/nat.rb#457
+  # source://fugit//lib/fugit/nat.rb#460
   def rewrite_weekday(t); end
 
-  # source://fugit//lib/fugit/nat.rb#461
+  # source://fugit//lib/fugit/nat.rb#465
   def rewrite_weekdays(t); end
 
-  # source://fugit//lib/fugit/nat.rb#212
+  # source://fugit//lib/fugit/nat.rb#214
   def simple_h(i); end
 
-  # source://fugit//lib/fugit/nat.rb#215
+  # source://fugit//lib/fugit/nat.rb#217
   def simple_hour(i); end
 
   # rewrite parsed tree ###################################################
   #
-  # source://fugit//lib/fugit/nat.rb#352
+  # source://fugit//lib/fugit/nat.rb#354
   def slot(key, data0, data1 = T.unsafe(nil), opts = T.unsafe(nil)); end
 
-  # source://fugit//lib/fugit/nat.rb#290
+  # source://fugit//lib/fugit/nat.rb#292
   def to_hour(i); end
 
-  # source://fugit//lib/fugit/nat.rb#285
+  # source://fugit//lib/fugit/nat.rb#287
   def to_omonthday(i); end
 
-  # source://fugit//lib/fugit/nat.rb#277
+  # source://fugit//lib/fugit/nat.rb#279
   def to_weekday(i); end
 
-  # source://fugit//lib/fugit/nat.rb#192
+  # source://fugit//lib/fugit/nat.rb#193
   def tz(i); end
 
-  # source://fugit//lib/fugit/nat.rb#195
+  # source://fugit//lib/fugit/nat.rb#196
   def tzone(i); end
 
   # source://fugit//lib/fugit/nat.rb#133
   def weekday(i); end
 
-  # source://fugit//lib/fugit/nat.rb#281
+  # source://fugit//lib/fugit/nat.rb#283
   def weekday_range(i); end
 
   # source://fugit//lib/fugit/nat.rb#140
@@ -1310,102 +1315,102 @@ Fugit::Nat::Parser::WEEKDAYS = T.let(T.unsafe(nil), Array)
 # source://fugit//lib/fugit/nat.rb#93
 Fugit::Nat::Parser::WEEKDAY_REX = T.let(T.unsafe(nil), Regexp)
 
-# source://fugit//lib/fugit/nat.rb#538
+# source://fugit//lib/fugit/nat.rb#556
 class Fugit::Nat::Slot
   # @return [Slot] a new instance of Slot
   #
-  # source://fugit//lib/fugit/nat.rb#541
+  # source://fugit//lib/fugit/nat.rb#559
   def initialize(key, d0, d1 = T.unsafe(nil), opts = T.unsafe(nil)); end
 
   # Returns the value of attribute _data0.
   #
-  # source://fugit//lib/fugit/nat.rb#540
+  # source://fugit//lib/fugit/nat.rb#558
   def _data0; end
 
   # Sets the attribute _data0
   #
   # @param value the value to set the attribute _data0 to.
   #
-  # source://fugit//lib/fugit/nat.rb#540
+  # source://fugit//lib/fugit/nat.rb#558
   def _data0=(_arg0); end
 
   # Returns the value of attribute _data1.
   #
-  # source://fugit//lib/fugit/nat.rb#540
+  # source://fugit//lib/fugit/nat.rb#558
   def _data1; end
 
   # Sets the attribute _data1
   #
   # @param value the value to set the attribute _data1 to.
   #
-  # source://fugit//lib/fugit/nat.rb#540
+  # source://fugit//lib/fugit/nat.rb#558
   def _data1=(_arg0); end
 
-  # source://fugit//lib/fugit/nat.rb#562
+  # source://fugit//lib/fugit/nat.rb#580
   def a; end
 
-  # source://fugit//lib/fugit/nat.rb#551
+  # source://fugit//lib/fugit/nat.rb#569
   def append(slot); end
 
-  # source://fugit//lib/fugit/nat.rb#546
+  # source://fugit//lib/fugit/nat.rb#564
   def data0; end
 
-  # source://fugit//lib/fugit/nat.rb#547
+  # source://fugit//lib/fugit/nat.rb#565
   def data1; end
 
   # @return [Boolean]
   #
-  # source://fugit//lib/fugit/nat.rb#550
+  # source://fugit//lib/fugit/nat.rb#568
   def graded?; end
 
-  # source://fugit//lib/fugit/nat.rb#556
+  # source://fugit//lib/fugit/nat.rb#574
   def inspect; end
 
   # Returns the value of attribute key.
   #
-  # source://fugit//lib/fugit/nat.rb#539
+  # source://fugit//lib/fugit/nat.rb#557
   def key; end
 
-  # source://fugit//lib/fugit/nat.rb#549
+  # source://fugit//lib/fugit/nat.rb#567
   def strong; end
 
-  # source://fugit//lib/fugit/nat.rb#548
+  # source://fugit//lib/fugit/nat.rb#566
   def weak; end
 
   protected
 
-  # source://fugit//lib/fugit/nat.rb#568
+  # source://fugit//lib/fugit/nat.rb#586
   def conflate(index, slot); end
 
-  # source://fugit//lib/fugit/nat.rb#584
+  # source://fugit//lib/fugit/nat.rb#602
   def hour_range; end
 
-  # source://fugit//lib/fugit/nat.rb#564
+  # source://fugit//lib/fugit/nat.rb#582
   def to_a(x); end
 end
 
-# source://fugit//lib/fugit/nat.rb#590
+# source://fugit//lib/fugit/nat.rb#608
 class Fugit::Nat::SlotGroup
   # @return [SlotGroup] a new instance of SlotGroup
   #
-  # source://fugit//lib/fugit/nat.rb#592
+  # source://fugit//lib/fugit/nat.rb#610
   def initialize(slots); end
 
-  # source://fugit//lib/fugit/nat.rb#617
+  # source://fugit//lib/fugit/nat.rb#635
   def to_crons(opts); end
 
   protected
 
-  # source://fugit//lib/fugit/nat.rb#640
+  # source://fugit//lib/fugit/nat.rb#658
   def determine_hms; end
 
-  # source://fugit//lib/fugit/nat.rb#635
+  # source://fugit//lib/fugit/nat.rb#653
   def make_slot(key, data0, data1 = T.unsafe(nil)); end
 
-  # source://fugit//lib/fugit/nat.rb#663
+  # source://fugit//lib/fugit/nat.rb#681
   def parse_cron(hm); end
 
-  # source://fugit//lib/fugit/nat.rb#683
+  # source://fugit//lib/fugit/nat.rb#701
   def slot(key, default); end
 end
 

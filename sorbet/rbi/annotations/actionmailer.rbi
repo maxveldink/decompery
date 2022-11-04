@@ -5,6 +5,6 @@
 # Please run `bin/tapioca annotations` to update it.
 
 class ActionMailer::Base
-  sig { params(headers: T.untyped).returns(ActionMailer::MessageDelivery) }
+  sig { params(headers: T.untyped, block: T.untyped).returns(ActionMailer::MessageDelivery) }
   def mail(headers = nil, &block); end
 end
