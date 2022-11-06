@@ -13,8 +13,19 @@
   </head>
 
   <body class="bg-sky-900 text-zinc-200 flex flex-col justify-between h-screen">
-    <header class="my-8 uppercase text-center">
-      <span class="text-4xl">De</span><span class="text-3xl">co</span><span class="text-xl">mp</span><span class="text-base">ery</span>
+    <header class="my-8 text-center grid grid-cols-4">
+      <div>
+        <% if session[:last_decomp_id].present? %>
+          <%= link_to decomp_path(session[:last_decomp_id]) do %>
+            <h2 class="font-medium text-center hover:text-emerald-500 mb-6">🍄 Looks like you're currently decomposing. Jump back in?</h2>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-span-2">
+        <h1 class="uppercase"><span class="text-4xl">De</span><span class="text-3xl">co</span><span class="text-xl">mp</span><span class="text-base">ery</span></h1>
+        <h2 class="text-lg">Opinionated sprint tools for nimble teams.</h2>
+      </div>
+      <%= render UserInfoComponent.new(user: anonymous_user) %>
     </header>
     <main class="container mx-auto mt-6 mb-auto px-5 flex flex-col">
       <% if notice.present? %>

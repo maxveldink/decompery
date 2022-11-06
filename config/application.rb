@@ -39,5 +39,7 @@ module Decompery
 
     config.active_job.queue_adapter = :good_job
     config.good_job.on_thread_error = ->(exception) { Sentry.capture_exception(exception) }
+
+    config.view_component.default_preview_layout = "component_preview"
   end
 end

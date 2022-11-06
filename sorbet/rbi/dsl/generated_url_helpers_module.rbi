@@ -30,6 +30,9 @@ module GeneratedUrlHelpersModule
   def good_job_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def lookbook_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def new_decomp_stage_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -40,6 +43,12 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def new_rails_conductor_inbound_email_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def preview_view_component_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def preview_view_components_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def rails_blob_representation_proxy_url(*args); end

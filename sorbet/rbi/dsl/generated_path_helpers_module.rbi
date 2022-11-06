@@ -30,6 +30,9 @@ module GeneratedPathHelpersModule
   def good_job_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def lookbook_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def new_decomp_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -40,6 +43,12 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def new_rails_conductor_inbound_email_source_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def preview_view_component_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def preview_view_components_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def rails_blob_path(*args); end
