@@ -1,0 +1,9 @@
+<div class="p-4 rounded bg-emerald-300 text-zinc-800">
+  <% if @path %>
+    <%= link_to @path do %>
+      <p class="font-medium text-center hover:text-emerald-500"><%= @description %></p>
+    <% end %>
+  <% else %>
+    <p class="font-medium text-center"><%= @description %></p>
+  <% end %>
+</div>

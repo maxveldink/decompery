@@ -13,12 +13,12 @@
   </head>
 
   <body class="bg-sky-900 text-zinc-200 flex flex-col justify-between h-screen">
-    <header class="my-8 text-center md:grid md:grid-cols-4">
+    <header class="m-8 text-center md:grid md:grid-cols-4">
       <div>
-        <% if session[:last_decomp_id].present? %>
-          <%= link_to decomp_path(session[:last_decomp_id]) do %>
-            <h2 class="font-medium text-center hover:text-emerald-500 mb-6">🍄 Looks like you're currently decomposing. Jump back in?</h2>
-          <% end %>
+        <% if notice.present? %>
+          <%= render NotificationComponent.new(description: notice) %>
+        <% elsif session[:last_decomp_id].present? %>
+          <%= render NotificationComponent.new(description: "🍄 Looks like you're currently decomposing. Jump back in?", path: decomp_path(session[:last_decomp_id])) %>
         <% end %>
       </div>
       <div class="mb-4 md:mb-0 md:col-span-2">
@@ -27,10 +27,7 @@
       </div>
       <%= render UserInfoComponent.new(user: anonymous_user) %>
     </header>
-    <main class="container mx-auto mt-6 mb-auto px-5 flex flex-col">
-      <% if notice.present? %>
-        <p class="py-2 px-3 mb-5 text-emerald-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-      <% end %>
+    <main class="container mx-auto mt-6 mb-auto flex flex-col">
       <%= yield %>
     </main>
     <footer class="text-center my-4">
