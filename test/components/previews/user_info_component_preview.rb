@@ -3,7 +3,7 @@
 
 class UserInfoComponentPreview < ViewComponent::Preview
   def default
-    user = AnonymousUser.new(name: "Insolent 💩")
+    user = User.new(name: "Insolent 💩")
     render(UserInfoComponent.new(user:))
   end
 end

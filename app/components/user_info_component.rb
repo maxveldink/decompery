@@ -4,7 +4,7 @@
 class UserInfoComponent < ViewComponent::Base
   extend T::Sig
 
-  sig { params(user: AnonymousUser).void }
+  sig { params(user: User).void }
   def initialize(user:)
     @user = user
   end

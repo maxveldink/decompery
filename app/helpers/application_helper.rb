@@ -1,7 +1,6 @@
 # typed: false
 # frozen_string_literal: true
 
-require "anonymous_user"
 require "anonymous_name_generator"
 
 module ApplicationHelper
@@ -17,17 +16,19 @@ module ApplicationHelper
     decomp_url(decomp) + "?invite_token=#{decomp.invite_token}"
   end
 
-  sig { returns(AnonymousUser) }
-  def anonymous_user
-    if session[:anonymous_user].present?
-      AnonymousUser.from_hash(session[:anonymous_user])
+  sig { returns(User) }
+  def current_user
+    if session[:current_user_id].present?
+      User.find(session[:current_user_id])
     else
-      session[:anonymous_user] = anonomize
+      user = anonomize
+      session[:current_user_id] = user.id
+      user
     end
   end
 
-  sig { returns(AnonymousUser) }
+  sig { returns(User) }
   def anonomize
-    AnonymousUser.new(name: AnonymousNameGenerator.new(date: Time.zone.today).call)
+    User.create(name: AnonymousNameGenerator.new(date: Time.zone.today).call)
   end
 end

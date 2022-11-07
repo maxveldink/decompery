@@ -16,13 +16,13 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_equal "http://test.host/decomps/#{@decomp.id}?invite_token=#{@decomp.invite_token}", invite_url(@decomp)
   end
 
-  test "anonymous_user anonomizes when not in session" do
-    assert_not_nil anonymous_user.name
+  test "current_user anonomizes when not in session" do
+    assert_not_nil current_user.name
   end
 
-  test "anonymous_user return user when in session" do
-    session[:anonymous_user] = AnonymousUser.new(name: "Max").serialize
+  test "current_user return user when in session" do
+    session[:current_user_id] = User.create(name: "Max").id
 
-    assert_equal "Max", anonymous_user.name
+    assert_equal "Max", current_user.name
   end
 end

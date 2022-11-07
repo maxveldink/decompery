@@ -25,7 +25,7 @@
         <h1 class="uppercase"><span class="text-4xl">De</span><span class="text-3xl">co</span><span class="text-xl">mp</span><span class="text-base">ery</span></h1>
         <h2 class="text-lg">Opinionated sprint tools for nimble teams.</h2>
       </div>
-      <%= render UserInfoComponent.new(user: anonymous_user) %>
+      <%= render UserInfoComponent.new(user: current_user) %>
     </header>
     <main class="container mx-auto mt-6 mb-auto flex flex-col">
       <%= yield %>
