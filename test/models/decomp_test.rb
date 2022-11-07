@@ -29,6 +29,14 @@ class DecompTest < ActiveSupport::TestCase
     end
   end
 
+  test "add participant doesn't duplicate existing participants" do
+    @decomp.add_participant(@user.id)
+
+    assert_no_changes -> { Participation.count } do
+      @decomp.add_participant(@user.id)
+    end
+  end
+
   test "remove participant destroys participation if user is found" do
     @decomp.add_participant(@user.id)
 
