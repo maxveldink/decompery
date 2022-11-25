@@ -5,6 +5,8 @@
 # Please instead update this file by running `bin/tapioca gem pg`.
 
 # The top-level PG namespace.
+#
+# source://pg//lib/pg.rb#6
 module PG
   include ::PG::Constants
 
@@ -70,6 +72,8 @@ class PG::BadCopyFileFormat < ::PG::DataException; end
 #   end
 # This inserts a single row into copytable with type casts from ruby to
 # database types.
+#
+# source://pg//lib/pg/basic_type_map_based_on_result.rb#36
 class PG::BasicTypeMapBasedOnResult < ::PG::TypeMapByOid
   include ::PG::BasicTypeRegistry::Checker
 
@@ -97,6 +101,8 @@ end
 #   # Execute a query. The Integer param value is typecasted internally by PG::BinaryEncoder::Int8.
 #   # The format of the parameter is set to 0 (text) and the OID of this parameter is set to 20 (int8).
 #   res = conn.exec_params( "SELECT $1", [5] )
+#
+# source://pg//lib/pg/basic_type_map_for_queries.rb#36
 class PG::BasicTypeMapForQueries < ::PG::TypeMapByClass
   include ::PG::BasicTypeRegistry::Checker
 
@@ -164,6 +170,8 @@ end
 #   conn.exec("CREATE TEMP TABLE test (data bytea)")
 #   bd = PG::BasicTypeMapForQueries::BinaryData.new("ab\xff\0cd")
 #   conn.exec_params("INSERT INTO test (data) VALUES ($1)", [bd])
+#
+# source://pg//lib/pg/basic_type_map_for_queries.rb#37
 class PG::BasicTypeMapForQueries::BinaryData < ::String; end
 
 # source://pg//lib/pg/basic_type_map_for_queries.rb#182
@@ -172,6 +180,7 @@ PG::BasicTypeMapForQueries::DEFAULT_ARRAY_TYPE_MAP = T.let(T.unsafe(nil), Hash)
 # source://pg//lib/pg/basic_type_map_for_queries.rb#165
 PG::BasicTypeMapForQueries::DEFAULT_TYPE_MAP = T.let(T.unsafe(nil), Hash)
 
+# source://pg//lib/pg/basic_type_map_for_queries.rb#40
 class PG::BasicTypeMapForQueries::UndefinedEncoder < ::RuntimeError; end
 
 # Simple set of rules for type casting common PostgreSQL types to Ruby.
@@ -218,6 +227,8 @@ class PG::BasicTypeMapForQueries::UndefinedEncoder < ::RuntimeError; end
 #   ["a", 123, [5, 4, 3]]
 #
 # See also PG::BasicTypeMapBasedOnResult for the encoder direction and PG::BasicTypeRegistry for the definition of additional types.
+#
+# source://pg//lib/pg/basic_type_map_for_results.rb#50
 class PG::BasicTypeMapForResults < ::PG::TypeMapByOid
   include ::PG::BasicTypeRegistry::Checker
 
@@ -227,6 +238,7 @@ class PG::BasicTypeMapForResults < ::PG::TypeMapByOid
   def initialize(connection_or_coder_maps, registry: T.unsafe(nil)); end
 end
 
+# source://pg//lib/pg/basic_type_map_for_results.rb#53
 class PG::BasicTypeMapForResults::WarningTypeMap < ::PG::TypeMapInRuby
   # @return [WarningTypeMap] a new instance of WarningTypeMap
   #
@@ -259,6 +271,8 @@ end
 #   regi = PG::BasicTypeRegistry.new.register_default_types
 #   regi.register_type(0, 'inet', InetEncoder, InetDecoder)
 #   conn.type_map_for_results = PG::BasicTypeMapForResults.new(conn, registry: regi)
+#
+# source://pg//lib/pg/basic_type_registry.rb#28
 class PG::BasicTypeRegistry
   include ::PG::BasicTypeRegistry::Checker
 
@@ -317,6 +331,7 @@ class PG::BasicTypeRegistry
   end
 end
 
+# source://pg//lib/pg/basic_type_registry.rb#144
 module PG::BasicTypeRegistry::Checker
   protected
 
@@ -339,6 +354,8 @@ PG::BasicTypeRegistry::Checker::ValidFormats = T.let(T.unsafe(nil), Hash)
 # and type cast direction (encoder or decoder).
 #
 # Each coder object is filled with the PostgreSQL type name, OID, wire format and array coders are filled with the base elements_type.
+#
+# source://pg//lib/pg/basic_type_registry.rb#33
 class PG::BasicTypeRegistry::CoderMap
   # @return [CoderMap] a new instance of CoderMap
   #
@@ -388,6 +405,8 @@ PG::BasicTypeRegistry::CoderMap::DONT_QUOTE_TYPES = T.let(T.unsafe(nil), Hash)
 #   conn = PG::Connection.new
 #   maps = PG::BasicTypeRegistry::CoderMapsBundle.new(conn)
 #   conn.type_map_for_results = PG::BasicTypeMapForResults.new(maps)
+#
+# source://pg//lib/pg/basic_type_registry.rb#108
 class PG::BasicTypeRegistry::CoderMapsBundle
   # @return [CoderMapsBundle] a new instance of CoderMapsBundle
   #
@@ -411,6 +430,7 @@ end
 # source://pg//lib/pg/basic_type_registry.rb#290
 PG::BasicTypeRegistry::DEFAULT_TYPE_REGISTRY = T.let(T.unsafe(nil), PG::BasicTypeRegistry)
 
+# source://pg//lib/pg/binary_decoder.rb#5
 module PG::BinaryDecoder; end
 
 class PG::BinaryDecoder::Boolean < ::PG::SimpleDecoder
@@ -461,6 +481,7 @@ end
 
 PG::BinaryDecoder::Timestamp::CFUNC = T.let(T.unsafe(nil), Object)
 
+# source://pg//lib/pg/binary_decoder.rb#17
 class PG::BinaryDecoder::TimestampLocal < ::PG::BinaryDecoder::Timestamp
   # @return [TimestampLocal] a new instance of TimestampLocal
   #
@@ -469,6 +490,8 @@ class PG::BinaryDecoder::TimestampLocal < ::PG::BinaryDecoder::Timestamp
 end
 
 # Convenience classes for timezone options
+#
+# source://pg//lib/pg/binary_decoder.rb#7
 class PG::BinaryDecoder::TimestampUtc < ::PG::BinaryDecoder::Timestamp
   # @return [TimestampUtc] a new instance of TimestampUtc
   #
@@ -476,6 +499,7 @@ class PG::BinaryDecoder::TimestampUtc < ::PG::BinaryDecoder::Timestamp
   def initialize(params = T.unsafe(nil)); end
 end
 
+# source://pg//lib/pg/binary_decoder.rb#12
 class PG::BinaryDecoder::TimestampUtcToLocal < ::PG::BinaryDecoder::Timestamp
   # @return [TimestampUtcToLocal] a new instance of TimestampUtcToLocal
   #
@@ -556,6 +580,7 @@ class PG::CaseNotFound < ::PG::ServerError; end
 class PG::CharacterNotInRepertoire < ::PG::DataException; end
 class PG::CheckViolation < ::PG::IntegrityConstraintViolation; end
 
+# source://pg//lib/pg/coder.rb#6
 class PG::Coder
   # Create a new coder object based on the attribute Hash.
   #
@@ -598,6 +623,7 @@ class PG::Coder
   def to_h; end
 end
 
+# source://pg//lib/pg/coder.rb#8
 module PG::Coder::BinaryFormatting
   # source://pg//lib/pg/coder.rb#10
   def initialize(params = T.unsafe(nil)); end
@@ -616,6 +642,7 @@ PG::Coder::TIMESTAMP_DB_LOCAL = T.let(T.unsafe(nil), Integer)
 PG::Coder::TIMESTAMP_DB_UTC = T.let(T.unsafe(nil), Integer)
 class PG::CollationMismatch < ::PG::SyntaxErrorOrAccessRuleViolation; end
 
+# source://pg//lib/pg/coder.rb#71
 class PG::CompositeCoder < ::PG::Coder
   def delimiter; end
   def delimiter=(_arg0); end
@@ -659,6 +686,8 @@ class PG::ConfigurationLimitExceeded < ::PG::InsufficientResources; end
 # 3. #sync_exec - the method version that is implemented by blocking function(s) of libpq.
 #
 # Sync and async version of the method can be switched by Connection.async_api= , however it is not recommended to change the default.
+#
+# source://pg//lib/pg/connection.rb#31
 class PG::Connection
   include ::PG::Constants
 
@@ -1301,7 +1330,7 @@ class PG::Connection
     # Do not use this method in production code.
     # Any issues with the default setting of <tt>async_api=true</tt> should be reported to the maintainers instead.
     #
-    # source://pg//lib/pg/connection.rb#863
+    # source://pg//lib/pg/connection.rb#864
     def async_api=(enable); end
 
     # call-seq:
@@ -1378,10 +1407,10 @@ class PG::Connection
     # [+PQPING_NO_ATTEMPT+]
     #   connection not attempted (bad params)
     #
-    # source://pg//lib/pg/connection.rb#788
+    # source://pg//lib/pg/connection.rb#789
     def async_ping(*args); end
 
-    # source://pg//lib/pg/connection.rb#840
+    # source://pg//lib/pg/connection.rb#841
     def async_send_api=(enable); end
 
     def conndefaults; end
@@ -1609,7 +1638,7 @@ class PG::Connection
     # [+PQPING_NO_ATTEMPT+]
     #   connection not attempted (bad params)
     #
-    # source://pg//lib/pg/connection.rb#788
+    # source://pg//lib/pg/connection.rb#789
     def ping(*args); end
 
     # Quote a single +value+ for use in a connection-parameter string.
@@ -1738,7 +1767,7 @@ class PG::Connection
     # source://pg//lib/pg/connection.rb#712
     def connect_to_hosts(*args); end
 
-    # source://pg//lib/pg/connection.rb#763
+    # source://pg//lib/pg/connection.rb#764
     def host_is_named_pipe?(host_string); end
   end
 end
@@ -1752,7 +1781,10 @@ class PG::ConnectionBad < ::PG::Error; end
 class PG::ConnectionDoesNotExist < ::PG::ConnectionException; end
 class PG::ConnectionException < ::PG::ServerError; end
 class PG::ConnectionFailure < ::PG::ConnectionException; end
+
+# source://pg//lib/pg/constants.rb#7
 module PG::Constants; end
+
 PG::Constants::CONNECTION_AUTH_OK = T.let(T.unsafe(nil), Integer)
 PG::Constants::CONNECTION_AWAITING_RESPONSE = T.let(T.unsafe(nil), Integer)
 PG::Constants::CONNECTION_BAD = T.let(T.unsafe(nil), Integer)
@@ -1767,6 +1799,7 @@ PG::Constants::CONNECTION_OK = T.let(T.unsafe(nil), Integer)
 PG::Constants::CONNECTION_SETENV = T.let(T.unsafe(nil), Integer)
 PG::Constants::CONNECTION_SSL_STARTUP = T.let(T.unsafe(nil), Integer)
 PG::Constants::CONNECTION_STARTED = T.let(T.unsafe(nil), Integer)
+PG::Constants::DEF_PGPORT = T.let(T.unsafe(nil), Integer)
 PG::Constants::INVALID_OID = T.let(T.unsafe(nil), Integer)
 PG::Constants::INV_READ = T.let(T.unsafe(nil), Integer)
 PG::Constants::INV_WRITE = T.let(T.unsafe(nil), Integer)
@@ -1828,6 +1861,7 @@ PG::Constants::SEEK_CUR = T.let(T.unsafe(nil), Integer)
 PG::Constants::SEEK_END = T.let(T.unsafe(nil), Integer)
 PG::Constants::SEEK_SET = T.let(T.unsafe(nil), Integer)
 
+# source://pg//lib/pg/coder.rb#87
 class PG::CopyCoder < ::PG::Coder
   def delimiter; end
   def delimiter=(_arg0); end
@@ -1882,6 +1916,7 @@ class PG::ERIESrfProtocolViolated < ::PG::ExternalRoutineInvocationException; en
 class PG::ERIETriggerProtocolViolated < ::PG::ExternalRoutineInvocationException; end
 PG::ERROR_CLASSES = T.let(T.unsafe(nil), Hash)
 
+# source://pg//lib/pg/exceptions.rb#9
 class PG::Error < ::StandardError
   # @return [Error] a new instance of Error
   #
@@ -2017,9 +2052,15 @@ class PG::NoSqlJsonItem < ::PG::DataException; end
 class PG::NonNumericSqlJsonItem < ::PG::DataException; end
 class PG::NonUniqueKeysInAJsonObject < ::PG::DataException; end
 class PG::NonstandardUseOfEscapeCharacter < ::PG::DataException; end
+
+# source://pg//lib/pg.rb#54
 class PG::NotAllCopyDataRetrieved < ::PG::Error; end
+
 class PG::NotAnXmlDocument < ::PG::DataException; end
+
+# source://pg//lib/pg.rb#56
 class PG::NotInBlockingMode < ::PG::Error; end
+
 class PG::NotNullViolation < ::PG::IntegrityConstraintViolation; end
 class PG::NullValueNoIndicatorParameter < ::PG::DataException; end
 class PG::NullValueNotAllowed < ::PG::DataException; end
@@ -2039,6 +2080,7 @@ class PG::QueryCanceled < ::PG::OperatorIntervention; end
 class PG::RaiseException < ::PG::PlpgsqlError; end
 class PG::ReadOnlySqlTransaction < ::PG::InvalidTransactionState; end
 
+# source://pg//lib/pg/coder.rb#97
 class PG::RecordCoder < ::PG::Coder
   # source://pg//lib/pg/coder.rb#98
   def to_h; end
@@ -2052,6 +2094,7 @@ class PG::RecordEncoder < ::PG::RecordCoder; end
 class PG::ReservedName < ::PG::SyntaxErrorOrAccessRuleViolation; end
 class PG::RestrictViolation < ::PG::IntegrityConstraintViolation; end
 
+# source://pg//lib/pg/result.rb#7
 class PG::Result
   include ::Enumerable
   include ::PG::Constants
@@ -2161,6 +2204,7 @@ class PG::SimpleEncoder < ::PG::SimpleCoder; end
 class PG::SingletonSqlJsonItemRequired < ::PG::DataException; end
 class PG::SnapshotTooOld < ::PG::ServerError; end
 class PG::SqlJsonArrayNotFound < ::PG::DataException; end
+class PG::SqlJsonItemCannotBeCastToTargetType < ::PG::DataException; end
 class PG::SqlJsonMemberNotFound < ::PG::DataException; end
 class PG::SqlJsonNumberNotFound < ::PG::DataException; end
 class PG::SqlJsonObjectNotFound < ::PG::DataException; end
@@ -2181,6 +2225,8 @@ class PG::TRDeadlockDetected < ::PG::TransactionRollback; end
 class PG::TRIntegrityConstraintViolation < ::PG::TransactionRollback; end
 class PG::TRSerializationFailure < ::PG::TransactionRollback; end
 class PG::TRStatementCompletionUnknown < ::PG::TransactionRollback; end
+
+# source://pg//lib/pg/text_decoder.rb#8
 module PG::TextDecoder; end
 
 class PG::TextDecoder::Array < ::PG::CompositeDecoder
@@ -2207,6 +2253,7 @@ end
 
 PG::TextDecoder::CopyRow::CFUNC = T.let(T.unsafe(nil), Object)
 
+# source://pg//lib/pg/text_decoder.rb#9
 class PG::TextDecoder::Date < ::PG::SimpleDecoder
   # source://pg//lib/pg/text_decoder.rb#10
   def decode(string, tuple = T.unsafe(nil), field = T.unsafe(nil)); end
@@ -2242,6 +2289,7 @@ end
 
 PG::TextDecoder::Integer::CFUNC = T.let(T.unsafe(nil), Object)
 
+# source://pg//lib/pg/text_decoder.rb#19
 class PG::TextDecoder::JSON < ::PG::SimpleDecoder
   # source://pg//lib/pg/text_decoder.rb#20
   def decode(string, tuple = T.unsafe(nil), field = T.unsafe(nil)); end
@@ -2271,6 +2319,7 @@ end
 
 PG::TextDecoder::Timestamp::CFUNC = T.let(T.unsafe(nil), Object)
 
+# source://pg//lib/pg/text_decoder.rb#36
 class PG::TextDecoder::TimestampLocal < ::PG::TextDecoder::Timestamp
   # @return [TimestampLocal] a new instance of TimestampLocal
   #
@@ -2279,6 +2328,8 @@ class PG::TextDecoder::TimestampLocal < ::PG::TextDecoder::Timestamp
 end
 
 # Convenience classes for timezone options
+#
+# source://pg//lib/pg/text_decoder.rb#26
 class PG::TextDecoder::TimestampUtc < ::PG::TextDecoder::Timestamp
   # @return [TimestampUtc] a new instance of TimestampUtc
   #
@@ -2286,6 +2337,7 @@ class PG::TextDecoder::TimestampUtc < ::PG::TextDecoder::Timestamp
   def initialize(params = T.unsafe(nil)); end
 end
 
+# source://pg//lib/pg/text_decoder.rb#31
 class PG::TextDecoder::TimestampUtcToLocal < ::PG::TextDecoder::Timestamp
   # @return [TimestampUtcToLocal] a new instance of TimestampUtcToLocal
   #
@@ -2301,6 +2353,7 @@ PG::TextDecoder::TimestampWithTimeZone = PG::TextDecoder::Timestamp
 # source://pg//lib/pg/text_decoder.rb#43
 PG::TextDecoder::TimestampWithoutTimeZone = PG::TextDecoder::TimestampLocal
 
+# source://pg//lib/pg/text_encoder.rb#8
 module PG::TextEncoder; end
 
 class PG::TextEncoder::Array < ::PG::CompositeEncoder
@@ -2327,6 +2380,7 @@ end
 
 PG::TextEncoder::CopyRow::CFUNC = T.let(T.unsafe(nil), Object)
 
+# source://pg//lib/pg/text_encoder.rb#9
 class PG::TextEncoder::Date < ::PG::SimpleEncoder
   # source://pg//lib/pg/text_encoder.rb#10
   def encode(value); end
@@ -2344,6 +2398,7 @@ end
 
 PG::TextEncoder::Identifier::CFUNC = T.let(T.unsafe(nil), Object)
 
+# source://pg//lib/pg/text_encoder.rb#39
 class PG::TextEncoder::Inet < ::PG::SimpleEncoder
   # source://pg//lib/pg/text_encoder.rb#40
   def encode(value); end
@@ -2355,6 +2410,7 @@ end
 
 PG::TextEncoder::Integer::CFUNC = T.let(T.unsafe(nil), Object)
 
+# source://pg//lib/pg/text_encoder.rb#33
 class PG::TextEncoder::JSON < ::PG::SimpleEncoder
   # source://pg//lib/pg/text_encoder.rb#34
   def encode(value); end
@@ -2384,16 +2440,19 @@ end
 
 PG::TextEncoder::String::CFUNC = T.let(T.unsafe(nil), Object)
 
+# source://pg//lib/pg/text_encoder.rb#21
 class PG::TextEncoder::TimestampUtc < ::PG::SimpleEncoder
   # source://pg//lib/pg/text_encoder.rb#22
   def encode(value); end
 end
 
+# source://pg//lib/pg/text_encoder.rb#27
 class PG::TextEncoder::TimestampWithTimeZone < ::PG::SimpleEncoder
   # source://pg//lib/pg/text_encoder.rb#28
   def encode(value); end
 end
 
+# source://pg//lib/pg/text_encoder.rb#15
 class PG::TextEncoder::TimestampWithoutTimeZone < ::PG::SimpleEncoder
   # source://pg//lib/pg/text_encoder.rb#16
   def encode(value); end
@@ -2416,6 +2475,7 @@ class PG::TriggeredActionException < ::PG::ServerError; end
 class PG::TriggeredDataChangeViolation < ::PG::ServerError; end
 class PG::TrimError < ::PG::DataException; end
 
+# source://pg//lib/pg/tuple.rb#7
 class PG::Tuple
   include ::Enumerable
 
@@ -2478,6 +2538,7 @@ class PG::TypeMapByClass < ::PG::TypeMap
   def coders; end
 end
 
+# source://pg//lib/pg/type_map_by_column.rb#6
 class PG::TypeMapByColumn < ::PG::TypeMap
   include ::PG::TypeMap::DefaultTypeMappable
 

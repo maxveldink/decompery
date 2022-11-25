@@ -41,179 +41,101 @@ class Redis
   # @option options
   # @option options
   # @option options
-  # @option options
-  # @option options
-  # @option options
-  # @option options
-  # @option options
   # @param options [Hash]
   # @return [Redis] a new client instance
   #
-  # source://redis//lib/redis.rb#83
+  # source://redis//lib/redis.rb#63
   def initialize(options = T.unsafe(nil)); end
 
-  # source://redis//lib/redis.rb#160
+  # source://redis//lib/redis.rb#98
   def _client; end
 
   # Disconnect the client as quickly and silently as possible.
   #
-  # source://redis//lib/redis.rb#110
+  # source://redis//lib/redis.rb#88
   def close; end
-
-  # See http://redis.io/topics/pipelining for more details.
-  #
-  # @deprecated Sends all commands in the queue.
-  #
-  # source://redis//lib/redis.rb#140
-  def commit; end
 
   # Test whether or not the client is connected
   #
   # @return [Boolean]
   #
-  # source://redis//lib/redis.rb#105
+  # source://redis//lib/redis.rb#83
   def connected?; end
 
-  # source://redis//lib/redis.rb#250
+  # source://redis//lib/redis.rb#122
   def connection; end
 
   # Disconnect the client as quickly and silently as possible.
   #
-  # source://redis//lib/redis.rb#110
+  # source://redis//lib/redis.rb#88
   def disconnect!; end
 
-  # source://redis//lib/redis.rb#246
+  # source://redis//lib/redis.rb#118
   def dup; end
 
-  # source://redis//lib/redis.rb#238
+  # source://redis//lib/redis.rb#110
   def id; end
 
-  # source://redis//lib/redis.rb#242
+  # source://redis//lib/redis.rb#114
   def inspect; end
 
-  # Mark the start of a transaction block.
-  #
-  # Passing a block is optional.
-  #
-  # @example With a block
-  #   redis.multi do |multi|
-  #   multi.set("key", "value")
-  #   multi.incr("counter")
-  #   end # => ["OK", 6]
-  # @example Without a block
-  #   redis.multi
-  #   # => "OK"
-  #   redis.set("key", "value")
-  #   # => "QUEUED"
-  #   redis.incr("counter")
-  #   # => "QUEUED"
-  #   redis.exec
-  #   # => ["OK", 6]
-  # @return [String, Array<...>] - when a block is not given, `OK`
-  #   - when a block is given, an array with replies
-  # @see #watch
-  # @see #unwatch
-  # @yield [multi] the commands that are called inside this block are cached
-  #   and written to the server upon returning from it
-  # @yieldparam multi [Redis] `self`
-  #
-  # source://redis//lib/redis.rb#214
-  def multi(&block); end
-
-  # source://redis//lib/redis.rb#164
-  def pipelined(&block); end
-
-  # Commands in the queue are executed with the Redis#commit method.
-  #
-  # See http://redis.io/topics/pipelining for more details.
-  #
-  # @deprecated Queues a command for pipelining.
-  #
-  # source://redis//lib/redis.rb#125
-  def queue(*command); end
+  # source://redis//lib/redis.rb#102
+  def pipelined; end
 
   # @yield [_self]
   # @yieldparam _self [Redis] the object that the method was called on
   #
-  # source://redis//lib/redis.rb#115
+  # source://redis//lib/redis.rb#94
   def with; end
-
-  # Run code with the client reconnecting
-  #
-  # source://redis//lib/redis.rb#93
-  def with_reconnect(val = T.unsafe(nil), &blk); end
 
   # Run code without the client reconnecting
   #
-  # source://redis//lib/redis.rb#100
-  def without_reconnect(&blk); end
+  # source://redis//lib/redis.rb#78
+  def without_reconnect(&block); end
 
   private
 
-  # source://redis//lib/redis.rb#280
+  # source://redis//lib/redis.rb#177
   def _subscription(method, timeout, channels, block); end
 
-  # source://redis//lib/redis.rb#274
+  # source://redis//lib/redis.rb#134
+  def initialize_client(options); end
+
+  # source://redis//lib/redis.rb#171
   def send_blocking_command(command, timeout, &block); end
 
-  # source://redis//lib/redis.rb#268
+  # source://redis//lib/redis.rb#165
   def send_command(command, &block); end
 
-  # source://redis//lib/redis.rb#264
+  # source://redis//lib/redis.rb#161
   def synchronize; end
 
   class << self
-    # source://redis//lib/redis.rb#40
-    def current; end
-
-    # source://redis//lib/redis.rb#45
-    def current=(redis); end
-
-    # source://redis//lib/redis.rb#30
+    # source://redis//lib/redis.rb#14
     def deprecate!(message); end
-
-    # Returns the value of attribute exists_returns_integer.
-    #
-    # source://redis//lib/redis.rb#15
-    def exists_returns_integer; end
-
-    # source://redis//lib/redis.rb#18
-    def exists_returns_integer=(value); end
 
     # Returns the value of attribute raise_deprecations.
     #
-    # source://redis//lib/redis.rb#16
+    # source://redis//lib/redis.rb#12
     def raise_deprecations; end
 
     # Sets the attribute raise_deprecations
     #
     # @param value the value to set the attribute raise_deprecations to.
     #
-    # source://redis//lib/redis.rb#16
+    # source://redis//lib/redis.rb#12
     def raise_deprecations=(_arg0); end
-
-    # Returns the value of attribute sadd_returns_boolean.
-    #
-    # source://redis//lib/redis.rb#16
-    def sadd_returns_boolean; end
-
-    # Sets the attribute sadd_returns_boolean
-    #
-    # @param value the value to set the attribute sadd_returns_boolean to.
-    #
-    # source://redis//lib/redis.rb#16
-    def sadd_returns_boolean=(_arg0); end
 
     # Returns the value of attribute silence_deprecations.
     #
-    # source://redis//lib/redis.rb#16
+    # source://redis//lib/redis.rb#12
     def silence_deprecations; end
 
     # Sets the attribute silence_deprecations
     #
     # @param value the value to set the attribute silence_deprecations to.
     #
-    # source://redis//lib/redis.rb#16
+    # source://redis//lib/redis.rb#12
     def silence_deprecations=(_arg0); end
   end
 end
@@ -223,763 +145,87 @@ Redis::BASE_PATH = T.let(T.unsafe(nil), String)
 
 # Base error for connection related errors.
 #
-# source://redis//lib/redis/errors.rb#24
+# source://redis//lib/redis/errors.rb#36
 class Redis::BaseConnectionError < ::Redis::BaseError; end
 
 # Base error for all redis-rb errors.
 #
 # source://redis//lib/redis/errors.rb#5
-class Redis::BaseError < ::RuntimeError; end
+class Redis::BaseError < ::StandardError; end
 
 # Raised when connection to a Redis server cannot be made.
 #
-# source://redis//lib/redis/errors.rb#28
+# source://redis//lib/redis/errors.rb#40
 class Redis::CannotConnectError < ::Redis::BaseConnectionError; end
 
-# source://redis//lib/redis/client.rb#8
-class Redis::Client
-  # @return [Client] a new instance of Client
-  #
-  # source://redis//lib/redis/client.rb#91
-  def initialize(options = T.unsafe(nil)); end
+# source://redis//lib/redis/client.rb#6
+class Redis::Client < ::RedisClient
+  # source://redis//lib/redis/client.rb#78
+  def blocking_call_v(timeout, command, &block); end
 
-  # source://redis//lib/redis/client.rb#160
-  def call(command); end
+  # source://redis//lib/redis/client.rb#72
+  def call_v(command, &block); end
 
-  # source://redis//lib/redis/client.rb#171
-  def call_loop(command, timeout = T.unsafe(nil)); end
-
-  # source://redis//lib/redis/client.rb#195
-  def call_pipeline(pipeline); end
-
-  # source://redis//lib/redis/client.rb#214
-  def call_pipelined(pipeline); end
-
-  # source://redis//lib/redis/client.rb#254
-  def call_with_timeout(command, extra_timeout, &blk); end
-
-  # source://redis//lib/redis/client.rb#263
-  def call_without_timeout(command, &blk); end
-
-  # source://redis//lib/redis/client.rb#288
-  def close; end
-
-  # Returns the value of attribute command_map.
-  #
-  # source://redis//lib/redis/client.rb#35
-  def command_map; end
-
-  # source://redis//lib/redis/client.rb#110
-  def connect; end
-
-  # source://redis//lib/redis/client.rb#57
-  def connect_timeout; end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/client.rb#284
-  def connected?; end
-
-  # Returns the value of attribute connection.
-  #
-  # source://redis//lib/redis/client.rb#35
-  def connection; end
-
-  # source://redis//lib/redis/client.rb#73
+  # source://redis//lib/redis/client.rb#43
   def db; end
 
-  # source://redis//lib/redis/client.rb#77
-  def db=(db); end
+  # source://redis//lib/redis/client.rb#103
+  def disable_reconnection(&block); end
 
-  # source://redis//lib/redis/client.rb#288
-  def disconnect; end
-
-  # source://redis//lib/redis/client.rb#81
-  def driver; end
-
-  # source://redis//lib/redis/client.rb#41
+  # source://redis//lib/redis/client.rb#47
   def host; end
 
-  # source://redis//lib/redis/client.rb#152
+  # source://redis//lib/redis/client.rb#31
   def id; end
 
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/client.rb#85
-  def inherit_socket?; end
+  # source://redis//lib/redis/client.rb#107
+  def inherit_socket!; end
 
-  # source://redis//lib/redis/client.rb#298
-  def io; end
+  # source://redis//lib/redis/client.rb#97
+  def multi; end
 
-  # source://redis//lib/redis/client.rb#156
-  def location; end
-
-  # Returns the value of attribute logger.
-  #
-  # source://redis//lib/redis/client.rb#89
-  def logger; end
-
-  # Sets the attribute logger
-  #
-  # @param value the value to set the attribute logger to.
-  #
-  # source://redis//lib/redis/client.rb#89
-  def logger=(_arg0); end
-
-  # Returns the value of attribute options.
-  #
-  # source://redis//lib/redis/client.rb#35
-  def options; end
-
-  # source://redis//lib/redis/client.rb#69
+  # source://redis//lib/redis/client.rb#63
   def password; end
 
-  # source://redis//lib/redis/client.rb#49
+  # source://redis//lib/redis/client.rb#55
   def path; end
 
-  # source://redis//lib/redis/client.rb#45
+  # source://redis//lib/redis/client.rb#91
+  def pipelined; end
+
+  # source://redis//lib/redis/client.rb#51
   def port; end
 
-  # source://redis//lib/redis/client.rb#267
-  def process(commands); end
+  # source://redis//lib/redis/client.rb#35
+  def server_url; end
 
-  # source://redis//lib/redis/client.rb#309
-  def read; end
-
-  # source://redis//lib/redis/client.rb#53
-  def read_timeout; end
-
-  # source://redis//lib/redis/client.rb#293
-  def reconnect; end
-
-  # source://redis//lib/redis/client.rb#37
-  def scheme; end
-
-  # source://redis//lib/redis/client.rb#61
+  # source://redis//lib/redis/client.rb#39
   def timeout; end
 
-  # source://redis//lib/redis/client.rb#65
+  # source://redis//lib/redis/client.rb#59
   def username; end
 
-  # source://redis//lib/redis/client.rb#342
-  def with_reconnect(val = T.unsafe(nil)); end
-
-  # source://redis//lib/redis/client.rb#324
-  def with_socket_timeout(timeout); end
-
-  # source://redis//lib/redis/client.rb#349
-  def without_reconnect(&blk); end
-
-  # source://redis//lib/redis/client.rb#338
-  def without_socket_timeout(&blk); end
-
-  # source://redis//lib/redis/client.rb#317
-  def write(command); end
-
-  protected
-
-  # source://redis//lib/redis/client.rb#538
-  def _parse_driver(driver); end
-
-  # source://redis//lib/redis/client.rb#439
-  def _parse_options(options); end
-
-  # source://redis//lib/redis/client.rb#401
-  def ensure_connected; end
-
-  # source://redis//lib/redis/client.rb#379
-  def establish_connection; end
-
-  # source://redis//lib/redis/client.rb#355
-  def logging(commands); end
-end
-
-# source://redis//lib/redis/client.rb#558
-class Redis::Client::Connector
-  # @return [Connector] a new instance of Connector
-  #
-  # source://redis//lib/redis/client.rb#559
-  def initialize(options); end
-
-  # source://redis//lib/redis/client.rb#567
-  def check(client); end
-
-  # source://redis//lib/redis/client.rb#563
-  def resolve; end
-end
-
-# source://redis//lib/redis/client.rb#569
-class Redis::Client::Connector::Sentinel < ::Redis::Client::Connector
-  # @return [Sentinel] a new instance of Sentinel
-  #
-  # source://redis//lib/redis/client.rb#570
-  def initialize(options); end
-
-  # source://redis//lib/redis/client.rb#580
-  def check(client); end
-
-  # source://redis//lib/redis/client.rb#597
-  def resolve; end
-
-  # source://redis//lib/redis/client.rb#637
-  def resolve_master; end
-
-  # source://redis//lib/redis/client.rb#645
-  def resolve_slave; end
-
-  # @raise [CannotConnectError]
-  #
-  # source://redis//lib/redis/client.rb#610
-  def sentinel_detect; end
-end
-
-# Defaults are also used for converting string keys to symbols.
-#
-# source://redis//lib/redis/client.rb#10
-Redis::Client::DEFAULTS = T.let(T.unsafe(nil), Hash)
-
-# source://redis//lib/redis/errors.rb#47
-class Redis::Cluster
-  # @return [Cluster] a new instance of Cluster
-  #
-  # source://redis//lib/redis/cluster.rb#24
-  def initialize(options = T.unsafe(nil)); end
-
-  # source://redis//lib/redis/cluster.rb#71
-  def call(command, &block); end
-
-  # source://redis//lib/redis/cluster.rb#75
-  def call_loop(command, timeout = T.unsafe(nil), &block); end
-
-  # source://redis//lib/redis/cluster.rb#80
-  def call_pipeline(pipeline); end
-
-  # source://redis//lib/redis/cluster.rb#90
-  def call_with_timeout(command, timeout, &block); end
-
-  # source://redis//lib/redis/cluster.rb#95
-  def call_without_timeout(command, &block); end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/cluster.rb#46
-  def connected?; end
-
-  # source://redis//lib/redis/cluster.rb#55
-  def connection_info; end
-
-  # db feature is disabled in cluster mode
-  #
-  # source://redis//lib/redis/cluster.rb#35
-  def db; end
-
-  # db feature is disabled in cluster mode
-  #
-  # source://redis//lib/redis/cluster.rb#40
-  def db=(_db); end
-
-  # source://redis//lib/redis/cluster.rb#50
-  def disconnect; end
-
-  # source://redis//lib/redis/cluster.rb#30
-  def id; end
-
-  # source://redis//lib/redis/cluster.rb#99
-  def process(commands, &block); end
-
-  # source://redis//lib/redis/cluster.rb#42
-  def timeout; end
-
-  # source://redis//lib/redis/cluster.rb#67
-  def with_reconnect(val = T.unsafe(nil), &block); end
-
   private
 
-  # source://redis//lib/redis/cluster.rb#242
-  def _scan(command, &block); end
-
-  # source://redis//lib/redis/cluster.rb#272
-  def assign_asking_node(err_msg); end
-
-  # source://redis//lib/redis/cluster.rb#277
-  def assign_node(command); end
-
-  # source://redis//lib/redis/cluster.rb#265
-  def assign_redirection_node(err_msg); end
-
-  # source://redis//lib/redis/cluster.rb#114
-  def fetch_cluster_info!(option); end
-
-  # source://redis//lib/redis/cluster.rb#125
-  def fetch_command_details(nodes); end
-
-  # source://redis//lib/redis/cluster.rb#296
-  def find_node(node_key); end
-
-  # source://redis//lib/redis/cluster.rb#282
-  def find_node_key(command, primary_only: T.unsafe(nil)); end
-
-  # source://redis//lib/redis/cluster.rb#175
-  def send_client_command(command, &block); end
-
-  # source://redis//lib/redis/cluster.rb#184
-  def send_cluster_command(command, &block); end
-
-  # source://redis//lib/redis/cluster.rb#130
-  def send_command(command, &block); end
-
-  # source://redis//lib/redis/cluster.rb#159
-  def send_config_command(command, &block); end
-
-  # source://redis//lib/redis/cluster.rb#167
-  def send_memory_command(command, &block); end
-
-  # source://redis//lib/redis/cluster.rb#205
-  def send_pubsub_command(command, &block); end
-
-  # source://redis//lib/redis/cluster.rb#195
-  def send_script_command(command, &block); end
-
-  # @see https://redis.io/topics/cluster-spec#redirection-and-resharding Redirection and resharding
+  # @raise [redis_error]
   #
-  # source://redis//lib/redis/cluster.rb#218
-  def try_send(node, method_name, *args, retry_count: T.unsafe(nil), &block); end
+  # source://redis//lib/redis/client.rb#113
+  def translate_error!(error); end
 
-  # source://redis//lib/redis/cluster.rb#305
-  def update_cluster_info!(node_key = T.unsafe(nil)); end
-end
-
-# Raised when cluster client can't select node.
-#
-# source://redis//lib/redis/errors.rb#83
-class Redis::Cluster::AmbiguousNodeError < ::Redis::BaseError
-  # @return [AmbiguousNodeError] a new instance of AmbiguousNodeError
-  #
-  # source://redis//lib/redis/errors.rb#84
-  def initialize(command); end
-end
-
-# Keep details about Redis commands for Redis Cluster Client.
-#
-# @see https://redis.io/commands/command
-#
-# source://redis//lib/redis/cluster/command.rb#9
-class Redis::Cluster::Command
-  # @return [Command] a new instance of Command
-  #
-  # source://redis//lib/redis/cluster/command.rb#10
-  def initialize(details); end
-
-  # source://redis//lib/redis/cluster/command.rb#14
-  def extract_first_key(command); end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/cluster/command.rb#23
-  def should_send_to_master?(command); end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/cluster/command.rb#27
-  def should_send_to_slave?(command); end
-
-  private
-
-  # source://redis//lib/redis/cluster/command.rb#50
-  def determine_first_key_position(command); end
-
-  # source://redis//lib/redis/cluster/command.rb#63
-  def determine_optional_key_position(command, option_name); end
-
-  # source://redis//lib/redis/cluster/command.rb#43
-  def dig_details(command, key); end
-
-  # @see https://redis.io/topics/cluster-spec#keys-hash-tags Keys hash tags
-  #
-  # source://redis//lib/redis/cluster/command.rb#69
-  def extract_hash_tag(key); end
-
-  # source://redis//lib/redis/cluster/command.rb#33
-  def pick_details(details); end
-end
-
-# Raised when error occurs on any node of cluster.
-#
-# source://redis//lib/redis/errors.rb#71
-class Redis::Cluster::CommandErrorCollection < ::Redis::BaseError
-  # @param errors [Hash{String => Redis::CommandError}]
-  # @param error_message [String]
-  # @return [CommandErrorCollection] a new instance of CommandErrorCollection
-  #
-  # source://redis//lib/redis/errors.rb#76
-  def initialize(errors, error_message = T.unsafe(nil)); end
-
-  # Returns the value of attribute errors.
-  #
-  # source://redis//lib/redis/errors.rb#72
-  def errors; end
-end
-
-# Load details about Redis commands for Redis Cluster Client
-#
-# @see https://redis.io/commands/command
-#
-# source://redis//lib/redis/cluster/command_loader.rb#9
-module Redis::Cluster::CommandLoader
-  private
-
-  # source://redis//lib/redis/cluster/command_loader.rb#24
-  def fetch_command_details(node); end
-
-  # source://redis//lib/redis/cluster/command_loader.rb#12
-  def load(nodes); end
+  # source://redis//lib/redis/client.rb#118
+  def translate_error_class(error_class); end
 
   class << self
-    # @raise [InitialSetupError]
-    #
-    # source://redis//lib/redis/cluster/command_loader.rb#12
-    def load(nodes); end
+    # source://redis//lib/redis/client.rb#22
+    def config(**kwargs); end
 
-    private
-
-    # source://redis//lib/redis/cluster/command_loader.rb#24
-    def fetch_command_details(node); end
+    # source://redis//lib/redis/client.rb#26
+    def sentinel(**kwargs); end
   end
 end
 
-# Raised when commands in pipelining include cross slot keys.
-#
-# source://redis//lib/redis/errors.rb#90
-class Redis::Cluster::CrossSlotPipeliningError < ::Redis::BaseError
-  # @return [CrossSlotPipeliningError] a new instance of CrossSlotPipeliningError
-  #
-  # source://redis//lib/redis/errors.rb#91
-  def initialize(keys); end
-end
-
-# Raised when client connected to redis as cluster mode
-# and failed to fetch cluster state information by commands.
-#
-# source://redis//lib/redis/errors.rb#51
-class Redis::Cluster::InitialSetupError < ::Redis::BaseError
-  # @param errors [Array<Redis::BaseError>]
-  # @return [InitialSetupError] a new instance of InitialSetupError
-  #
-  # source://redis//lib/redis/errors.rb#52
-  def initialize(errors); end
-end
-
-# source://redis//lib/redis/cluster/key_slot_converter.rb#17
-module Redis::Cluster::KeySlotConverter
-  private
-
-  # Convert key into slot.
-  #
-  # @param key [String] the key of the redis command
-  # @return [Integer] slot number
-  #
-  # source://redis//lib/redis/cluster/key_slot_converter.rb#62
-  def convert(key); end
-
-  class << self
-    # Convert key into slot.
-    #
-    # @param key [String] the key of the redis command
-    # @return [Integer] slot number
-    #
-    # source://redis//lib/redis/cluster/key_slot_converter.rb#62
-    def convert(key); end
-  end
-end
-
-# source://redis//lib/redis/cluster/key_slot_converter.rb#53
-Redis::Cluster::KeySlotConverter::HASH_SLOTS = T.let(T.unsafe(nil), Integer)
-
-# source://redis//lib/redis/cluster/key_slot_converter.rb#18
-Redis::Cluster::KeySlotConverter::XMODEM_CRC16_LOOKUP = T.let(T.unsafe(nil), Array)
-
-# Keep client list of node for Redis Cluster Client
-#
-# source://redis//lib/redis/cluster/node.rb#8
-class Redis::Cluster::Node
-  include ::Enumerable
-
-  # @return [Node] a new instance of Node
-  #
-  # source://redis//lib/redis/cluster/node.rb#15
-  def initialize(options, node_flags = T.unsafe(nil), with_replica = T.unsafe(nil)); end
-
-  # source://redis//lib/redis/cluster/node.rb#35
-  def call_all(command, &block); end
-
-  # source://redis//lib/redis/cluster/node.rb#39
-  def call_master(command, &block); end
-
-  # source://redis//lib/redis/cluster/node.rb#47
-  def call_slave(command, &block); end
-
-  # source://redis//lib/redis/cluster/node.rb#21
-  def each(&block); end
-
-  # source://redis//lib/redis/cluster/node.rb#29
-  def find_by(node_key); end
-
-  # source://redis//lib/redis/cluster/node.rb#57
-  def process_all(commands, &block); end
-
-  # source://redis//lib/redis/cluster/node.rb#25
-  def sample; end
-
-  # source://redis//lib/redis/cluster/node.rb#61
-  def scale_reading_clients; end
-
-  private
-
-  # source://redis//lib/redis/cluster/node.rb#87
-  def build_clients(options); end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/cluster/node.rb#79
-  def master?(node_key); end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/cluster/node.rb#75
-  def replica_disabled?; end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/cluster/node.rb#83
-  def slave?(node_key); end
-
-  # @raise [CommandErrorCollection]
-  #
-  # source://redis//lib/redis/cluster/node.rb#100
-  def try_map; end
-end
-
-# source://redis//lib/redis/cluster/node.rb#13
-Redis::Cluster::Node::ROLE_SLAVE = T.let(T.unsafe(nil), String)
-
-# source://redis//lib/redis/cluster/node.rb#11
-class Redis::Cluster::Node::ReloadNeeded < ::StandardError; end
-
-# Node key's format is `<ip>:<port>`.
-# It is different from node id.
-# Node id is internal identifying code in Redis Cluster.
-#
-# source://redis//lib/redis/cluster/node_key.rb#8
-module Redis::Cluster::NodeKey
-  private
-
-  # source://redis//lib/redis/cluster/node_key.rb#26
-  def build_from_host_port(host, port); end
-
-  # source://redis//lib/redis/cluster/node_key.rb#22
-  def build_from_uri(uri); end
-
-  # source://redis//lib/redis/cluster/node_key.rb#13
-  def optionize(node_key); end
-
-  # source://redis//lib/redis/cluster/node_key.rb#18
-  def split(node_key); end
-
-  class << self
-    # source://redis//lib/redis/cluster/node_key.rb#26
-    def build_from_host_port(host, port); end
-
-    # source://redis//lib/redis/cluster/node_key.rb#22
-    def build_from_uri(uri); end
-
-    # source://redis//lib/redis/cluster/node_key.rb#13
-    def optionize(node_key); end
-
-    # source://redis//lib/redis/cluster/node_key.rb#18
-    def split(node_key); end
-  end
-end
-
-# source://redis//lib/redis/cluster/node_key.rb#9
-Redis::Cluster::NodeKey::DELIMITER = T.let(T.unsafe(nil), String)
-
-# Load and hashify node info for Redis Cluster Client
-#
-# source://redis//lib/redis/cluster/node_loader.rb#8
-module Redis::Cluster::NodeLoader
-  private
-
-  # source://redis//lib/redis/cluster/node_loader.rb#23
-  def fetch_node_info(node); end
-
-  # source://redis//lib/redis/cluster/node_loader.rb#11
-  def load_flags(nodes); end
-
-  class << self
-    # @raise [InitialSetupError]
-    #
-    # source://redis//lib/redis/cluster/node_loader.rb#11
-    def load_flags(nodes); end
-
-    private
-
-    # source://redis//lib/redis/cluster/node_loader.rb#23
-    def fetch_node_info(node); end
-  end
-end
-
-# Keep options for Redis Cluster Client
-#
-# source://redis//lib/redis/cluster/option.rb#10
-class Redis::Cluster::Option
-  # @return [Option] a new instance of Option
-  #
-  # source://redis//lib/redis/cluster/option.rb#15
-  def initialize(options); end
-
-  # source://redis//lib/redis/cluster/option.rb#44
-  def add_node(host, port); end
-
-  # source://redis//lib/redis/cluster/option.rb#27
-  def per_node_key; end
-
-  # source://redis//lib/redis/cluster/option.rb#40
-  def update_node(addrs); end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/cluster/option.rb#36
-  def use_replica?; end
-
-  private
-
-  # Redis cluster node returns only host and port information.
-  # So we should complement additional information such as:
-  #   scheme, username, password and so on.
-  #
-  # source://redis//lib/redis/cluster/option.rb#93
-  def add_common_node_option_if_needed(options, node_opts, key); end
-
-  # @raise [InvalidClientOptionError]
-  #
-  # source://redis//lib/redis/cluster/option.rb#50
-  def build_node_options(addrs); end
-
-  # source://redis//lib/redis/cluster/option.rb#56
-  def parse_node_addr(addr); end
-
-  # source://redis//lib/redis/cluster/option.rb#81
-  def parse_node_option(addr); end
-
-  # source://redis//lib/redis/cluster/option.rb#67
-  def parse_node_url(addr); end
-end
-
-# source://redis//lib/redis/cluster/option.rb#11
-Redis::Cluster::Option::DEFAULT_SCHEME = T.let(T.unsafe(nil), String)
-
-# source://redis//lib/redis/cluster/option.rb#12
-Redis::Cluster::Option::SECURE_SCHEME = T.let(T.unsafe(nil), String)
-
-# source://redis//lib/redis/cluster/option.rb#13
-Redis::Cluster::Option::VALID_SCHEMES = T.let(T.unsafe(nil), Array)
-
-# Raised when client connected to redis as cluster mode
-# and some cluster subcommands were called.
-#
-# source://redis//lib/redis/errors.rb#59
-class Redis::Cluster::OrchestrationCommandNotSupported < ::Redis::BaseError
-  # @return [OrchestrationCommandNotSupported] a new instance of OrchestrationCommandNotSupported
-  #
-  # source://redis//lib/redis/errors.rb#60
-  def initialize(command, subcommand = T.unsafe(nil)); end
-end
-
-# Keep slot and node key map for Redis Cluster Client
-#
-# source://redis//lib/redis/cluster/slot.rb#6
-class Redis::Cluster::Slot
-  # @return [Slot] a new instance of Slot
-  #
-  # source://redis//lib/redis/cluster/slot.rb#9
-  def initialize(available_slots, node_flags = T.unsafe(nil), with_replica = T.unsafe(nil)); end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/cluster/slot.rb#15
-  def exists?(slot); end
-
-  # source://redis//lib/redis/cluster/slot.rb#19
-  def find_node_key_of_master(slot); end
-
-  # source://redis//lib/redis/cluster/slot.rb#25
-  def find_node_key_of_slave(slot); end
-
-  # source://redis//lib/redis/cluster/slot.rb#32
-  def put(slot, node_key); end
-
-  private
-
-  # available_slots is mapping of node_key to list of slot ranges
-  #
-  # source://redis//lib/redis/cluster/slot.rb#61
-  def build_slot_node_key_map(available_slots); end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/cluster/slot.rb#52
-  def master?(node_key); end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/cluster/slot.rb#48
-  def replica_disabled?; end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/cluster/slot.rb#56
-  def slave?(node_key); end
-end
-
-# source://redis//lib/redis/cluster/slot.rb#7
-Redis::Cluster::Slot::ROLE_SLAVE = T.let(T.unsafe(nil), String)
-
-# Load and hashify slot info for Redis Cluster Client
-#
-# source://redis//lib/redis/cluster/slot_loader.rb#9
-module Redis::Cluster::SlotLoader
-  private
-
-  # source://redis//lib/redis/cluster/slot_loader.rb#24
-  def fetch_slot_info(node); end
-
-  # source://redis//lib/redis/cluster/slot_loader.rb#12
-  def load(nodes); end
-
-  # source://redis//lib/redis/cluster/slot_loader.rb#31
-  def parse_slot_info(arr, default_ip:); end
-
-  # source://redis//lib/redis/cluster/slot_loader.rb#37
-  def stringify_node_key(arr, default_ip); end
-
-  class << self
-    # @raise [InitialSetupError]
-    #
-    # source://redis//lib/redis/cluster/slot_loader.rb#12
-    def load(nodes); end
-
-    private
-
-    # source://redis//lib/redis/cluster/slot_loader.rb#24
-    def fetch_slot_info(node); end
-
-    # source://redis//lib/redis/cluster/slot_loader.rb#31
-    def parse_slot_info(arr, default_ip:); end
-
-    # source://redis//lib/redis/cluster/slot_loader.rb#37
-    def stringify_node_key(arr, default_ip); end
-  end
-end
+# source://redis//lib/redis/client.rb#7
+Redis::Client::ERROR_MAPPING = T.let(T.unsafe(nil), Hash)
 
 # Raised by the client when command execution returns an error reply.
 #
@@ -1014,7 +260,7 @@ module Redis::Commands
   #
   # Redis error replies are raised as Ruby exceptions.
   #
-  # source://redis//lib/redis/commands.rb#205
+  # source://redis//lib/redis/commands.rb#200
   def call(*command); end
 
   # Interact with the sentinel command (masters, master, slaves, failover)
@@ -1023,12 +269,12 @@ module Redis::Commands
   # @param args [Array<String>] depends on subcommand
   # @return [Array<String>, Hash<String, String>, String] depends on subcommand
   #
-  # source://redis//lib/redis/commands.rb#214
+  # source://redis//lib/redis/commands.rb#209
   def sentinel(subcommand, *args); end
 
   private
 
-  # source://redis//lib/redis/commands.rb#236
+  # source://redis//lib/redis/commands.rb#231
   def method_missing(*command); end
 end
 
@@ -1064,7 +310,7 @@ module Redis::Commands::Bitmaps
   # @return [Integer] the position of the first 1/0 bit.
   #   -1 if looking for 1 and it is not found or start and stop are given.
   #
-  # source://redis//lib/redis/commands/bitmaps.rb#53
+  # source://redis//lib/redis/commands/bitmaps.rb#56
   def bitpos(key, bit, start = T.unsafe(nil), stop = T.unsafe(nil)); end
 
   # Returns the bit value at offset in the string value stored at key.
@@ -1094,7 +340,7 @@ end
 # source://redis//lib/redis/commands.rb#42
 Redis::Commands::Boolify = T.let(T.unsafe(nil), Proc)
 
-# source://redis//lib/redis/commands.rb#51
+# source://redis//lib/redis/commands.rb#46
 Redis::Commands::BoolifySet = T.let(T.unsafe(nil), Proc)
 
 # source://redis//lib/redis/commands/cluster.rb#5
@@ -1104,7 +350,7 @@ module Redis::Commands::Cluster
   # @return [String] `'OK'`
   # @see https://redis.io/topics/cluster-spec#ask-redirection ASK redirection
   #
-  # source://redis//lib/redis/commands/cluster.rb#40
+  # source://redis//lib/redis/commands/cluster.rb#23
   def asking; end
 
   # Sends `CLUSTER *` command to random node and returns its reply.
@@ -1150,7 +396,7 @@ module Redis::Commands::Connection
   #
   # @return [String] `OK`
   #
-  # source://redis//lib/redis/commands/connection.rb#46
+  # source://redis//lib/redis/commands/connection.rb#43
   def quit; end
 
   # Change the selected database for the current connection.
@@ -1162,13 +408,13 @@ module Redis::Commands::Connection
   def select(db); end
 end
 
-# source://redis//lib/redis/commands.rb#115
+# source://redis//lib/redis/commands.rb#110
 Redis::Commands::EMPTY_STREAM_RESPONSE = T.let(T.unsafe(nil), Array)
 
-# source://redis//lib/redis/commands.rb#78
+# source://redis//lib/redis/commands.rb#73
 Redis::Commands::Floatify = T.let(T.unsafe(nil), Proc)
 
-# source://redis//lib/redis/commands.rb#91
+# source://redis//lib/redis/commands.rb#86
 Redis::Commands::FloatifyPairs = T.let(T.unsafe(nil), Proc)
 
 # source://redis//lib/redis/commands/geo.rb#5
@@ -1251,7 +497,7 @@ module Redis::Commands::Hashes
   # @param field [String, Array<String>]
   # @return [Integer] the number of fields that were removed from the hash
   #
-  # source://redis//lib/redis/commands/hashes.rb#154
+  # source://redis//lib/redis/commands/hashes.rb#156
   def hdel(key, *fields); end
 
   # Determine if a hash field exists.
@@ -1260,7 +506,7 @@ module Redis::Commands::Hashes
   # @param field [String]
   # @return [Boolean] whether or not the field exists in the hash
   #
-  # source://redis//lib/redis/commands/hashes.rb#163
+  # source://redis//lib/redis/commands/hashes.rb#166
   def hexists(key, field); end
 
   # Get the value of a hash field.
@@ -1277,7 +523,7 @@ module Redis::Commands::Hashes
   # @param key [String]
   # @return [Hash<String, String>]
   #
-  # source://redis//lib/redis/commands/hashes.rb#207
+  # source://redis//lib/redis/commands/hashes.rb#210
   def hgetall(key); end
 
   # Increment the integer value of a hash field by the given integer number.
@@ -1287,7 +533,7 @@ module Redis::Commands::Hashes
   # @param increment [Integer]
   # @return [Integer] value of the field after incrementing it
   #
-  # source://redis//lib/redis/commands/hashes.rb#173
+  # source://redis//lib/redis/commands/hashes.rb#176
   def hincrby(key, field, increment); end
 
   # Increment the numeric value of a hash field by the given float number.
@@ -1297,7 +543,7 @@ module Redis::Commands::Hashes
   # @param increment [Float]
   # @return [Float] value of the field after incrementing it
   #
-  # source://redis//lib/redis/commands/hashes.rb#183
+  # source://redis//lib/redis/commands/hashes.rb#186
   def hincrbyfloat(key, field, increment); end
 
   # Get all the fields in a hash.
@@ -1305,7 +551,7 @@ module Redis::Commands::Hashes
   # @param key [String]
   # @return [Array<String>]
   #
-  # source://redis//lib/redis/commands/hashes.rb#191
+  # source://redis//lib/redis/commands/hashes.rb#194
   def hkeys(key); end
 
   # Get the number of fields in a hash.
@@ -1361,7 +607,7 @@ module Redis::Commands::Hashes
   #   - when `count` is specified and `:with_values` is not specified, an array of field names
   #   - when `:with_values` is specified, an array with `[field, value]` pairs
   #
-  # source://redis//lib/redis/commands/hashes.rb#136
+  # source://redis//lib/redis/commands/hashes.rb#138
   def hrandfield(key, count = T.unsafe(nil), withvalues: T.unsafe(nil), with_values: T.unsafe(nil)); end
 
   # Scan a hash
@@ -1373,7 +619,7 @@ module Redis::Commands::Hashes
   #   - `:count => Integer`: return count keys at most per iteration
   # @return [String, Array<[String, String]>] the next cursor and all found keys
   #
-  # source://redis//lib/redis/commands/hashes.rb#222
+  # source://redis//lib/redis/commands/hashes.rb#225
   def hscan(key, cursor, **options); end
 
   # Scan a hash
@@ -1385,7 +631,7 @@ module Redis::Commands::Hashes
   #   - `:count => Integer`: return count keys at most per iteration
   # @return [Enumerator] an enumerator for all found keys
   #
-  # source://redis//lib/redis/commands/hashes.rb#239
+  # source://redis//lib/redis/commands/hashes.rb#242
   def hscan_each(key, **options, &block); end
 
   # Set one or more hash values.
@@ -1415,7 +661,7 @@ module Redis::Commands::Hashes
   # @param key [String]
   # @return [Array<String>]
   #
-  # source://redis//lib/redis/commands/hashes.rb#199
+  # source://redis//lib/redis/commands/hashes.rb#202
   def hvals(key); end
 
   # Get the values of all the given hash fields.
@@ -1428,7 +674,7 @@ module Redis::Commands::Hashes
   # @return [Hash] a hash mapping the specified fields to their values
   # @see #hmget
   #
-  # source://redis//lib/redis/commands/hashes.rb#104
+  # source://redis//lib/redis/commands/hashes.rb#105
   def mapped_hmget(key, *fields); end
 
   # Set one or more hash values.
@@ -1445,40 +691,40 @@ module Redis::Commands::Hashes
   def mapped_hmset(key, hash); end
 end
 
-# source://redis//lib/redis/commands.rb#62
+# source://redis//lib/redis/commands.rb#57
 Redis::Commands::Hashify = T.let(T.unsafe(nil), Proc)
 
-# source://redis//lib/redis/commands.rb#158
+# source://redis//lib/redis/commands.rb#153
 Redis::Commands::HashifyClusterNodeInfo = T.let(T.unsafe(nil), Proc)
 
-# source://redis//lib/redis/commands.rb#187
+# source://redis//lib/redis/commands.rb#182
 Redis::Commands::HashifyClusterNodes = T.let(T.unsafe(nil), Proc)
 
-# source://redis//lib/redis/commands.rb#191
+# source://redis//lib/redis/commands.rb#186
 Redis::Commands::HashifyClusterSlaves = T.let(T.unsafe(nil), Proc)
 
-# source://redis//lib/redis/commands.rb#173
+# source://redis//lib/redis/commands.rb#168
 Redis::Commands::HashifyClusterSlots = T.let(T.unsafe(nil), Proc)
 
-# source://redis//lib/redis/commands.rb#99
+# source://redis//lib/redis/commands.rb#94
 Redis::Commands::HashifyInfo = T.let(T.unsafe(nil), Proc)
 
-# source://redis//lib/redis/commands.rb#124
+# source://redis//lib/redis/commands.rb#119
 Redis::Commands::HashifyStreamAutoclaim = T.let(T.unsafe(nil), Proc)
 
-# source://redis//lib/redis/commands.rb#131
+# source://redis//lib/redis/commands.rb#126
 Redis::Commands::HashifyStreamAutoclaimJustId = T.let(T.unsafe(nil), Proc)
 
-# source://redis//lib/redis/commands.rb#118
+# source://redis//lib/redis/commands.rb#113
 Redis::Commands::HashifyStreamEntries = T.let(T.unsafe(nil), Proc)
 
-# source://redis//lib/redis/commands.rb#147
+# source://redis//lib/redis/commands.rb#142
 Redis::Commands::HashifyStreamPendingDetails = T.let(T.unsafe(nil), Proc)
 
-# source://redis//lib/redis/commands.rb#138
+# source://redis//lib/redis/commands.rb#133
 Redis::Commands::HashifyStreamPendings = T.let(T.unsafe(nil), Proc)
 
-# source://redis//lib/redis/commands.rb#106
+# source://redis//lib/redis/commands.rb#101
 Redis::Commands::HashifyStreams = T.let(T.unsafe(nil), Proc)
 
 # source://redis//lib/redis/commands/hyper_log_log.rb#5
@@ -1516,9 +762,6 @@ end
 
 # source://redis//lib/redis/commands/keys.rb#5
 module Redis::Commands::Keys
-  # source://redis//lib/redis/commands/keys.rb#269
-  def _exists(*keys); end
-
   # Copy a value from one key to another.
   #
   # @example Copy a value to another key
@@ -1543,7 +786,7 @@ module Redis::Commands::Keys
   # @param replace [Boolean] removes the `destination` key before copying value to it
   # @return [Boolean] whether the key was copied or not
   #
-  # source://redis//lib/redis/commands/keys.rb#345
+  # source://redis//lib/redis/commands/keys.rb#327
   def copy(source, destination, db: T.unsafe(nil), replace: T.unsafe(nil)); end
 
   # Delete one or more keys.
@@ -1575,7 +818,7 @@ module Redis::Commands::Keys
   # @param keys [String, Array<String>]
   # @return [Boolean]
   #
-  # source://redis//lib/redis/commands/keys.rb#277
+  # source://redis//lib/redis/commands/keys.rb#259
   def exists?(*keys); end
 
   # Set a key's time to live in seconds.
@@ -1609,7 +852,7 @@ module Redis::Commands::Keys
   # @param pattern [String]
   # @return [Array<String>]
   #
-  # source://redis//lib/redis/commands/keys.rb#287
+  # source://redis//lib/redis/commands/keys.rb#269
   def keys(pattern = T.unsafe(nil)); end
 
   # Transfer a key from the connected instance to another instance.
@@ -1645,10 +888,10 @@ module Redis::Commands::Keys
   # @param db [Integer]
   # @return [Boolean] whether the key was moved or not
   #
-  # source://redis//lib/redis/commands/keys.rb#316
+  # source://redis//lib/redis/commands/keys.rb#298
   def move(key, db); end
 
-  # source://redis//lib/redis/commands/keys.rb#353
+  # source://redis//lib/redis/commands/keys.rb#335
   def object(*args); end
 
   # Remove the expiration from a key.
@@ -1705,7 +948,7 @@ module Redis::Commands::Keys
   #
   # @return [String]
   #
-  # source://redis//lib/redis/commands/keys.rb#360
+  # source://redis//lib/redis/commands/keys.rb#342
   def randomkey; end
 
   # Rename a key. If the new key already exists it is overwritten.
@@ -1714,7 +957,7 @@ module Redis::Commands::Keys
   # @param new_name [String]
   # @return [String] `OK`
   #
-  # source://redis//lib/redis/commands/keys.rb#369
+  # source://redis//lib/redis/commands/keys.rb#351
   def rename(old_name, new_name); end
 
   # Rename a key, only if the new key does not exist.
@@ -1723,7 +966,7 @@ module Redis::Commands::Keys
   # @param new_name [String]
   # @return [Boolean] whether the key was renamed or not
   #
-  # source://redis//lib/redis/commands/keys.rb#378
+  # source://redis//lib/redis/commands/keys.rb#360
   def renamenx(old_name, new_name); end
 
   # Create a key using the serialized value, previously obtained using DUMP.
@@ -1801,7 +1044,7 @@ module Redis::Commands::Keys
   #   element specified in `:get`
   #   - when `:store` is specified, the number of elements in the stored result
   #
-  # source://redis//lib/redis/commands/keys.rb#407
+  # source://redis//lib/redis/commands/keys.rb#389
   def sort(key, by: T.unsafe(nil), limit: T.unsafe(nil), get: T.unsafe(nil), order: T.unsafe(nil), store: T.unsafe(nil)); end
 
   # Get the time to live (in seconds) for a key.
@@ -1825,7 +1068,7 @@ module Redis::Commands::Keys
   # @param key [String]
   # @return [String] `string`, `list`, `set`, `zset`, `hash` or `none`
   #
-  # source://redis//lib/redis/commands/keys.rb#437
+  # source://redis//lib/redis/commands/keys.rb#419
   def type(key); end
 
   # Unlink one or more keys.
@@ -1838,7 +1081,7 @@ module Redis::Commands::Keys
 
   private
 
-  # source://redis//lib/redis/commands/keys.rb#443
+  # source://redis//lib/redis/commands/keys.rb#425
   def _scan(command, cursor, args, match: T.unsafe(nil), count: T.unsafe(nil), type: T.unsafe(nil), &block); end
 end
 
@@ -1857,7 +1100,7 @@ module Redis::Commands::Lists
   # @param destination [String] destination key
   # @param where_destination [String, Symbol] where to push the element to the source list
   #   e.g. 'LEFT' - to head, 'RIGHT' - to tail
-  # @param options [Hash] - `:timeout => Numeric`: timeout in seconds, defaults to no timeout
+  # @param options [Hash] - `:timeout => [Float, Integer]`: timeout in seconds, defaults to no timeout
   # @param where_source [String, Symbol] from where to remove the element from the source list
   #   e.g. 'LEFT' - from head, 'RIGHT' - from tail
   # @param source [String] source key
@@ -1880,7 +1123,7 @@ module Redis::Commands::Lists
   #   # => ["list", "element"]
   # @param keys [String, Array<String>] one or more keys to perform the
   #   blocking pop on
-  # @param options [Hash] - `:timeout => Integer`: timeout in seconds, defaults to no timeout
+  # @param options [Hash] - `:timeout => [Float, Integer]`: timeout in seconds, defaults to no timeout
   # @return [nil, [String, String]] - `nil` when the operation timed out
   #   - tuple of the list that was popped from and element was popped otherwise
   #
@@ -1891,7 +1134,7 @@ module Redis::Commands::Lists
   #
   # @param keys [String, Array<String>] one or more keys to perform the
   #   blocking pop on
-  # @param options [Hash] - `:timeout => Integer`: timeout in seconds, defaults to no timeout
+  # @param options [Hash] - `:timeout => [Float, Integer]`: timeout in seconds, defaults to no timeout
   # @return [nil, [String, String]] - `nil` when the operation timed out
   #   - tuple of the list that was popped from and element was popped otherwise
   # @see #blpop
@@ -1904,12 +1147,12 @@ module Redis::Commands::Lists
   #
   # @param source [String] source key
   # @param destination [String] destination key
-  # @param options [Hash] - `:timeout => Integer`: timeout in seconds, defaults to no timeout
+  # @param options [Hash] - `:timeout => [Float, Integer]`: timeout in seconds, defaults to no timeout
   # @return [nil, String] - `nil` when the operation timed out
   #   - the element was popped and pushed otherwise
   #
   # source://redis//lib/redis/commands/lists.rb#181
-  def brpoplpush(source, destination, deprecated_timeout = T.unsafe(nil), timeout: T.unsafe(nil)); end
+  def brpoplpush(source, destination, timeout: T.unsafe(nil)); end
 
   # Get an element from a list by its index.
   #
@@ -1959,7 +1202,7 @@ module Redis::Commands::Lists
   #
   # @param key [String]
   # @param count [Integer] number of elements to remove
-  # @return [String, Array<String>] the values of the first elements
+  # @return [nil, String, Array<String>] the values of the first elements
   #
   # source://redis//lib/redis/commands/lists.rb#103
   def lpop(key, count = T.unsafe(nil)); end
@@ -2029,7 +1272,7 @@ module Redis::Commands::Lists
   #
   # @param key [String]
   # @param count [Integer] number of elements to remove
-  # @return [String, Array<String>] the values of the last elements
+  # @return [nil, String, Array<String>] the values of the last elements
   #
   # source://redis//lib/redis/commands/lists.rb#114
   def rpop(key, count = T.unsafe(nil)); end
@@ -2066,27 +1309,27 @@ module Redis::Commands::Lists
   # source://redis//lib/redis/commands/lists.rb#252
   def _bpop(cmd, args, &blk); end
 
-  # source://redis//lib/redis/commands/lists.rb#274
+  # source://redis//lib/redis/commands/lists.rb#269
   def _normalize_move_wheres(where_source, where_destination); end
 end
 
-# source://redis//lib/redis/commands.rb#195
+# source://redis//lib/redis/commands.rb#190
 Redis::Commands::Noop = T.let(T.unsafe(nil), Proc)
 
-# source://redis//lib/redis/commands.rb#70
+# source://redis//lib/redis/commands.rb#65
 Redis::Commands::Pairify = T.let(T.unsafe(nil), Proc)
 
 # source://redis//lib/redis/commands/pubsub.rb#5
 module Redis::Commands::Pubsub
   # Listen for messages published to channels matching the given patterns.
   #
-  # source://redis//lib/redis/commands/pubsub.rb#42
+  # source://redis//lib/redis/commands/pubsub.rb#32
   def psubscribe(*channels, &block); end
 
   # Listen for messages published to channels matching the given patterns.
   # Throw a timeout error if there is no messages for a timeout period.
   #
-  # source://redis//lib/redis/commands/pubsub.rb#50
+  # source://redis//lib/redis/commands/pubsub.rb#38
   def psubscribe_with_timeout(timeout, *channels, &block); end
 
   # Post a message to a channel.
@@ -2097,23 +1340,23 @@ module Redis::Commands::Pubsub
   # Inspect the state of the Pub/Sub subsystem.
   # Possible subcommands: channels, numsub, numpat.
   #
-  # source://redis//lib/redis/commands/pubsub.rb#67
+  # source://redis//lib/redis/commands/pubsub.rb#49
   def pubsub(subcommand, *args); end
 
   # Stop listening for messages posted to channels matching the given patterns.
   #
-  # source://redis//lib/redis/commands/pubsub.rb#57
+  # source://redis//lib/redis/commands/pubsub.rb#43
   def punsubscribe(*channels); end
 
   # Listen for messages published to the given channels.
   #
-  # source://redis//lib/redis/commands/pubsub.rb#18
+  # source://redis//lib/redis/commands/pubsub.rb#16
   def subscribe(*channels, &block); end
 
   # Listen for messages published to the given channels. Throw a timeout error
   # if there is no messages for a timeout period.
   #
-  # source://redis//lib/redis/commands/pubsub.rb#26
+  # source://redis//lib/redis/commands/pubsub.rb#22
   def subscribe_with_timeout(timeout, *channels, &block); end
 
   # @return [Boolean]
@@ -2123,7 +1366,7 @@ module Redis::Commands::Pubsub
 
   # Stop listening for messages posted to the given channels.
   #
-  # source://redis//lib/redis/commands/pubsub.rb#33
+  # source://redis//lib/redis/commands/pubsub.rb#27
   def unsubscribe(*channels); end
 end
 
@@ -2227,7 +1470,7 @@ module Redis::Commands::Server
   # @return [String, Hash] depends on subcommand
   #
   # source://redis//lib/redis/commands/server.rb#39
-  def client(subcommand = T.unsafe(nil), *args); end
+  def client(subcommand, *args); end
 
   # Get or set server configuration parameters.
   #
@@ -2287,23 +1530,23 @@ module Redis::Commands::Server
   # @yieldparam line [String] timestamp and command that was executed
   #
   # source://redis//lib/redis/commands/server.rb#120
-  def monitor(&block); end
+  def monitor; end
 
   # Synchronously save the dataset to disk.
   #
   # @return [String]
   #
-  # source://redis//lib/redis/commands/server.rb#129
+  # source://redis//lib/redis/commands/server.rb#133
   def save; end
 
   # Synchronously save the dataset to disk and then shut down the server.
   #
-  # source://redis//lib/redis/commands/server.rb#134
+  # source://redis//lib/redis/commands/server.rb#138
   def shutdown; end
 
   # Make the server a slave of another instance, or promote it as master.
   #
-  # source://redis//lib/redis/commands/server.rb#148
+  # source://redis//lib/redis/commands/server.rb#150
   def slaveof(host, port); end
 
   # Interact with the slowlog (get, len, reset)
@@ -2312,7 +1555,7 @@ module Redis::Commands::Server
   # @param length [Integer] maximum number of entries to return
   # @return [Array<String>, Integer, String] depends on subcommand
   #
-  # source://redis//lib/redis/commands/server.rb#157
+  # source://redis//lib/redis/commands/server.rb#159
   def slowlog(subcommand, length = T.unsafe(nil)); end
 
   # Internal command used for replication.
@@ -2337,22 +1580,19 @@ module Redis::Commands::Sets
   #
   # @param key [String]
   # @param member [String, Array<String>] one member, or array of members
-  # @return [Boolean, Integer] `Boolean` when a single member is specified,
-  #   holding whether or not adding the member succeeded, or `Integer` when an
-  #   array of members is specified, holding the number of members that were
-  #   successfully added
+  # @return [Integer] The number of members that were successfully added
   #
-  # source://redis//lib/redis/commands/sets.rb#22
-  def sadd(key, member); end
+  # source://redis//lib/redis/commands/sets.rb#19
+  def sadd(key, *members); end
 
   # Add one or more members to a set.
   #
   # @param key [String]
   # @param member [String, Array<String>] one member, or array of members
-  # @return [Boolean] Whether or not at least one member was added.
+  # @return [Boolean] Wether at least one member was successfully added.
   #
-  # source://redis//lib/redis/commands/sets.rb#38
-  def sadd?(key, member); end
+  # source://redis//lib/redis/commands/sets.rb#29
+  def sadd?(key, *members); end
 
   # Get the number of members in a set.
   #
@@ -2367,7 +1607,7 @@ module Redis::Commands::Sets
   # @param keys [String, Array<String>] keys pointing to sets to subtract
   # @return [Array<String>] members in the difference
   #
-  # source://redis//lib/redis/commands/sets.rb#138
+  # source://redis//lib/redis/commands/sets.rb#123
   def sdiff(*keys); end
 
   # Subtract multiple sets and store the resulting set in a key.
@@ -2376,7 +1616,7 @@ module Redis::Commands::Sets
   # @param keys [String, Array<String>] keys pointing to sets to subtract
   # @return [Integer] number of elements in the resulting set
   #
-  # source://redis//lib/redis/commands/sets.rb#147
+  # source://redis//lib/redis/commands/sets.rb#133
   def sdiffstore(destination, *keys); end
 
   # Intersect multiple sets.
@@ -2384,7 +1624,7 @@ module Redis::Commands::Sets
   # @param keys [String, Array<String>] keys pointing to sets to intersect
   # @return [Array<String>] members in the intersection
   #
-  # source://redis//lib/redis/commands/sets.rb#155
+  # source://redis//lib/redis/commands/sets.rb#142
   def sinter(*keys); end
 
   # Intersect multiple sets and store the resulting set in a key.
@@ -2393,7 +1633,7 @@ module Redis::Commands::Sets
   # @param keys [String, Array<String>] keys pointing to sets to intersect
   # @return [Integer] number of elements in the resulting set
   #
-  # source://redis//lib/redis/commands/sets.rb#164
+  # source://redis//lib/redis/commands/sets.rb#152
   def sinterstore(destination, *keys); end
 
   # Determine if a given value is a member of a set.
@@ -2402,7 +1642,7 @@ module Redis::Commands::Sets
   # @param member [String]
   # @return [Boolean]
   #
-  # source://redis//lib/redis/commands/sets.rb#111
+  # source://redis//lib/redis/commands/sets.rb#95
   def sismember(key, member); end
 
   # Get all the members in a set.
@@ -2410,7 +1650,7 @@ module Redis::Commands::Sets
   # @param key [String]
   # @return [Array<String>]
   #
-  # source://redis//lib/redis/commands/sets.rb#130
+  # source://redis//lib/redis/commands/sets.rb#115
   def smembers(key); end
 
   # Determine if multiple values are members of a set.
@@ -2419,7 +1659,7 @@ module Redis::Commands::Sets
   # @param members [String, Array<String>]
   # @return [Array<Boolean>]
   #
-  # source://redis//lib/redis/commands/sets.rb#120
+  # source://redis//lib/redis/commands/sets.rb#104
   def smismember(key, *members); end
 
   # Move a member from one set to another.
@@ -2429,7 +1669,7 @@ module Redis::Commands::Sets
   # @param member [String] member to move from `source` to `destination`
   # @return [Boolean]
   #
-  # source://redis//lib/redis/commands/sets.rb#102
+  # source://redis//lib/redis/commands/sets.rb#86
   def smove(source, destination, member); end
 
   # Remove and return one or more random member from a set.
@@ -2438,7 +1678,7 @@ module Redis::Commands::Sets
   # @param count [Integer]
   # @return [String]
   #
-  # source://redis//lib/redis/commands/sets.rb#75
+  # source://redis//lib/redis/commands/sets.rb#59
   def spop(key, count = T.unsafe(nil)); end
 
   # Get one or more random members from a set.
@@ -2447,29 +1687,26 @@ module Redis::Commands::Sets
   # @param count [Integer]
   # @return [String]
   #
-  # source://redis//lib/redis/commands/sets.rb#88
+  # source://redis//lib/redis/commands/sets.rb#72
   def srandmember(key, count = T.unsafe(nil)); end
 
   # Remove one or more members from a set.
   #
   # @param key [String]
   # @param member [String, Array<String>] one member, or array of members
-  # @return [Boolean, Integer] `Boolean` when a single member is specified,
-  #   holding whether or not removing the member succeeded, or `Integer` when an
-  #   array of members is specified, holding the number of members that were
-  #   successfully removed
+  # @return [Integer] The number of members that were successfully removed
   #
-  # source://redis//lib/redis/commands/sets.rb#50
-  def srem(key, member); end
+  # source://redis//lib/redis/commands/sets.rb#39
+  def srem(key, *members); end
 
   # Remove one or more members from a set.
   #
   # @param key [String]
   # @param member [String, Array<String>] one member, or array of members
-  # @return [Boolean] `Boolean` Whether or not a member was removed.
+  # @return [Boolean] Wether at least one member was successfully removed.
   #
-  # source://redis//lib/redis/commands/sets.rb#66
-  def srem?(key, member); end
+  # source://redis//lib/redis/commands/sets.rb#49
+  def srem?(key, *members); end
 
   # Scan a set
   #
@@ -2480,7 +1717,7 @@ module Redis::Commands::Sets
   #   - `:count => Integer`: return count keys at most per iteration
   # @return [String, Array<String>] the next cursor and all found members
   #
-  # source://redis//lib/redis/commands/sets.rb#196
+  # source://redis//lib/redis/commands/sets.rb#187
   def sscan(key, cursor, **options); end
 
   # Scan a set
@@ -2492,7 +1729,7 @@ module Redis::Commands::Sets
   #   - `:count => Integer`: return count keys at most per iteration
   # @return [Enumerator] an enumerator for all keys in the set
   #
-  # source://redis//lib/redis/commands/sets.rb#211
+  # source://redis//lib/redis/commands/sets.rb#202
   def sscan_each(key, **options, &block); end
 
   # Add multiple sets.
@@ -2500,7 +1737,7 @@ module Redis::Commands::Sets
   # @param keys [String, Array<String>] keys pointing to sets to unify
   # @return [Array<String>] members in the union
   #
-  # source://redis//lib/redis/commands/sets.rb#172
+  # source://redis//lib/redis/commands/sets.rb#161
   def sunion(*keys); end
 
   # Add multiple sets and store the resulting set in a key.
@@ -2509,7 +1746,7 @@ module Redis::Commands::Sets
   # @param keys [String, Array<String>] keys pointing to sets to unify
   # @return [Integer] number of elements in the resulting set
   #
-  # source://redis//lib/redis/commands/sets.rb#181
+  # source://redis//lib/redis/commands/sets.rb#171
   def sunionstore(destination, *keys); end
 end
 
@@ -2527,7 +1764,7 @@ module Redis::Commands::SortedSets
   # @return [Array<String, String, Float>] a touple of key, member and score
   # @return [nil] when no element could be popped and the timeout expired
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#181
+  # source://redis//lib/redis/commands/sorted_sets.rb#185
   def bzpopmax(*args); end
 
   # Removes and returns up to count members with the lowest scores in the sorted set stored at keys,
@@ -2542,7 +1779,7 @@ module Redis::Commands::SortedSets
   # @return [Array<String, String, Float>] a touple of key, member and score
   # @return [nil] when no element could be popped and the timeout expired
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#202
+  # source://redis//lib/redis/commands/sorted_sets.rb#206
   def bzpopmin(*args); end
 
   # Add one or more members to a sorted set, or update the score for members
@@ -2605,7 +1842,7 @@ module Redis::Commands::SortedSets
   #   - exclusive maximum score is specified by prefixing `(`
   # @return [Integer] number of members in within the specified range
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#608
+  # source://redis//lib/redis/commands/sorted_sets.rb#612
   def zcount(key, min, max); end
 
   # Return the difference between the first and all successive input sorted sets
@@ -2625,7 +1862,7 @@ module Redis::Commands::SortedSets
   # @return [Array<String>, Array<[String, Float]>] - when `:with_scores` is not specified, an array of members
   #   - when `:with_scores` is specified, an array with `[member, score]` pairs
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#717
+  # source://redis//lib/redis/commands/sorted_sets.rb#721
   def zdiff(*keys, with_scores: T.unsafe(nil)); end
 
   # Compute the difference between the first and all successive input sorted sets
@@ -2640,7 +1877,7 @@ module Redis::Commands::SortedSets
   # @param keys [Array<String>] source keys
   # @return [Integer] number of elements in the resulting sorted set
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#733
+  # source://redis//lib/redis/commands/sorted_sets.rb#737
   def zdiffstore(*args, **_arg1); end
 
   # Increment the score of a member in a sorted set.
@@ -2672,7 +1909,7 @@ module Redis::Commands::SortedSets
   # @return [Array<String>, Array<[String, Float]>] - when `:with_scores` is not specified, an array of members
   #   - when `:with_scores` is specified, an array with `[member, score]` pairs
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#631
+  # source://redis//lib/redis/commands/sorted_sets.rb#635
   def zinter(*args, **_arg1); end
 
   # Intersect multiple sorted sets and store the resulting sorted set in a new
@@ -2688,7 +1925,7 @@ module Redis::Commands::SortedSets
   #   - `:aggregate => String`: aggregate function to use (sum, min, max)
   # @return [Integer] number of elements in the resulting sorted set
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#650
+  # source://redis//lib/redis/commands/sorted_sets.rb#654
   def zinterstore(*args, **_arg1); end
 
   # Count the members, with the same score in a sorted set, within the given lexicographical range.
@@ -2706,7 +1943,7 @@ module Redis::Commands::SortedSets
   #   - exclusive maximum is specified by prefixing `[`
   # @return [Integer] number of members within the specified lexicographical range
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#439
+  # source://redis//lib/redis/commands/sorted_sets.rb#443
   def zlexcount(key, min, max); end
 
   # Get the scores associated with the given members in a sorted set.
@@ -2718,7 +1955,7 @@ module Redis::Commands::SortedSets
   # @param members [String, Array<String>]
   # @return [Array<Float>] scores of the members
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#230
+  # source://redis//lib/redis/commands/sorted_sets.rb#234
   def zmscore(key, *members); end
 
   # Removes and returns up to count members with the highest scores in the sorted set stored at key.
@@ -2746,7 +1983,7 @@ module Redis::Commands::SortedSets
   # @return [Array<String, Float>] element and score pair if count is not specified
   # @return [Array<Array<String, Float>>] list of popped elements and scores
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#159
+  # source://redis//lib/redis/commands/sorted_sets.rb#161
   def zpopmin(key, count = T.unsafe(nil)); end
 
   # Get one or more random members from a sorted set.
@@ -2768,7 +2005,7 @@ module Redis::Commands::SortedSets
   #   - when `count` is specified and `:with_scores` is not specified, an array of members
   #   - when `:with_scores` is specified, an array with `[member, score]` pairs
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#258
+  # source://redis//lib/redis/commands/sorted_sets.rb#262
   def zrandmember(key, count = T.unsafe(nil), withscores: T.unsafe(nil), with_scores: T.unsafe(nil)); end
 
   # Return a range of members in a sorted set, by index, score or lexicographical ordering.
@@ -2791,7 +2028,7 @@ module Redis::Commands::SortedSets
   # @return [Array<String>, Array<[String, Float]>] - when `:with_scores` is not specified, an array of members
   #   - when `:with_scores` is specified, an array with `[member, score]` pairs
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#297
+  # source://redis//lib/redis/commands/sorted_sets.rb#301
   def zrange(key, start, stop, byscore: T.unsafe(nil), by_score: T.unsafe(nil), bylex: T.unsafe(nil), by_lex: T.unsafe(nil), rev: T.unsafe(nil), limit: T.unsafe(nil), withscores: T.unsafe(nil), with_scores: T.unsafe(nil)); end
 
   # Return a range of members with the same score in a sorted set, by lexicographical ordering
@@ -2811,7 +2048,7 @@ module Redis::Commands::SortedSets
   #   `count` members
   # @return [Array<String>, Array<[String, Float]>]
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#464
+  # source://redis//lib/redis/commands/sorted_sets.rb#468
   def zrangebylex(key, min, max, limit: T.unsafe(nil)); end
 
   # Return a range of members in a sorted set, by score.
@@ -2836,7 +2073,7 @@ module Redis::Commands::SortedSets
   # @return [Array<String>, Array<[String, Float]>] - when `:with_scores` is not specified, an array of members
   #   - when `:with_scores` is specified, an array with `[member, score]` pairs
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#524
+  # source://redis//lib/redis/commands/sorted_sets.rb#528
   def zrangebyscore(key, min, max, withscores: T.unsafe(nil), with_scores: T.unsafe(nil), limit: T.unsafe(nil)); end
 
   # Select a range of members in a sorted set, by index, score or lexicographical ordering
@@ -2851,7 +2088,7 @@ module Redis::Commands::SortedSets
   # @return [Integer] the number of elements in the resulting sorted set
   # @see #zrange
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#339
+  # source://redis//lib/redis/commands/sorted_sets.rb#343
   def zrangestore(dest_key, src_key, start, stop, byscore: T.unsafe(nil), by_score: T.unsafe(nil), bylex: T.unsafe(nil), by_lex: T.unsafe(nil), rev: T.unsafe(nil), limit: T.unsafe(nil)); end
 
   # Determine the index of a member in a sorted set.
@@ -2860,7 +2097,7 @@ module Redis::Commands::SortedSets
   # @param member [String]
   # @return [Integer]
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#390
+  # source://redis//lib/redis/commands/sorted_sets.rb#394
   def zrank(key, member); end
 
   # Remove one or more members from a sorted set.
@@ -2893,7 +2130,7 @@ module Redis::Commands::SortedSets
   # @param stop [Integer] stop index
   # @return [Integer] number of members that were removed
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#417
+  # source://redis//lib/redis/commands/sorted_sets.rb#421
   def zremrangebyrank(key, start, stop); end
 
   # Remove all members in a sorted set within the given scores.
@@ -2911,7 +2148,7 @@ module Redis::Commands::SortedSets
   #   - exclusive maximum score is specified by prefixing `(`
   # @return [Integer] number of members that were removed
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#587
+  # source://redis//lib/redis/commands/sorted_sets.rb#591
   def zremrangebyscore(key, min, max); end
 
   # Return a range of members in a sorted set, by index, with scores ordered
@@ -2925,7 +2162,7 @@ module Redis::Commands::SortedSets
   #   # => [["b", 64.0], ["a", 32.0]]
   # @see #zrange
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#374
+  # source://redis//lib/redis/commands/sorted_sets.rb#378
   def zrevrange(key, start, stop, withscores: T.unsafe(nil), with_scores: T.unsafe(nil)); end
 
   # Return a range of members with the same score in a sorted set, by reversed lexicographical ordering.
@@ -2939,7 +2176,7 @@ module Redis::Commands::SortedSets
   #   # => ["abbygail", "abby"]
   # @see #zrangebylex
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#486
+  # source://redis//lib/redis/commands/sorted_sets.rb#490
   def zrevrangebylex(key, max, min, limit: T.unsafe(nil)); end
 
   # Return a range of members in a sorted set, by score, with scores ordered
@@ -2956,7 +2193,7 @@ module Redis::Commands::SortedSets
   #   # => [["b", 64.0], ["a", 32.0]]
   # @see #zrangebyscore
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#554
+  # source://redis//lib/redis/commands/sorted_sets.rb#558
   def zrevrangebyscore(key, max, min, withscores: T.unsafe(nil), with_scores: T.unsafe(nil), limit: T.unsafe(nil)); end
 
   # Determine the index of a member in a sorted set, with scores ordered from
@@ -2966,7 +2203,7 @@ module Redis::Commands::SortedSets
   # @param member [String]
   # @return [Integer]
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#400
+  # source://redis//lib/redis/commands/sorted_sets.rb#404
   def zrevrank(key, member); end
 
   # Scan a sorted set
@@ -2979,7 +2216,7 @@ module Redis::Commands::SortedSets
   # @return [String, Array<[String, Float]>] the next cursor and all found
   #   members and scores
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#750
+  # source://redis//lib/redis/commands/sorted_sets.rb#754
   def zscan(key, cursor, **options); end
 
   # Scan a sorted set
@@ -2991,7 +2228,7 @@ module Redis::Commands::SortedSets
   #   - `:count => Integer`: return count keys at most per iteration
   # @return [Enumerator] an enumerator for all found scores and members
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#767
+  # source://redis//lib/redis/commands/sorted_sets.rb#771
   def zscan_each(key, **options, &block); end
 
   # Get the score associated with the given member in a sorted set.
@@ -3003,7 +2240,7 @@ module Redis::Commands::SortedSets
   # @param member [String]
   # @return [Float] score of the member
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#217
+  # source://redis//lib/redis/commands/sorted_sets.rb#221
   def zscore(key, member); end
 
   # Return the union of multiple sorted sets
@@ -3022,7 +2259,7 @@ module Redis::Commands::SortedSets
   # @return [Array<String>, Array<[String, Float]>] - when `:with_scores` is not specified, an array of members
   #   - when `:with_scores` is specified, an array with `[member, score]` pairs
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#674
+  # source://redis//lib/redis/commands/sorted_sets.rb#678
   def zunion(*args, **_arg1); end
 
   # Add multiple sorted sets and store the resulting sorted set in a new key.
@@ -3037,15 +2274,15 @@ module Redis::Commands::SortedSets
   #   - `:aggregate => String`: aggregate function to use (sum, min, max, ...)
   # @return [Integer] number of elements in the resulting sorted set
   #
-  # source://redis//lib/redis/commands/sorted_sets.rb#692
+  # source://redis//lib/redis/commands/sorted_sets.rb#696
   def zunionstore(*args, **_arg1); end
 
   private
 
-  # source://redis//lib/redis/commands/sorted_sets.rb#780
+  # source://redis//lib/redis/commands/sorted_sets.rb#784
   def _zsets_operation(cmd, *keys, weights: T.unsafe(nil), aggregate: T.unsafe(nil), with_scores: T.unsafe(nil)); end
 
-  # source://redis//lib/redis/commands/sorted_sets.rb#798
+  # source://redis//lib/redis/commands/sorted_sets.rb#803
   def _zsets_operation_store(cmd, destination, keys, weights: T.unsafe(nil), aggregate: T.unsafe(nil)); end
 end
 
@@ -3064,7 +2301,7 @@ module Redis::Commands::Streams
   # @param ids [Array<String>] one or multiple entry ids
   # @return [Integer] the number of entries successfully acknowledged
   #
-  # source://redis//lib/redis/commands/streams.rb#251
+  # source://redis//lib/redis/commands/streams.rb#248
   def xack(key, group, *ids); end
 
   # Add new entry to the stream.
@@ -3081,7 +2318,7 @@ module Redis::Commands::Streams
   # @param opts [Hash] several options for `XADD` command
   # @return [String] the entry id
   #
-  # source://redis//lib/redis/commands/streams.rb#51
+  # source://redis//lib/redis/commands/streams.rb#48
   def xadd(key, entry, approximate: T.unsafe(nil), maxlen: T.unsafe(nil), id: T.unsafe(nil)); end
 
   # Transfers ownership of pending stream entries that match the specified criteria.
@@ -3105,7 +2342,7 @@ module Redis::Commands::Streams
   # @return [Hash{String => Hash}] the entries successfully claimed
   # @return [Array<String>] the entry ids successfully claimed if justid option is `true`
   #
-  # source://redis//lib/redis/commands/streams.rb#321
+  # source://redis//lib/redis/commands/streams.rb#318
   def xautoclaim(key, group, consumer, min_idle_time, start, count: T.unsafe(nil), justid: T.unsafe(nil)); end
 
   # Changes the ownership of a pending entry
@@ -3138,7 +2375,7 @@ module Redis::Commands::Streams
   # @return [Hash{String => Hash}] the entries successfully claimed
   # @return [Array<String>] the entry ids successfully claimed if justid option is `true`
   #
-  # source://redis//lib/redis/commands/streams.rb#288
+  # source://redis//lib/redis/commands/streams.rb#285
   def xclaim(key, group, consumer, min_idle_time, *ids, **opts); end
 
   # Delete entries by entry ids.
@@ -3151,7 +2388,7 @@ module Redis::Commands::Streams
   # @param ids [Array<String>] one or multiple entry ids
   # @return [Integer] the number of entries actually deleted
   #
-  # source://redis//lib/redis/commands/streams.rb#91
+  # source://redis//lib/redis/commands/streams.rb#88
   def xdel(key, *ids); end
 
   # Manages the consumer group of the stream.
@@ -3173,7 +2410,7 @@ module Redis::Commands::Streams
   # @return [String] `OK` if subcommand is `create` or `setid`
   # @return [Integer] effected count if subcommand is `destroy` or `delconsumer`
   #
-  # source://redis//lib/redis/commands/streams.rb#199
+  # source://redis//lib/redis/commands/streams.rb#196
   def xgroup(subcommand, key, group, id_or_consumer = T.unsafe(nil), mkstream: T.unsafe(nil)); end
 
   # Returns the stream information each subcommand.
@@ -3201,28 +2438,32 @@ module Redis::Commands::Streams
   # @param key [String] the stream key
   # @return [Integer] the number of entries
   #
-  # source://redis//lib/redis/commands/streams.rb#150
+  # source://redis//lib/redis/commands/streams.rb#147
   def xlen(key); end
 
   # Fetches not acknowledging pending entries
   #
-  # @example With range options
-  #   redis.xpending('mystream', 'mygroup', '-', '+', 10)
-  # @example With range and consumer options
-  #   redis.xpending('mystream', 'mygroup', '-', '+', 10, 'consumer1')
   # @example With key and group
   #   redis.xpending('mystream', 'mygroup')
-  # @param end [String] end   last entry id of range
-  # @param count [Integer] count the number of entries as limit
+  # @example With range and consumer options
+  #   redis.xpending('mystream', 'mygroup', '-', '+', 10, 'consumer1')
+  # @example With range options
+  #   redis.xpending('mystream', 'mygroup', '-', '+', 10)
+  # @example With range and idle time options
+  #   redis.xpending('mystream', 'mygroup', '-', '+', 10, idle: 9000)
+  # @option opts
   # @param consumer [String] the consumer name
+  # @param opts [Hash] a customizable set of options
   # @param start [String] start first entry id of range
   # @param key [String] the stream key
   # @param group [String] the consumer group name
+  # @param end [String] end   last entry id of range
+  # @param count [Integer] count the number of entries as limit
   # @return [Hash] the summary of pending entries
   # @return [Array<Hash>] the pending entries details if options were specified
   #
-  # source://redis//lib/redis/commands/streams.rb#349
-  def xpending(key, group, *args); end
+  # source://redis//lib/redis/commands/streams.rb#350
+  def xpending(key, group, *args, idle: T.unsafe(nil)); end
 
   # Fetches entries of the stream in ascending order.
   #
@@ -3240,7 +2481,7 @@ module Redis::Commands::Streams
   # @param count [Integer] the number of entries as limit
   # @return [Array<Array<String, Hash>>] the ids and entries pairs
   #
-  # source://redis//lib/redis/commands/streams.rb#113
+  # source://redis//lib/redis/commands/streams.rb#110
   def xrange(key, start = T.unsafe(nil), range_end = T.unsafe(nil), count: T.unsafe(nil)); end
 
   # Fetches entries from one or multiple streams. Optionally blocking.
@@ -3259,7 +2500,7 @@ module Redis::Commands::Streams
   # @param block [Integer] the number of milliseconds as blocking timeout
   # @return [Hash{String => Hash{String => Hash}}] the entries
   #
-  # source://redis//lib/redis/commands/streams.rb#171
+  # source://redis//lib/redis/commands/streams.rb#168
   def xread(keys, ids, count: T.unsafe(nil), block: T.unsafe(nil)); end
 
   # Fetches a subset of the entries from one or multiple streams related with the consumer group.
@@ -3285,7 +2526,7 @@ module Redis::Commands::Streams
   # @param opts [Hash] several options for `XREADGROUP` command
   # @return [Hash{String => Hash{String => Hash}}] the entries
   #
-  # source://redis//lib/redis/commands/streams.rb#229
+  # source://redis//lib/redis/commands/streams.rb#226
   def xreadgroup(group, consumer, keys, ids, count: T.unsafe(nil), block: T.unsafe(nil), noack: T.unsafe(nil)); end
 
   # Fetches entries of the stream in descending order.
@@ -3303,7 +2544,7 @@ module Redis::Commands::Streams
   # @param start [String] last entry id of range, default value is `-`
   # @return [Array<Array<String, Hash>>] the ids and entries pairs
   #
-  # source://redis//lib/redis/commands/streams.rb#136
+  # source://redis//lib/redis/commands/streams.rb#133
   def xrevrange(key, range_end = T.unsafe(nil), start = T.unsafe(nil), count: T.unsafe(nil)); end
 
   # Trims older entries of the stream if needed.
@@ -3317,12 +2558,12 @@ module Redis::Commands::Streams
   # @param approximate [Boolean] whether to add `~` modifier of maxlen or not
   # @return [Integer] the number of entries actually deleted
   #
-  # source://redis//lib/redis/commands/streams.rb#75
+  # source://redis//lib/redis/commands/streams.rb#72
   def xtrim(key, maxlen, approximate: T.unsafe(nil)); end
 
   private
 
-  # source://redis//lib/redis/commands/streams.rb#365
+  # source://redis//lib/redis/commands/streams.rb#367
   def _xread(args, keys, ids, blocking_timeout_msec); end
 end
 
@@ -3334,7 +2575,7 @@ module Redis::Commands::Strings
   # @param value [String] value to append
   # @return [Integer] length of the string after appending
   #
-  # source://redis//lib/redis/commands/strings.rb#254
+  # source://redis//lib/redis/commands/strings.rb#255
   def append(key, value); end
 
   # Decrement the integer value of a key by one.
@@ -3375,7 +2616,7 @@ module Redis::Commands::Strings
   # @return [String] the old value stored in the key, or `nil` if the key
   #   did not exist
   #
-  # source://redis//lib/redis/commands/strings.rb#274
+  # source://redis//lib/redis/commands/strings.rb#275
   def getdel(key); end
 
   # Get the value of key and optionally set its expiration. GETEX is similar to
@@ -3392,7 +2633,7 @@ module Redis::Commands::Strings
   #   - `:persist => true`: Remove the time to live associated with the key.
   # @return [String] The value of key, or nil when key does not exist.
   #
-  # source://redis//lib/redis/commands/strings.rb#292
+  # source://redis//lib/redis/commands/strings.rb#293
   def getex(key, ex: T.unsafe(nil), px: T.unsafe(nil), exat: T.unsafe(nil), pxat: T.unsafe(nil), persist: T.unsafe(nil)); end
 
   # Get a substring of the string stored at a key.
@@ -3403,7 +2644,7 @@ module Redis::Commands::Strings
   #   the end of the string
   # @return [Integer] `0` or `1`
   #
-  # source://redis//lib/redis/commands/strings.rb#245
+  # source://redis//lib/redis/commands/strings.rb#246
   def getrange(key, start, stop); end
 
   # Set the string value of a key and return its old value.
@@ -3413,7 +2654,7 @@ module Redis::Commands::Strings
   # @return [String] the old value stored in the key, or `nil` if the key
   #   did not exist
   #
-  # source://redis//lib/redis/commands/strings.rb#264
+  # source://redis//lib/redis/commands/strings.rb#265
   def getset(key, value); end
 
   # Increment the integer value of a key by one.
@@ -3460,7 +2701,7 @@ module Redis::Commands::Strings
   # @return [Hash] a hash mapping the specified keys to their values
   # @see #mget
   #
-  # source://redis//lib/redis/commands/strings.rb#218
+  # source://redis//lib/redis/commands/strings.rb#219
   def mapped_mget(*keys); end
 
   # Set one or more values.
@@ -3576,7 +2817,7 @@ module Redis::Commands::Strings
   # @param value [String]
   # @return [Integer] length of the string after it was modified
   #
-  # source://redis//lib/redis/commands/strings.rb#234
+  # source://redis//lib/redis/commands/strings.rb#235
   def setrange(key, offset, value); end
 
   # Get the length of the value stored in a key.
@@ -3585,7 +2826,7 @@ module Redis::Commands::Strings
   # @return [Integer] the length of the value stored in the key, or 0
   #   if the key does not exist
   #
-  # source://redis//lib/redis/commands/strings.rb#308
+  # source://redis//lib/redis/commands/strings.rb#309
   def strlen(key); end
 end
 
@@ -3593,13 +2834,11 @@ end
 module Redis::Commands::Transactions
   # Discard all commands issued after MULTI.
   #
-  # Only call this method when `#multi` was called **without** a block.
-  #
   # @return [String] `"OK"`
   # @see #multi
   # @see #exec
   #
-  # source://redis//lib/redis/commands/transactions.rb#134
+  # source://redis//lib/redis/commands/transactions.rb#110
   def discard; end
 
   # Execute all commands issued after MULTI.
@@ -3611,37 +2850,25 @@ module Redis::Commands::Transactions
   # @see #multi
   # @see #discard
   #
-  # source://redis//lib/redis/commands/transactions.rb#122
+  # source://redis//lib/redis/commands/transactions.rb#100
   def exec; end
 
   # Mark the start of a transaction block.
-  #
-  # Passing a block is optional.
   #
   # @example With a block
   #   redis.multi do |multi|
   #   multi.set("key", "value")
   #   multi.incr("counter")
   #   end # => ["OK", 6]
-  # @example Without a block
-  #   redis.multi
-  #   # => "OK"
-  #   redis.set("key", "value")
-  #   # => "QUEUED"
-  #   redis.incr("counter")
-  #   # => "QUEUED"
-  #   redis.exec
-  #   # => ["OK", 6]
-  # @return [String, Array<...>] - when a block is not given, `OK`
-  #   - when a block is given, an array with replies
+  # @return [Array<...>] - an array with replies
   # @see #watch
   # @see #unwatch
   # @yield [multi] the commands that are called inside this block are cached
   #   and written to the server upon returning from it
   # @yieldparam multi [Redis] `self`
   #
-  # source://redis//lib/redis/commands/transactions.rb#36
-  def multi(&block); end
+  # source://redis//lib/redis/commands/transactions.rb#23
+  def multi; end
 
   # Forget about all watched keys.
   #
@@ -3649,7 +2876,7 @@ module Redis::Commands::Transactions
   # @see #watch
   # @see #multi
   #
-  # source://redis//lib/redis/commands/transactions.rb#108
+  # source://redis//lib/redis/commands/transactions.rb#86
   def unwatch; end
 
   # Watch the given keys to determine execution of the MULTI/EXEC block.
@@ -3680,209 +2907,28 @@ module Redis::Commands::Transactions
   # @see #unwatch
   # @see #multi
   #
-  # source://redis//lib/redis/commands/transactions.rb#83
+  # source://redis//lib/redis/commands/transactions.rb#61
   def watch(*keys); end
 end
 
-# source://redis//lib/redis/connection/registry.rb#4
+# soft-deprecated
+# We added this back for older sidekiq releases
+#
+# source://redis//lib/redis.rb#27
 module Redis::Connection
   class << self
-    # Store a list of loaded connection drivers in the Connection module.
-    # Redis::Client uses the last required driver by default, and will be aware
-    # of the loaded connection drivers if the user chooses to override the
-    # default connection driver.
-    #
-    # source://redis//lib/redis/connection/registry.rb#9
+    # source://redis//lib/redis.rb#29
     def drivers; end
-  end
-end
-
-# source://redis//lib/redis/connection/command_helper.rb#5
-module Redis::Connection::CommandHelper
-  # source://redis//lib/redis/connection/command_helper.rb#8
-  def build_command(args); end
-
-  protected
-
-  # source://redis//lib/redis/connection/command_helper.rb#36
-  def encode(string); end
-end
-
-# source://redis//lib/redis/connection/command_helper.rb#6
-Redis::Connection::CommandHelper::COMMAND_DELIMITER = T.let(T.unsafe(nil), String)
-
-# source://redis//lib/redis/connection/ruby.rb#291
-class Redis::Connection::Ruby
-  include ::Redis::Connection::CommandHelper
-
-  # @return [Ruby] a new instance of Ruby
-  #
-  # source://redis//lib/redis/connection/ruby.rb#354
-  def initialize(sock); end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/connection/ruby.rb#358
-  def connected?; end
-
-  # source://redis//lib/redis/connection/ruby.rb#362
-  def disconnect; end
-
-  # source://redis//lib/redis/connection/ruby.rb#418
-  def format_bulk_reply(line); end
-
-  # source://redis//lib/redis/connection/ruby.rb#406
-  def format_error_reply(line); end
-
-  # source://redis//lib/redis/connection/ruby.rb#414
-  def format_integer_reply(line); end
-
-  # source://redis//lib/redis/connection/ruby.rb#427
-  def format_multi_bulk_reply(line); end
-
-  # source://redis//lib/redis/connection/ruby.rb#395
-  def format_reply(reply_type, line); end
-
-  # source://redis//lib/redis/connection/ruby.rb#410
-  def format_status_reply(line); end
-
-  # source://redis//lib/redis/connection/ruby.rb#339
-  def get_tcp_keepalive; end
-
-  # source://redis//lib/redis/connection/ruby.rb#381
-  def read; end
-
-  # source://redis//lib/redis/connection/ruby.rb#337
-  def set_tcp_keepalive(keepalive); end
-
-  # source://redis//lib/redis/connection/ruby.rb#347
-  def set_tcp_nodelay; end
-
-  # source://redis//lib/redis/connection/ruby.rb#369
-  def timeout=(timeout); end
-
-  # source://redis//lib/redis/connection/ruby.rb#377
-  def write(command); end
-
-  # source://redis//lib/redis/connection/ruby.rb#373
-  def write_timeout=(timeout); end
-
-  class << self
-    # source://redis//lib/redis/connection/ruby.rb#300
-    def connect(config); end
-  end
-end
-
-# source://redis//lib/redis/connection/ruby.rb#298
-Redis::Connection::Ruby::ASTERISK = T.let(T.unsafe(nil), String)
-
-# source://redis//lib/redis/connection/ruby.rb#296
-Redis::Connection::Ruby::COLON = T.let(T.unsafe(nil), String)
-
-# source://redis//lib/redis/connection/ruby.rb#297
-Redis::Connection::Ruby::DOLLAR = T.let(T.unsafe(nil), String)
-
-# source://redis//lib/redis/connection/ruby.rb#294
-Redis::Connection::Ruby::MINUS = T.let(T.unsafe(nil), String)
-
-# source://redis//lib/redis/connection/ruby.rb#295
-Redis::Connection::Ruby::PLUS = T.let(T.unsafe(nil), String)
-
-# source://redis//lib/redis/connection/ruby.rb#230
-class Redis::Connection::SSLSocket < ::OpenSSL::SSL::SSLSocket
-  include ::Redis::Connection::SocketMixin
-
-  # source://redis//lib/redis/connection/ruby.rb#234
-  def wait_readable(timeout = T.unsafe(nil)); end
-
-  # source://redis//lib/redis/connection/ruby.rb#240
-  def wait_writable(timeout = T.unsafe(nil)); end
-
-  class << self
-    # source://redis//lib/redis/connection/ruby.rb#245
-    def connect(host, port, timeout, ssl_params); end
-  end
-end
-
-# source://redis//lib/redis/connection/ruby.rb#18
-module Redis::Connection::SocketMixin
-  # source://redis//lib/redis/connection/ruby.rb#21
-  def initialize(*args); end
-
-  # source://redis//lib/redis/connection/ruby.rb#53
-  def _read_from_socket(nbytes, buffer = T.unsafe(nil)); end
-
-  # source://redis//lib/redis/connection/ruby.rb#45
-  def gets; end
-
-  # source://redis//lib/redis/connection/ruby.rb#36
-  def read(nbytes); end
-
-  # source://redis//lib/redis/connection/ruby.rb#28
-  def timeout=(timeout); end
-
-  # source://redis//lib/redis/connection/ruby.rb#72
-  def write(buffer); end
-
-  # source://redis//lib/redis/connection/ruby.rb#32
-  def write_timeout=(timeout); end
-end
-
-# source://redis//lib/redis/connection/ruby.rb#19
-Redis::Connection::SocketMixin::CRLF = T.let(T.unsafe(nil), String)
-
-# source://redis//lib/redis/connection/ruby.rb#150
-class Redis::Connection::TCPSocket < ::Socket
-  include ::Redis::Connection::SocketMixin
-
-  class << self
-    # source://redis//lib/redis/connection/ruby.rb#171
-    def connect(host, port, timeout); end
-
-    # source://redis//lib/redis/connection/ruby.rb#153
-    def connect_addrinfo(addrinfo, port, timeout); end
-  end
-end
-
-# source://redis//lib/redis/connection/ruby.rb#205
-class Redis::Connection::UNIXSocket < ::Socket
-  include ::Redis::Connection::SocketMixin
-
-  class << self
-    # source://redis//lib/redis/connection/ruby.rb#208
-    def connect(path, timeout); end
   end
 end
 
 # Raised when connection to a Redis server is lost.
 #
-# source://redis//lib/redis/errors.rb#32
+# source://redis//lib/redis/errors.rb#44
 class Redis::ConnectionError < ::Redis::BaseConnectionError; end
 
-# source://redis//lib/redis.rb#12
+# source://redis//lib/redis.rb#9
 class Redis::Deprecated < ::StandardError; end
-
-# source://redis//lib/redis/pipeline.rb#223
-class Redis::DeprecatedMulti
-  # @return [DeprecatedMulti] a new instance of DeprecatedMulti
-  #
-  # source://redis//lib/redis/pipeline.rb#224
-  def initialize(pipeline); end
-
-  # source://redis//lib/redis/pipeline.rb#229
-  def __getobj__; end
-end
-
-# source://redis//lib/redis/pipeline.rb#208
-class Redis::DeprecatedPipeline
-  # @return [DeprecatedPipeline] a new instance of DeprecatedPipeline
-  #
-  # source://redis//lib/redis/pipeline.rb#209
-  def initialize(pipeline); end
-
-  # source://redis//lib/redis/pipeline.rb#214
-  def __getobj__; end
-end
 
 # source://redis//lib/redis/distributed.rb#6
 class Redis::Distributed
@@ -3891,16 +2937,16 @@ class Redis::Distributed
   # source://redis//lib/redis/distributed.rb#20
   def initialize(node_configs, options = T.unsafe(nil)); end
 
-  # source://redis//lib/redis/distributed.rb#396
+  # source://redis//lib/redis/distributed.rb#400
   def [](key); end
 
-  # source://redis//lib/redis/distributed.rb#400
+  # source://redis//lib/redis/distributed.rb#404
   def []=(key, value); end
 
-  # source://redis//lib/redis/distributed.rb#462
+  # source://redis//lib/redis/distributed.rb#466
   def _bpop(cmd, args); end
 
-  # source://redis//lib/redis/distributed.rb#979
+  # source://redis//lib/redis/distributed.rb#1000
   def _eval(cmd, args); end
 
   # source://redis//lib/redis/distributed.rb#41
@@ -3908,118 +2954,127 @@ class Redis::Distributed
 
   # Append a value to a key.
   #
-  # source://redis//lib/redis/distributed.rb#365
+  # source://redis//lib/redis/distributed.rb#368
   def append(key, value); end
 
   # Asynchronously save the dataset to disk.
   #
-  # source://redis//lib/redis/distributed.rb#68
+  # source://redis//lib/redis/distributed.rb#74
   def bgsave; end
 
   # Count the number of set bits in a range of the string value stored at key.
   #
-  # source://redis//lib/redis/distributed.rb#370
+  # source://redis//lib/redis/distributed.rb#373
   def bitcount(key, start = T.unsafe(nil), stop = T.unsafe(nil)); end
 
   # Perform a bitwise operation between strings and store the resulting string in a key.
   #
-  # source://redis//lib/redis/distributed.rb#375
+  # source://redis//lib/redis/distributed.rb#378
   def bitop(operation, destkey, *keys); end
 
   # Return the position of the first bit set to 1 or 0 in a string.
   #
-  # source://redis//lib/redis/distributed.rb#382
+  # source://redis//lib/redis/distributed.rb#386
   def bitpos(key, bit, start = T.unsafe(nil), stop = T.unsafe(nil)); end
 
   # Remove the first/last element in a list and append/prepend it
   # to another list and return it, or block until one is available.
   #
-  # source://redis//lib/redis/distributed.rb#418
+  # source://redis//lib/redis/distributed.rb#422
   def blmove(source, destination, where_source, where_destination, timeout: T.unsafe(nil)); end
 
   # Remove and get the first element in a list, or block until one is
   # available.
   #
-  # source://redis//lib/redis/distributed.rb#489
+  # source://redis//lib/redis/distributed.rb#485
   def blpop(*args); end
 
   # Remove and get the last element in a list, or block until one is
   # available.
   #
-  # source://redis//lib/redis/distributed.rb#495
+  # source://redis//lib/redis/distributed.rb#503
   def brpop(*args); end
 
   # Pop a value from a list, push it to another list and return it; or block
   # until one is available.
   #
-  # source://redis//lib/redis/distributed.rb#501
-  def brpoplpush(source, destination, deprecated_timeout = T.unsafe(nil), **options); end
+  # source://redis//lib/redis/distributed.rb#509
+  def brpoplpush(source, destination, **options); end
+
+  # source://redis//lib/redis/distributed.rb#489
+  def bzpopmax(*args); end
+
+  # source://redis//lib/redis/distributed.rb#495
+  def bzpopmin(*args); end
+
+  # source://redis//lib/redis/distributed.rb#69
+  def close; end
 
   # Copy a value from one key to another.
   #
-  # source://redis//lib/redis/distributed.rb#215
+  # source://redis//lib/redis/distributed.rb#216
   def copy(source, destination, **options); end
 
   # Return the number of keys in the selected database.
   #
-  # source://redis//lib/redis/distributed.rb#73
+  # source://redis//lib/redis/distributed.rb#79
   def dbsize; end
 
   # Decrement the integer value of a key by one.
   #
-  # source://redis//lib/redis/distributed.rb#255
+  # source://redis//lib/redis/distributed.rb#256
   def decr(key); end
 
   # Decrement the integer value of a key by the given number.
   #
-  # source://redis//lib/redis/distributed.rb#260
+  # source://redis//lib/redis/distributed.rb#261
   def decrby(key, decrement); end
 
   # Delete a key.
   #
-  # source://redis//lib/redis/distributed.rb#163
+  # source://redis//lib/redis/distributed.rb#169
   def del(*args); end
 
   # Discard all commands issued after MULTI.
   #
   # @raise [CannotDistribute]
   #
-  # source://redis//lib/redis/distributed.rb#946
+  # source://redis//lib/redis/distributed.rb#967
   def discard; end
 
   # Return a serialized version of the value stored at a key.
   #
-  # source://redis//lib/redis/distributed.rb#148
+  # source://redis//lib/redis/distributed.rb#154
   def dump(key); end
 
-  # source://redis//lib/redis/distributed.rb#1006
+  # source://redis//lib/redis/distributed.rb#1027
   def dup; end
 
   # Echo the given string.
   #
-  # source://redis//lib/redis/distributed.rb#58
+  # source://redis//lib/redis/distributed.rb#60
   def echo(value); end
 
   # Evaluate Lua script.
   #
-  # source://redis//lib/redis/distributed.rb#993
+  # source://redis//lib/redis/distributed.rb#1014
   def eval(*args); end
 
   # Evaluate Lua script by its SHA.
   #
-  # source://redis//lib/redis/distributed.rb#998
+  # source://redis//lib/redis/distributed.rb#1019
   def evalsha(*args); end
 
   # Execute all commands issued after MULTI.
   #
   # @raise [CannotDistribute]
   #
-  # source://redis//lib/redis/distributed.rb#937
+  # source://redis//lib/redis/distributed.rb#958
   def exec; end
 
   # Determine if a key exists.
   #
-  # source://redis//lib/redis/distributed.rb#179
+  # source://redis//lib/redis/distributed.rb#187
   def exists(*args); end
 
   # Determine if any of the keys exists.
@@ -4031,274 +3086,274 @@ class Redis::Distributed
 
   # Set a key's time to live in seconds.
   #
-  # source://redis//lib/redis/distributed.rb#118
+  # source://redis//lib/redis/distributed.rb#124
   def expire(key, seconds, **kwargs); end
 
   # Set the expiration for a key as a UNIX timestamp.
   #
-  # source://redis//lib/redis/distributed.rb#123
+  # source://redis//lib/redis/distributed.rb#129
   def expireat(key, unix_time, **kwargs); end
 
   # Remove all keys from all databases.
   #
-  # source://redis//lib/redis/distributed.rb#78
+  # source://redis//lib/redis/distributed.rb#84
   def flushall; end
 
   # Remove all keys from the current database.
   #
-  # source://redis//lib/redis/distributed.rb#83
+  # source://redis//lib/redis/distributed.rb#89
   def flushdb; end
 
   # Get the value of a key.
   #
-  # source://redis//lib/redis/distributed.rb#318
+  # source://redis//lib/redis/distributed.rb#319
   def get(key); end
 
   # Returns the bit value at offset in the string value stored at key.
   #
-  # source://redis//lib/redis/distributed.rb#360
+  # source://redis//lib/redis/distributed.rb#363
   def getbit(key, offset); end
 
   # Get the value of a key and delete it.
   #
-  # source://redis//lib/redis/distributed.rb#323
+  # source://redis//lib/redis/distributed.rb#324
   def getdel(key); end
 
   # Get the value of a key and sets its time to live based on options.
   #
-  # source://redis//lib/redis/distributed.rb#328
+  # source://redis//lib/redis/distributed.rb#329
   def getex(key, **options); end
 
   # Get a substring of the string stored at a key.
   #
-  # source://redis//lib/redis/distributed.rb#350
+  # source://redis//lib/redis/distributed.rb#353
   def getrange(key, start, stop); end
 
   # Set the string value of a key and return its old value.
   #
-  # source://redis//lib/redis/distributed.rb#387
+  # source://redis//lib/redis/distributed.rb#391
   def getset(key, value); end
 
   # Delete one or more hash fields.
   #
-  # source://redis//lib/redis/distributed.rb#826
+  # source://redis//lib/redis/distributed.rb#848
   def hdel(key, *fields); end
 
   # Determine if a hash field exists.
   #
-  # source://redis//lib/redis/distributed.rb#831
+  # source://redis//lib/redis/distributed.rb#854
   def hexists(key, field); end
 
   # Get the value of a hash field.
   #
-  # source://redis//lib/redis/distributed.rb#808
+  # source://redis//lib/redis/distributed.rb#828
   def hget(key, field); end
 
   # Get all the fields and values in a hash.
   #
-  # source://redis//lib/redis/distributed.rb#856
+  # source://redis//lib/redis/distributed.rb#879
   def hgetall(key); end
 
   # Increment the integer value of a hash field by the given integer number.
   #
-  # source://redis//lib/redis/distributed.rb#836
+  # source://redis//lib/redis/distributed.rb#859
   def hincrby(key, field, increment); end
 
   # Increment the numeric value of a hash field by the given float number.
   #
-  # source://redis//lib/redis/distributed.rb#841
+  # source://redis//lib/redis/distributed.rb#864
   def hincrbyfloat(key, field, increment); end
 
   # Get all the fields in a hash.
   #
-  # source://redis//lib/redis/distributed.rb#846
+  # source://redis//lib/redis/distributed.rb#869
   def hkeys(key); end
 
   # Get the number of fields in a hash.
   #
-  # source://redis//lib/redis/distributed.rb#784
+  # source://redis//lib/redis/distributed.rb#804
   def hlen(key); end
 
   # Get the values of all the given hash fields.
   #
-  # source://redis//lib/redis/distributed.rb#813
+  # source://redis//lib/redis/distributed.rb#833
   def hmget(key, *fields); end
 
   # Set multiple hash fields to multiple values.
   #
-  # source://redis//lib/redis/distributed.rb#799
+  # source://redis//lib/redis/distributed.rb#819
   def hmset(key, *attrs); end
 
-  # source://redis//lib/redis/distributed.rb#821
+  # source://redis//lib/redis/distributed.rb#843
   def hrandfield(key, count = T.unsafe(nil), **options); end
 
   # Set multiple hash fields to multiple values.
   #
-  # source://redis//lib/redis/distributed.rb#789
+  # source://redis//lib/redis/distributed.rb#809
   def hset(key, *attrs); end
 
   # Set the value of a hash field, only if the field does not exist.
   #
-  # source://redis//lib/redis/distributed.rb#794
+  # source://redis//lib/redis/distributed.rb#814
   def hsetnx(key, field, value); end
 
   # Get all the values in a hash.
   #
-  # source://redis//lib/redis/distributed.rb#851
+  # source://redis//lib/redis/distributed.rb#874
   def hvals(key); end
 
   # Increment the integer value of a key by one.
   #
-  # source://redis//lib/redis/distributed.rb#265
+  # source://redis//lib/redis/distributed.rb#266
   def incr(key); end
 
   # Increment the integer value of a key by the given integer number.
   #
-  # source://redis//lib/redis/distributed.rb#270
+  # source://redis//lib/redis/distributed.rb#271
   def incrby(key, increment); end
 
   # Increment the numeric value of a key by the given float number.
   #
-  # source://redis//lib/redis/distributed.rb#275
+  # source://redis//lib/redis/distributed.rb#276
   def incrbyfloat(key, increment); end
 
   # Get information and statistics about the server.
   #
-  # source://redis//lib/redis/distributed.rb#88
+  # source://redis//lib/redis/distributed.rb#94
   def info(cmd = T.unsafe(nil)); end
 
-  # source://redis//lib/redis/distributed.rb#1002
+  # source://redis//lib/redis/distributed.rb#1023
   def inspect; end
 
   # Find all keys matching the given pattern.
   #
-  # source://redis//lib/redis/distributed.rb#205
+  # source://redis//lib/redis/distributed.rb#206
   def keys(glob = T.unsafe(nil)); end
 
   # Get the UNIX time stamp of the last successful save to disk.
   #
-  # source://redis//lib/redis/distributed.rb#93
+  # source://redis//lib/redis/distributed.rb#99
   def lastsave; end
 
   # Get an element from a list by its index.
   #
-  # source://redis//lib/redis/distributed.rb#508
+  # source://redis//lib/redis/distributed.rb#516
   def lindex(key, index); end
 
   # Insert an element before or after another element in a list.
   #
-  # source://redis//lib/redis/distributed.rb#513
+  # source://redis//lib/redis/distributed.rb#521
   def linsert(key, where, pivot, value); end
 
   # Get the length of a list.
   #
-  # source://redis//lib/redis/distributed.rb#405
+  # source://redis//lib/redis/distributed.rb#409
   def llen(key); end
 
   # Remove the first/last element in a list, append/prepend it to another list and return it.
   #
-  # source://redis//lib/redis/distributed.rb#410
+  # source://redis//lib/redis/distributed.rb#414
   def lmove(source, destination, where_source, where_destination); end
 
   # Remove and get the first elements in a list.
   #
-  # source://redis//lib/redis/distributed.rb#445
+  # source://redis//lib/redis/distributed.rb#449
   def lpop(key, count = T.unsafe(nil)); end
 
   # Prepend one or more values to a list.
   #
-  # source://redis//lib/redis/distributed.rb#425
+  # source://redis//lib/redis/distributed.rb#429
   def lpush(key, value); end
 
   # Prepend a value to a list, only if the list exists.
   #
-  # source://redis//lib/redis/distributed.rb#430
+  # source://redis//lib/redis/distributed.rb#434
   def lpushx(key, value); end
 
   # Get a range of elements from a list.
   #
-  # source://redis//lib/redis/distributed.rb#518
+  # source://redis//lib/redis/distributed.rb#526
   def lrange(key, start, stop); end
 
   # Remove elements from a list.
   #
-  # source://redis//lib/redis/distributed.rb#523
+  # source://redis//lib/redis/distributed.rb#531
   def lrem(key, count, value); end
 
   # Set the value of an element in a list by its index.
   #
-  # source://redis//lib/redis/distributed.rb#528
+  # source://redis//lib/redis/distributed.rb#536
   def lset(key, index, value); end
 
   # Trim a list to the specified range.
   #
-  # source://redis//lib/redis/distributed.rb#533
+  # source://redis//lib/redis/distributed.rb#541
   def ltrim(key, start, stop); end
 
-  # source://redis//lib/redis/distributed.rb#817
+  # source://redis//lib/redis/distributed.rb#838
   def mapped_hmget(key, *fields); end
 
-  # source://redis//lib/redis/distributed.rb#803
+  # source://redis//lib/redis/distributed.rb#823
   def mapped_hmset(key, hash); end
 
   # Get the values of all the given keys as a Hash.
   #
-  # source://redis//lib/redis/distributed.rb#338
+  # source://redis//lib/redis/distributed.rb#340
   def mapped_mget(*keys); end
 
   # @raise [CannotDistribute]
   #
-  # source://redis//lib/redis/distributed.rb#304
+  # source://redis//lib/redis/distributed.rb#305
   def mapped_mset(_hash); end
 
   # @raise [CannotDistribute]
   #
-  # source://redis//lib/redis/distributed.rb#313
+  # source://redis//lib/redis/distributed.rb#314
   def mapped_msetnx(_hash); end
 
   # Get the values of all the given keys as an Array.
   #
-  # source://redis//lib/redis/distributed.rb#333
+  # source://redis//lib/redis/distributed.rb#334
   def mget(*keys); end
 
   # Transfer a key from the connected instance to another instance.
   #
   # @raise [CannotDistribute]
   #
-  # source://redis//lib/redis/distributed.rb#158
+  # source://redis//lib/redis/distributed.rb#164
   def migrate(_key, _options); end
 
   # Listen for all requests received by the server in real time.
   #
   # @raise [NotImplementedError]
   #
-  # source://redis//lib/redis/distributed.rb#98
+  # source://redis//lib/redis/distributed.rb#104
   def monitor; end
 
   # Move a key to another database.
   #
-  # source://redis//lib/redis/distributed.rb#210
+  # source://redis//lib/redis/distributed.rb#211
   def move(key, db); end
 
   # Set multiple keys to multiple values.
   #
   # @raise [CannotDistribute]
   #
-  # source://redis//lib/redis/distributed.rb#300
-  def mset(*_args); end
+  # source://redis//lib/redis/distributed.rb#301
+  def mset(*_arg0); end
 
   # Set multiple keys to multiple values, only if none of the keys exist.
   #
   # @raise [CannotDistribute]
   #
-  # source://redis//lib/redis/distributed.rb#309
-  def msetnx(*_args); end
+  # source://redis//lib/redis/distributed.rb#310
+  def msetnx(*_arg0); end
 
   # Mark the start of a transaction block.
   #
   # @raise [CannotDistribute]
   #
-  # source://redis//lib/redis/distributed.rb#928
+  # source://redis//lib/redis/distributed.rb#951
   def multi(&block); end
 
   # @raise [CannotDistribute]
@@ -4311,65 +3366,65 @@ class Redis::Distributed
 
   # Remove the expiration from a key.
   #
-  # source://redis//lib/redis/distributed.rb#113
+  # source://redis//lib/redis/distributed.rb#119
   def persist(key); end
 
   # Set a key's time to live in milliseconds.
   #
-  # source://redis//lib/redis/distributed.rb#133
+  # source://redis//lib/redis/distributed.rb#139
   def pexpire(key, milliseconds, **kwarg); end
 
   # Set the expiration for a key as number of milliseconds from UNIX Epoch.
   #
-  # source://redis//lib/redis/distributed.rb#138
+  # source://redis//lib/redis/distributed.rb#144
   def pexpireat(key, ms_unix_time, **kwarg); end
 
   # Add one or more members to a HyperLogLog structure.
   #
-  # source://redis//lib/redis/distributed.rb#960
+  # source://redis//lib/redis/distributed.rb#981
   def pfadd(key, member); end
 
   # Get the approximate cardinality of members added to HyperLogLog structure.
   #
-  # source://redis//lib/redis/distributed.rb#965
+  # source://redis//lib/redis/distributed.rb#986
   def pfcount(*keys); end
 
   # Merge multiple HyperLogLog values into an unique value that will approximate the cardinality of the union of
   # the observed Sets of the source HyperLogLog structures.
   #
-  # source://redis//lib/redis/distributed.rb#973
+  # source://redis//lib/redis/distributed.rb#994
   def pfmerge(dest_key, *source_key); end
 
   # Ping the server.
   #
-  # source://redis//lib/redis/distributed.rb#53
+  # source://redis//lib/redis/distributed.rb#55
   def ping; end
 
   # @raise [CannotDistribute]
   #
-  # source://redis//lib/redis/distributed.rb#923
+  # source://redis//lib/redis/distributed.rb#946
   def pipelined; end
 
   # Set the time to live in milliseconds of a key.
   #
-  # source://redis//lib/redis/distributed.rb#290
+  # source://redis//lib/redis/distributed.rb#291
   def psetex(key, ttl, value); end
 
   # Listen for messages published to channels matching the given patterns.
   #
   # @raise [NotImplementedError]
   #
-  # source://redis//lib/redis/distributed.rb#890
+  # source://redis//lib/redis/distributed.rb#913
   def psubscribe(*channels, &block); end
 
   # Get the time to live (in milliseconds) for a key.
   #
-  # source://redis//lib/redis/distributed.rb#143
+  # source://redis//lib/redis/distributed.rb#149
   def pttl(key); end
 
   # Post a message to a channel.
   #
-  # source://redis//lib/redis/distributed.rb#861
+  # source://redis//lib/redis/distributed.rb#884
   def publish(channel, message); end
 
   # Stop listening for messages posted to channels matching the given
@@ -4377,34 +3432,34 @@ class Redis::Distributed
   #
   # @raise [NotImplementedError]
   #
-  # source://redis//lib/redis/distributed.rb#896
+  # source://redis//lib/redis/distributed.rb#919
   def punsubscribe(*channels); end
 
   # Close the connection.
   #
-  # source://redis//lib/redis/distributed.rb#63
+  # source://redis//lib/redis/distributed.rb#65
   def quit; end
 
   # Return a random key from the keyspace.
   #
   # @raise [CannotDistribute]
   #
-  # source://redis//lib/redis/distributed.rb#222
+  # source://redis//lib/redis/distributed.rb#223
   def randomkey; end
 
   # Rename a key.
   #
-  # source://redis//lib/redis/distributed.rb#227
+  # source://redis//lib/redis/distributed.rb#228
   def rename(old_name, new_name); end
 
   # Rename a key, only if the new key does not exist.
   #
-  # source://redis//lib/redis/distributed.rb#234
+  # source://redis//lib/redis/distributed.rb#235
   def renamenx(old_name, new_name); end
 
   # Create a key using the serialized value, previously obtained using DUMP.
   #
-  # source://redis//lib/redis/distributed.rb#153
+  # source://redis//lib/redis/distributed.rb#159
   def restore(key, ttl, serialized_value, **options); end
 
   # Returns the value of attribute ring.
@@ -4414,357 +3469,359 @@ class Redis::Distributed
 
   # Remove and get the last elements in a list.
   #
-  # source://redis//lib/redis/distributed.rb#450
+  # source://redis//lib/redis/distributed.rb#454
   def rpop(key, count = T.unsafe(nil)); end
 
   # Remove the last element in a list, append it to another list and return
   # it.
   #
-  # source://redis//lib/redis/distributed.rb#456
+  # source://redis//lib/redis/distributed.rb#460
   def rpoplpush(source, destination); end
 
   # Append one or more values to a list.
   #
-  # source://redis//lib/redis/distributed.rb#435
+  # source://redis//lib/redis/distributed.rb#439
   def rpush(key, value); end
 
   # Append a value to a list, only if the list exists.
   #
-  # source://redis//lib/redis/distributed.rb#440
+  # source://redis//lib/redis/distributed.rb#444
   def rpushx(key, value); end
 
   # Add one or more members to a set.
   #
-  # source://redis//lib/redis/distributed.rb#543
-  def sadd(key, member); end
+  # source://redis//lib/redis/distributed.rb#551
+  def sadd(key, *members); end
 
   # Add one or more members to a set.
   #
   # @return [Boolean]
   #
-  # source://redis//lib/redis/distributed.rb#548
-  def sadd?(key, member); end
+  # source://redis//lib/redis/distributed.rb#556
+  def sadd?(key, *members); end
 
   # Synchronously save the dataset to disk.
   #
-  # source://redis//lib/redis/distributed.rb#103
+  # source://redis//lib/redis/distributed.rb#109
   def save; end
 
   # Get the number of members in a set.
   #
-  # source://redis//lib/redis/distributed.rb#538
+  # source://redis//lib/redis/distributed.rb#546
   def scard(key); end
 
   # Control remote script registry.
   #
-  # source://redis//lib/redis/distributed.rb#955
+  # source://redis//lib/redis/distributed.rb#976
   def script(subcommand, *args); end
 
   # Subtract multiple sets.
   #
-  # source://redis//lib/redis/distributed.rb#605
+  # source://redis//lib/redis/distributed.rb#613
   def sdiff(*keys); end
 
   # Subtract multiple sets and store the resulting set in a key.
   #
-  # source://redis//lib/redis/distributed.rb#612
+  # source://redis//lib/redis/distributed.rb#621
   def sdiffstore(destination, *keys); end
 
   # Change the selected database for the current connection.
   #
-  # source://redis//lib/redis/distributed.rb#48
+  # source://redis//lib/redis/distributed.rb#50
   def select(db); end
 
   # Set the string value of a key.
   #
-  # source://redis//lib/redis/distributed.rb#280
+  # source://redis//lib/redis/distributed.rb#281
   def set(key, value, **options); end
 
   # Sets or clears the bit at offset in the string value stored at key.
   #
-  # source://redis//lib/redis/distributed.rb#355
+  # source://redis//lib/redis/distributed.rb#358
   def setbit(key, offset, value); end
 
   # Set the time to live in seconds of a key.
   #
-  # source://redis//lib/redis/distributed.rb#285
+  # source://redis//lib/redis/distributed.rb#286
   def setex(key, ttl, value); end
 
   # Set the value of a key, only if the key does not exist.
   #
-  # source://redis//lib/redis/distributed.rb#295
+  # source://redis//lib/redis/distributed.rb#296
   def setnx(key, value); end
 
   # Overwrite part of a string at key starting at the specified offset.
   #
-  # source://redis//lib/redis/distributed.rb#345
+  # source://redis//lib/redis/distributed.rb#348
   def setrange(key, offset, value); end
 
   # Intersect multiple sets.
   #
-  # source://redis//lib/redis/distributed.rb#619
+  # source://redis//lib/redis/distributed.rb#629
   def sinter(*keys); end
 
   # Intersect multiple sets and store the resulting set in a key.
   #
-  # source://redis//lib/redis/distributed.rb#626
+  # source://redis//lib/redis/distributed.rb#637
   def sinterstore(destination, *keys); end
 
   # Determine if a given value is a member of a set.
   #
-  # source://redis//lib/redis/distributed.rb#580
+  # source://redis//lib/redis/distributed.rb#588
   def sismember(key, member); end
 
   # Get all the members in a set.
   #
-  # source://redis//lib/redis/distributed.rb#590
+  # source://redis//lib/redis/distributed.rb#598
   def smembers(key); end
 
   # Determine if multiple values are members of a set.
   #
-  # source://redis//lib/redis/distributed.rb#585
+  # source://redis//lib/redis/distributed.rb#593
   def smismember(key, *members); end
 
   # Move a member from one set to another.
   #
-  # source://redis//lib/redis/distributed.rb#573
+  # source://redis//lib/redis/distributed.rb#581
   def smove(source, destination, member); end
 
   # Sort the elements in a list, set or sorted set.
   #
-  # source://redis//lib/redis/distributed.rb#241
+  # source://redis//lib/redis/distributed.rb#242
   def sort(key, **options); end
 
   # Remove and return a random member from a set.
   #
-  # source://redis//lib/redis/distributed.rb#563
+  # source://redis//lib/redis/distributed.rb#571
   def spop(key, count = T.unsafe(nil)); end
 
   # Get a random member from a set.
   #
-  # source://redis//lib/redis/distributed.rb#568
+  # source://redis//lib/redis/distributed.rb#576
   def srandmember(key, count = T.unsafe(nil)); end
 
   # Remove one or more members from a set.
   #
-  # source://redis//lib/redis/distributed.rb#553
-  def srem(key, member); end
+  # source://redis//lib/redis/distributed.rb#561
+  def srem(key, *members); end
 
   # Remove one or more members from a set.
   #
   # @return [Boolean]
   #
-  # source://redis//lib/redis/distributed.rb#558
-  def srem?(key, member); end
+  # source://redis//lib/redis/distributed.rb#566
+  def srem?(key, *members); end
 
   # Scan a set
   #
-  # source://redis//lib/redis/distributed.rb#595
+  # source://redis//lib/redis/distributed.rb#603
   def sscan(key, cursor, **options); end
 
   # Scan a set and return an enumerator
   #
-  # source://redis//lib/redis/distributed.rb#600
+  # source://redis//lib/redis/distributed.rb#608
   def sscan_each(key, **options, &block); end
 
   # Get the length of the value stored in a key.
   #
-  # source://redis//lib/redis/distributed.rb#392
+  # source://redis//lib/redis/distributed.rb#396
   def strlen(key); end
 
   # Listen for messages published to the given channels.
   #
-  # source://redis//lib/redis/distributed.rb#870
+  # source://redis//lib/redis/distributed.rb#893
   def subscribe(channel, *channels, &block); end
 
   # @return [Boolean]
   #
-  # source://redis//lib/redis/distributed.rb#865
+  # source://redis//lib/redis/distributed.rb#888
   def subscribed?; end
 
   # Add multiple sets.
   #
-  # source://redis//lib/redis/distributed.rb#633
+  # source://redis//lib/redis/distributed.rb#645
   def sunion(*keys); end
 
   # Add multiple sets and store the resulting set in a key.
   #
-  # source://redis//lib/redis/distributed.rb#640
+  # source://redis//lib/redis/distributed.rb#653
   def sunionstore(destination, *keys); end
 
   # Get server time: an UNIX timestamp and the elapsed microseconds in the current second.
   #
-  # source://redis//lib/redis/distributed.rb#108
+  # source://redis//lib/redis/distributed.rb#114
   def time; end
 
   # Get the time to live (in seconds) for a key.
   #
-  # source://redis//lib/redis/distributed.rb#128
+  # source://redis//lib/redis/distributed.rb#134
   def ttl(key); end
 
   # Determine the type stored at key.
   #
-  # source://redis//lib/redis/distributed.rb#250
+  # source://redis//lib/redis/distributed.rb#251
   def type(key); end
 
   # Unlink keys.
   #
-  # source://redis//lib/redis/distributed.rb#171
+  # source://redis//lib/redis/distributed.rb#178
   def unlink(*args); end
 
   # Stop listening for messages posted to the given channels.
   #
-  # source://redis//lib/redis/distributed.rb#883
+  # @raise [SubscriptionError]
+  #
+  # source://redis//lib/redis/distributed.rb#906
   def unsubscribe(*channels); end
 
   # Forget about all watched keys.
   #
   # @raise [CannotDistribute]
   #
-  # source://redis//lib/redis/distributed.rb#915
+  # source://redis//lib/redis/distributed.rb#938
   def unwatch; end
 
   # Watch the given keys to determine execution of the MULTI/EXEC block.
   #
-  # source://redis//lib/redis/distributed.rb#901
+  # source://redis//lib/redis/distributed.rb#924
   def watch(*keys, &block); end
 
   # Add one or more members to a sorted set, or update the score for members
   # that already exist.
   #
-  # source://redis//lib/redis/distributed.rb#653
+  # source://redis//lib/redis/distributed.rb#667
   def zadd(key, *args, **_arg2); end
 
   # Get the number of members in a sorted set.
   #
-  # source://redis//lib/redis/distributed.rb#647
+  # source://redis//lib/redis/distributed.rb#661
   def zcard(key); end
 
   # Get the number of members in a particular score range.
   #
-  # source://redis//lib/redis/distributed.rb#735
+  # source://redis//lib/redis/distributed.rb#749
   def zcount(key, min, max); end
 
   # Return the difference between the first and all successive input sorted sets.
   #
-  # source://redis//lib/redis/distributed.rb#769
+  # source://redis//lib/redis/distributed.rb#787
   def zdiff(*keys, **options); end
 
   # Compute the difference between the first and all successive input sorted sets
   # and store the resulting sorted set in a new key.
   #
-  # source://redis//lib/redis/distributed.rb#777
-  def zdiffstore(destination, keys, **options); end
+  # source://redis//lib/redis/distributed.rb#796
+  def zdiffstore(destination, *keys, **options); end
 
   # Increment the score of a member in a sorted set.
   #
-  # source://redis//lib/redis/distributed.rb#659
+  # source://redis//lib/redis/distributed.rb#673
   def zincrby(key, increment, member); end
 
   # Get the intersection of multiple sorted sets
   #
-  # source://redis//lib/redis/distributed.rb#740
+  # source://redis//lib/redis/distributed.rb#754
   def zinter(*keys, **options); end
 
   # Intersect multiple sorted sets and store the resulting sorted set in a new
   # key.
   #
-  # source://redis//lib/redis/distributed.rb#748
-  def zinterstore(destination, keys, **options); end
+  # source://redis//lib/redis/distributed.rb#763
+  def zinterstore(destination, *keys, **options); end
 
   # Get the scores associated with the given members in a sorted set.
   #
-  # source://redis//lib/redis/distributed.rb#679
+  # source://redis//lib/redis/distributed.rb#693
   def zmscore(key, *members); end
 
   # Get one or more random members from a sorted set.
   #
-  # source://redis//lib/redis/distributed.rb#674
+  # source://redis//lib/redis/distributed.rb#688
   def zrandmember(key, count = T.unsafe(nil), **options); end
 
   # Return a range of members in a sorted set, by index, score or lexicographical ordering.
   #
-  # source://redis//lib/redis/distributed.rb#684
+  # source://redis//lib/redis/distributed.rb#698
   def zrange(key, start, stop, **options); end
 
   # Return a range of members in a sorted set, by score.
   #
-  # source://redis//lib/redis/distributed.rb#719
+  # source://redis//lib/redis/distributed.rb#733
   def zrangebyscore(key, min, max, **options); end
 
   # Select a range of members in a sorted set, by index, score or lexicographical ordering
   # and store the resulting sorted set in a new key.
   #
-  # source://redis//lib/redis/distributed.rb#690
+  # source://redis//lib/redis/distributed.rb#704
   def zrangestore(dest_key, src_key, start, stop, **options); end
 
   # Determine the index of a member in a sorted set.
   #
-  # source://redis//lib/redis/distributed.rb#703
+  # source://redis//lib/redis/distributed.rb#717
   def zrank(key, member); end
 
   # Remove one or more members from a sorted set.
   #
-  # source://redis//lib/redis/distributed.rb#664
+  # source://redis//lib/redis/distributed.rb#678
   def zrem(key, member); end
 
   # Remove all members in a sorted set within the given indexes.
   #
-  # source://redis//lib/redis/distributed.rb#714
+  # source://redis//lib/redis/distributed.rb#728
   def zremrangebyrank(key, start, stop); end
 
   # Remove all members in a sorted set within the given scores.
   #
-  # source://redis//lib/redis/distributed.rb#730
+  # source://redis//lib/redis/distributed.rb#744
   def zremrangebyscore(key, min, max); end
 
   # Return a range of members in a sorted set, by index, with scores ordered
   # from high to low.
   #
-  # source://redis//lib/redis/distributed.rb#698
+  # source://redis//lib/redis/distributed.rb#712
   def zrevrange(key, start, stop, **options); end
 
   # Return a range of members in a sorted set, by score, with scores ordered
   # from high to low.
   #
-  # source://redis//lib/redis/distributed.rb#725
+  # source://redis//lib/redis/distributed.rb#739
   def zrevrangebyscore(key, max, min, **options); end
 
   # Determine the index of a member in a sorted set, with scores ordered from
   # high to low.
   #
-  # source://redis//lib/redis/distributed.rb#709
+  # source://redis//lib/redis/distributed.rb#723
   def zrevrank(key, member); end
 
   # Get the score associated with the given member in a sorted set.
   #
-  # source://redis//lib/redis/distributed.rb#669
+  # source://redis//lib/redis/distributed.rb#683
   def zscore(key, member); end
 
   # Return the union of multiple sorted sets.
   #
-  # source://redis//lib/redis/distributed.rb#755
+  # source://redis//lib/redis/distributed.rb#771
   def zunion(*keys, **options); end
 
   # Add multiple sorted sets and store the resulting sorted set in a new key.
   #
-  # source://redis//lib/redis/distributed.rb#762
-  def zunionstore(destination, keys, **options); end
+  # source://redis//lib/redis/distributed.rb#779
+  def zunionstore(destination, *keys, **options); end
 
   protected
 
   # @yield [node_for(keys.first)]
   #
-  # source://redis//lib/redis/distributed.rb#1026
+  # source://redis//lib/redis/distributed.rb#1048
   def ensure_same_node(command, keys); end
 
-  # source://redis//lib/redis/distributed.rb#1022
+  # source://redis//lib/redis/distributed.rb#1043
   def key_tag(key); end
 
-  # source://redis//lib/redis/distributed.rb#1018
+  # source://redis//lib/redis/distributed.rb#1039
   def node_index_for(key); end
 
-  # source://redis//lib/redis/distributed.rb#1012
+  # source://redis//lib/redis/distributed.rb#1033
   def on_each_node(command, *args); end
 end
 
@@ -4779,54 +3836,43 @@ class Redis::Distributed::CannotDistribute < ::RuntimeError
   def message; end
 end
 
-# source://redis//lib/redis/pipeline.rb#244
+# source://redis//lib/redis/pipeline.rb#79
 class Redis::Future < ::BasicObject
   # @return [Future] a new instance of Future
   #
-  # source://redis//lib/redis/pipeline.rb#249
-  def initialize(command, transformation, timeout); end
+  # source://redis//lib/redis/pipeline.rb#82
+  def initialize(command, coerce); end
 
-  # source://redis//lib/redis/pipeline.rb#256
-  def ==(_other); end
-
-  # source://redis//lib/redis/pipeline.rb#275
-  def _command; end
-
-  # source://redis//lib/redis/pipeline.rb#270
+  # source://redis//lib/redis/pipeline.rb#92
   def _set(object); end
 
-  # source://redis//lib/redis/pipeline.rb#288
+  # source://redis//lib/redis/pipeline.rb#106
   def class; end
 
-  # source://redis//lib/redis/pipeline.rb#266
+  # source://redis//lib/redis/pipeline.rb#88
   def inspect; end
 
   # @return [Boolean]
   #
-  # source://redis//lib/redis/pipeline.rb#284
+  # source://redis//lib/redis/pipeline.rb#102
   def is_a?(other); end
 
-  # Returns the value of attribute timeout.
-  #
-  # source://redis//lib/redis/pipeline.rb#247
-  def timeout; end
-
-  # source://redis//lib/redis/pipeline.rb#279
+  # source://redis//lib/redis/pipeline.rb#97
   def value; end
 end
 
-# source://redis//lib/redis/pipeline.rb#245
+# source://redis//lib/redis/pipeline.rb#80
 Redis::Future::FutureNotReady = T.let(T.unsafe(nil), Redis::FutureNotReady)
 
-# source://redis//lib/redis/pipeline.rb#238
+# source://redis//lib/redis/pipeline.rb#73
 class Redis::FutureNotReady < ::RuntimeError
   # @return [FutureNotReady] a new instance of FutureNotReady
   #
-  # source://redis//lib/redis/pipeline.rb#239
+  # source://redis//lib/redis/pipeline.rb#74
   def initialize; end
 end
 
-# source://redis//lib/redis/hash_ring.rb#6
+# source://redis//lib/redis/hash_ring.rb#7
 class Redis::HashRing
   # nodes is a list of objects that have a proper to_s representation.
   # replicas indicates how many virtual points should be used pr. node,
@@ -4834,192 +3880,107 @@ class Redis::HashRing
   #
   # @return [HashRing] a new instance of HashRing
   #
-  # source://redis//lib/redis/hash_ring.rb#14
+  # source://redis//lib/redis/hash_ring.rb#15
   def initialize(nodes = T.unsafe(nil), replicas = T.unsafe(nil)); end
 
   # Adds a `node` to the hash ring (including a number of replicas).
   #
-  # source://redis//lib/redis/hash_ring.rb#25
+  # source://redis//lib/redis/hash_ring.rb#26
   def add_node(node); end
 
   # get the node in the hash ring for this key
   #
-  # source://redis//lib/redis/hash_ring.rb#45
+  # source://redis//lib/redis/hash_ring.rb#46
   def get_node(key); end
 
-  # source://redis//lib/redis/hash_ring.rb#49
-  def get_node_pos(key); end
-
-  # source://redis//lib/redis/hash_ring.rb#57
+  # source://redis//lib/redis/hash_ring.rb#52
   def iter_nodes(key); end
 
   # Returns the value of attribute nodes.
   #
-  # source://redis//lib/redis/hash_ring.rb#9
+  # source://redis//lib/redis/hash_ring.rb#10
   def nodes; end
 
-  # source://redis//lib/redis/hash_ring.rb#35
+  # source://redis//lib/redis/hash_ring.rb#36
   def remove_node(node); end
 
   # Returns the value of attribute replicas.
   #
-  # source://redis//lib/redis/hash_ring.rb#9
+  # source://redis//lib/redis/hash_ring.rb#10
   def replicas; end
 
   # Returns the value of attribute ring.
   #
-  # source://redis//lib/redis/hash_ring.rb#9
+  # source://redis//lib/redis/hash_ring.rb#10
   def ring; end
 
   # Returns the value of attribute sorted_keys.
   #
-  # source://redis//lib/redis/hash_ring.rb#9
+  # source://redis//lib/redis/hash_ring.rb#10
   def sorted_keys; end
 
-  class << self
-    # Find the closest index in HashRing with value <= the given value
-    #
-    # source://redis//lib/redis/hash_ring.rb#67
-    def binary_search(ary, value); end
-  end
+  private
+
+  # Find the closest index in HashRing with value <= the given value
+  #
+  # source://redis//lib/redis/hash_ring.rb#73
+  def binary_search(ary, value); end
+
+  # source://redis//lib/redis/hash_ring.rb#64
+  def hash_for(key); end
+
+  # source://redis//lib/redis/hash_ring.rb#68
+  def server_hash_for(key); end
 end
 
 # this is the default in libmemcached
 #
-# source://redis//lib/redis/hash_ring.rb#7
+# source://redis//lib/redis/hash_ring.rb#8
 Redis::HashRing::POINTS_PER_SERVER = T.let(T.unsafe(nil), Integer)
 
 # Raised when the connection was inherited by a child process.
 #
-# source://redis//lib/redis/errors.rb#40
+# source://redis//lib/redis/errors.rb#52
 class Redis::InheritedError < ::Redis::BaseConnectionError; end
 
 # Raised when client options are invalid.
 #
-# source://redis//lib/redis/errors.rb#44
+# source://redis//lib/redis/errors.rb#56
 class Redis::InvalidClientOptionError < ::Redis::BaseError; end
 
-# source://redis//lib/redis/pipeline.rb#293
+# source://redis//lib/redis/pipeline.rb#58
+class Redis::MultiConnection < ::Redis::PipelinedConnection
+  # @raise [Redis::Error]
+  #
+  # source://redis//lib/redis/pipeline.rb#59
+  def multi; end
+
+  private
+
+  # Blocking commands inside transaction behave like non-blocking.
+  # It shouldn't be done though.
+  # https://redis.io/commands/blpop/#blpop-inside-a-multi--exec-transaction
+  #
+  # source://redis//lib/redis/pipeline.rb#68
+  def send_blocking_command(command, _timeout, &block); end
+end
+
+# source://redis//lib/redis/pipeline.rb#111
 class Redis::MultiFuture < ::Redis::Future
   # @return [MultiFuture] a new instance of MultiFuture
   #
-  # source://redis//lib/redis/pipeline.rb#294
+  # source://redis//lib/redis/pipeline.rb#112
   def initialize(futures); end
 
-  # source://redis//lib/redis/pipeline.rb#299
+  # source://redis//lib/redis/pipeline.rb#118
   def _set(replies); end
 end
 
-# source://redis//lib/redis/pipeline.rb#45
-class Redis::Pipeline
-  # @return [Pipeline] a new instance of Pipeline
-  #
-  # source://redis//lib/redis/pipeline.rb#79
-  def initialize(client); end
+# source://redis//lib/redis/errors.rb#32
+class Redis::OutOfMemoryError < ::Redis::CommandError; end
 
-  # source://redis//lib/redis/pipeline.rb#106
-  def call(command, timeout: T.unsafe(nil), &block); end
-
-  # source://redis//lib/redis/pipeline.rb#119
-  def call_pipeline(pipeline); end
-
-  # source://redis//lib/redis/pipeline.rb#115
-  def call_with_timeout(command, timeout, &block); end
-
-  # Returns the value of attribute client.
-  #
-  # source://redis//lib/redis/pipeline.rb#74
-  def client; end
-
-  # source://redis//lib/redis/pipeline.rb#126
-  def commands; end
-
-  # Returns the value of attribute db.
-  #
-  # source://redis//lib/redis/pipeline.rb#73
-  def db; end
-
-  # Sets the attribute db
-  #
-  # @param value the value to set the attribute db to.
-  #
-  # source://redis//lib/redis/pipeline.rb#73
-  def db=(_arg0); end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/pipeline.rb#102
-  def empty?; end
-
-  # source://redis//lib/redis/pipeline.rb#143
-  def finish(replies, &blk); end
-
-  # Returns the value of attribute futures.
-  #
-  # source://redis//lib/redis/pipeline.rb#76
-  def futures; end
-
-  # Returns the value of attribute futures.
-  #
-  # source://redis//lib/redis/pipeline.rb#76
-  def materialized_futures; end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/pipeline.rb#98
-  def shutdown?; end
-
-  # source://redis//lib/redis/pipeline.rb#86
-  def timeout; end
-
-  # source://redis//lib/redis/pipeline.rb#130
-  def timeouts; end
-
-  # source://redis//lib/redis/pipeline.rb#134
-  def with_reconnect(val = T.unsafe(nil)); end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/pipeline.rb#90
-  def with_reconnect?; end
-
-  # source://redis//lib/redis/pipeline.rb#139
-  def without_reconnect(&blk); end
-
-  # @return [Boolean]
-  #
-  # source://redis//lib/redis/pipeline.rb#94
-  def without_reconnect?; end
-
-  class << self
-    # source://redis//lib/redis/pipeline.rb#52
-    def deprecation_warning(method, caller_locations); end
-  end
-end
-
-# source://redis//lib/redis/pipeline.rb#155
-class Redis::Pipeline::Multi < ::Redis::Pipeline
-  # source://redis//lib/redis/pipeline.rb#198
-  def commands; end
-
-  # source://redis//lib/redis/pipeline.rb#156
-  def finish(replies); end
-
-  # source://redis//lib/redis/pipeline.rb#178
-  def materialized_futures; end
-
-  # source://redis//lib/redis/pipeline.rb#190
-  def timeouts; end
-end
-
-# source://redis//lib/redis/pipeline.rb#46
-Redis::Pipeline::REDIS_INTERNAL_PATH = T.let(T.unsafe(nil), String)
-
-# Redis use MonitorMixin#synchronize and this class use DelegateClass which we want to filter out.
-# Both are in the stdlib so we can simply filter the entire stdlib out.
-#
-# source://redis//lib/redis/pipeline.rb#49
-Redis::Pipeline::STDLIB_PATH = T.let(T.unsafe(nil), String)
+# source://redis//lib/redis/errors.rb#23
+class Redis::PermissionError < ::Redis::CommandError; end
 
 # source://redis//lib/redis/pipeline.rb#6
 class Redis::PipelinedConnection
@@ -5043,36 +4004,44 @@ class Redis::PipelinedConnection
 
   # @return [PipelinedConnection] a new instance of PipelinedConnection
   #
+  # source://redis//lib/redis/pipeline.rb#9
+  def initialize(pipeline, futures = T.unsafe(nil)); end
+
+  # Returns the value of attribute db.
+  #
   # source://redis//lib/redis/pipeline.rb#7
-  def initialize(pipeline); end
-
-  # source://redis//lib/redis/pipeline.rb#25
-  def call_pipeline(pipeline); end
-
-  # source://redis//lib/redis/pipeline.rb#13
   def db; end
 
-  # source://redis//lib/redis/pipeline.rb#17
-  def db=(db); end
+  # Sets the attribute db
+  #
+  # @param value the value to set the attribute db to.
+  #
+  # source://redis//lib/redis/pipeline.rb#7
+  def db=(_arg0); end
+
+  # @yield [transaction]
+  #
+  # source://redis//lib/redis/pipeline.rb#20
+  def multi; end
 
   # @yield [_self]
   # @yieldparam _self [Redis::PipelinedConnection] the object that the method was called on
   #
-  # source://redis//lib/redis/pipeline.rb#21
+  # source://redis//lib/redis/pipeline.rb#16
   def pipelined; end
 
   private
 
-  # source://redis//lib/redis/pipeline.rb#40
+  # source://redis//lib/redis/pipeline.rb#48
   def send_blocking_command(command, timeout, &block); end
 
-  # source://redis//lib/redis/pipeline.rb#36
+  # source://redis//lib/redis/pipeline.rb#39
   def send_command(command, &block); end
 
   # @yield [_self]
   # @yieldparam _self [Redis::PipelinedConnection] the object that the method was called on
   #
-  # source://redis//lib/redis/pipeline.rb#32
+  # source://redis//lib/redis/pipeline.rb#35
   def synchronize; end
 end
 
@@ -5086,6 +4055,12 @@ class Redis::ProtocolError < ::Redis::BaseError
   def initialize(reply_type); end
 end
 
+# source://redis//lib/redis/errors.rb#29
+class Redis::ReadOnlyError < ::Redis::CommandError; end
+
+# source://redis//lib/redis.rb#37
+Redis::SERVER_URL_OPTIONS = T.let(T.unsafe(nil), Array)
+
 # source://redis//lib/redis/subscribe.rb#4
 class Redis::SubscribedClient
   # @return [SubscribedClient] a new instance of SubscribedClient
@@ -5093,70 +4068,79 @@ class Redis::SubscribedClient
   # source://redis//lib/redis/subscribe.rb#5
   def initialize(client); end
 
-  # source://redis//lib/redis/subscribe.rb#9
-  def call(command); end
+  # source://redis//lib/redis/subscribe.rb#10
+  def call_v(command); end
 
-  # source://redis//lib/redis/subscribe.rb#21
+  # source://redis//lib/redis/subscribe.rb#40
+  def close; end
+
+  # source://redis//lib/redis/subscribe.rb#24
   def psubscribe(*channels, &block); end
 
-  # source://redis//lib/redis/subscribe.rb#25
+  # source://redis//lib/redis/subscribe.rb#28
   def psubscribe_with_timeout(timeout, *channels, &block); end
 
-  # source://redis//lib/redis/subscribe.rb#33
+  # source://redis//lib/redis/subscribe.rb#36
   def punsubscribe(*channels); end
 
-  # source://redis//lib/redis/subscribe.rb#13
+  # source://redis//lib/redis/subscribe.rb#16
   def subscribe(*channels, &block); end
 
-  # source://redis//lib/redis/subscribe.rb#17
+  # source://redis//lib/redis/subscribe.rb#20
   def subscribe_with_timeout(timeout, *channels, &block); end
 
-  # source://redis//lib/redis/subscribe.rb#29
+  # source://redis//lib/redis/subscribe.rb#32
   def unsubscribe(*channels); end
 
   protected
 
-  # source://redis//lib/redis/subscribe.rb#39
+  # source://redis//lib/redis/subscribe.rb#46
   def subscription(start, stop, channels, block, timeout = T.unsafe(nil)); end
 end
 
-# source://redis//lib/redis/subscribe.rb#55
+# source://redis//lib/redis/subscribe.rb#66
 class Redis::Subscription
   # @return [Subscription] a new instance of Subscription
   # @yield [_self]
   # @yieldparam _self [Redis::Subscription] the object that the method was called on
   #
-  # source://redis//lib/redis/subscribe.rb#58
+  # source://redis//lib/redis/subscribe.rb#69
   def initialize; end
 
   # Returns the value of attribute callbacks.
   #
-  # source://redis//lib/redis/subscribe.rb#56
+  # source://redis//lib/redis/subscribe.rb#67
   def callbacks; end
 
-  # source://redis//lib/redis/subscribe.rb#74
+  # source://redis//lib/redis/subscribe.rb#82
   def message(&block); end
 
-  # source://redis//lib/redis/subscribe.rb#86
+  # source://redis//lib/redis/subscribe.rb#94
   def pmessage(&block); end
 
-  # source://redis//lib/redis/subscribe.rb#78
+  # source://redis//lib/redis/subscribe.rb#86
   def psubscribe(&block); end
 
-  # source://redis//lib/redis/subscribe.rb#82
+  # source://redis//lib/redis/subscribe.rb#90
   def punsubscribe(&block); end
 
-  # source://redis//lib/redis/subscribe.rb#66
+  # source://redis//lib/redis/subscribe.rb#74
   def subscribe(&block); end
 
-  # source://redis//lib/redis/subscribe.rb#70
+  # source://redis//lib/redis/subscribe.rb#78
   def unsubscribe(&block); end
 end
 
+# source://redis//lib/redis/errors.rb#59
+class Redis::SubscriptionError < ::Redis::BaseError; end
+
 # Raised when performing I/O times out.
 #
-# source://redis//lib/redis/errors.rb#36
+# source://redis//lib/redis/errors.rb#48
 class Redis::TimeoutError < ::Redis::BaseConnectionError; end
 
 # source://redis//lib/redis/version.rb#4
 Redis::VERSION = T.let(T.unsafe(nil), String)
+
+# source://redis//lib/redis/errors.rb#26
+class Redis::WrongTypeError < ::Redis::CommandError; end

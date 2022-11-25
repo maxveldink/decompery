@@ -12,10 +12,10 @@ gem "rails", "~> 7.0.4"
 gem "propshaft"
 
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
+gem "pg"
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.0"
+gem "puma"
 
 # Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
 gem "importmap-rails"
@@ -38,10 +38,11 @@ gem "sentry-rails"
 gem "sentry-ruby"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.0"
+gem "redis"
 
-gem "lookbook"
 gem "view_component"
+
+gem "good_job"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
@@ -67,7 +68,7 @@ group :development do
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   gem "rack-mini-profiler"
 
-  gem "ruby-lsp", "~> 0.3.4", require: false
+  gem "ruby-lsp", require: false
 
   gem "bundler-leak", require: false
   gem "rubocop", require: false
@@ -85,5 +86,3 @@ group :test do
   gem "rails-controller-testing"
   gem "shoulda"
 end
-
-gem "good_job", "~> 3.6"

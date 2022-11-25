@@ -30,9 +30,6 @@ module GeneratedPathHelpersModule
   def good_job_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def lookbook_path(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
   def new_decomp_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }

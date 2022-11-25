@@ -36,10 +36,10 @@ module RuboCop::Cop::ArgumentRangeHelper
   def first_argument_range(node); end
 end
 
-# source://rubocop/1.38.0/lib/rubocop/cop/mixin/allowed_methods.rb#38
+# source://rubocop/1.39.0/lib/rubocop/cop/mixin/allowed_methods.rb#38
 RuboCop::Cop::IgnoredMethods = RuboCop::Cop::AllowedMethods
 
-# source://rubocop/1.38.0/lib/rubocop/cop/mixin/allowed_pattern.rb#54
+# source://rubocop/1.39.0/lib/rubocop/cop/mixin/allowed_pattern.rb#54
 RuboCop::Cop::IgnoredPattern = RuboCop::Cop::AllowedPattern
 
 # Common functionality for `AssertInDelta` and `RefuteInDelta` cops.
@@ -878,38 +878,47 @@ RuboCop::Cop::Minitest::DuplicateTestRun::MSG = T.let(T.unsafe(nil), String)
 # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#19
 class RuboCop::Cop::Minitest::EmptyLineBeforeAssertionMethods < ::RuboCop::Cop::Base
   include ::RuboCop::Cop::MinitestExplorationHelpers
+  include ::RuboCop::Cop::RangeHelp
   extend ::RuboCop::Cop::AutoCorrector
 
-  # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#25
+  # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#27
   def on_send(node); end
 
   private
 
   # @return [Boolean]
   #
-  # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#38
+  # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#52
   def accept_previous_line?(previous_line_node, node); end
+
+  # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#43
+  def assertion_method(node); end
 
   # @return [Boolean]
   #
-  # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#48
+  # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#73
   def heredoc?(last_argument); end
 
   # @return [Boolean]
   #
-  # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#52
+  # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#77
   def no_empty_line?(previous_line_node, node); end
 
-  # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#62
+  # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#87
   def register_offense(node, previous_line_node); end
 
   # @return [Boolean]
   #
-  # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#44
+  # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#63
+  def use_assertion_method_at_last_of_block?(node); end
+
+  # @return [Boolean]
+  #
+  # source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#59
   def use_heredoc_argument?(node); end
 end
 
-# source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#23
+# source://rubocop-minitest//lib/rubocop/cop/minitest/empty_line_before_assertion_methods.rb#24
 RuboCop::Cop::Minitest::EmptyLineBeforeAssertionMethods::MSG = T.let(T.unsafe(nil), String)
 
 # Checks for deprecated global expectations
@@ -2067,11 +2076,11 @@ end
 # source://rubocop-minitest//lib/rubocop/minitest/version.rb#7
 RuboCop::Minitest::Version::STRING = T.let(T.unsafe(nil), String)
 
-# source://rubocop/1.38.0/lib/rubocop/ast_aliases.rb#5
+# source://rubocop/1.39.0/lib/rubocop/ast_aliases.rb#5
 RuboCop::NodePattern = RuboCop::AST::NodePattern
 
-# source://rubocop/1.38.0/lib/rubocop/ast_aliases.rb#6
+# source://rubocop/1.39.0/lib/rubocop/ast_aliases.rb#6
 RuboCop::ProcessedSource = RuboCop::AST::ProcessedSource
 
-# source://rubocop/1.38.0/lib/rubocop/ast_aliases.rb#7
+# source://rubocop/1.39.0/lib/rubocop/ast_aliases.rb#7
 RuboCop::Token = RuboCop::AST::Token

@@ -30,9 +30,6 @@ module GeneratedUrlHelpersModule
   def good_job_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def lookbook_url(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
   def new_decomp_stage_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
