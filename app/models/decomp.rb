@@ -12,6 +12,8 @@ class Decomp < ApplicationRecord
 
   validates :topic, presence: true
 
+  enum :story_point_set, { fibonacci: 0 }
+
   sig { params(user_id: String).void }
   def add_participant(user_id)
     user = User.find_by(id: user_id)
@@ -22,5 +24,15 @@ class Decomp < ApplicationRecord
   sig { params(user_id: String).void }
   def remove_participant(user_id)
     Participation.find_by(decomp: self, user_id:)&.destroy
+  end
+
+  sig { returns(T::Array[Integer]) }
+  def available_story_points
+    case story_point_set
+    when "fibonacci"
+      [1, 2, 3, 5, 8, 13]
+    else
+      raise NotImplementedError, "Can't fetch available story points for unknown set."
+    end
   end
 end

@@ -26,6 +26,16 @@
 
   <hr class="my-4">
 
+  <div class="flex flex-row justify-around">
+    <% decomp.available_story_points.each do |story_point| %>
+      <div class="p-12 rounded bg-gradient-to-b from-emerald-500 to-sky-500 text-3xl">
+        <%= story_point %>
+      </div>
+    <% end %>
+  </div>
+
+  <hr class="my-4">
+
   <%= turbo_frame_tag "stages" do %>
     <%= render decomp.stages %>
   <% end %>

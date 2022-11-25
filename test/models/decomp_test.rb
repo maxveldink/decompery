@@ -52,4 +52,8 @@ class DecompTest < ActiveSupport::TestCase
       @decomp.remove_participant("garbage")
     end
   end
+
+  test "returns available story points" do
+    assert_equal([1, 2, 3, 5, 8, 13], @decomp.available_story_points)
+  end
 end

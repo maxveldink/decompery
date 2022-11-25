@@ -7,6 +7,7 @@
 class Decomp
   include GeneratedAssociationMethods
   include GeneratedAttributeMethods
+  include EnumMethodsModule
   extend CommonRelationMethods
   extend GeneratedRelationMethods
 
@@ -14,6 +15,11 @@ class Decomp
 
   sig { returns(NilClass) }
   def to_ary; end
+
+  class << self
+    sig { returns(T::Hash[T.any(String, Symbol), Integer]) }
+    def story_point_sets; end
+  end
 
   module CommonRelationMethods
     sig { params(block: T.nilable(T.proc.params(record: ::Decomp).returns(T.untyped))).returns(T::Boolean) }
@@ -175,18 +181,56 @@ class Decomp
     def third_to_last!; end
   end
 
+  module EnumMethodsModule
+    sig { void }
+    def fibonacci!; end
+
+    sig { returns(T::Boolean) }
+    def fibonacci?; end
+  end
+
   module GeneratedAssociationMethods
+    sig { returns(T::Array[T.untyped]) }
+    def participation_ids; end
+
+    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
+    def participation_ids=(ids); end
+
+    # This method is created by ActiveRecord on the `Decomp` class because it declared `has_many :participations`.
+    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
+    sig { returns(::Participation::PrivateCollectionProxy) }
+    def participations; end
+
+    sig { params(value: T::Enumerable[::Participation]).void }
+    def participations=(value); end
+
     sig { returns(T::Array[T.untyped]) }
     def stage_ids; end
 
     sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
     def stage_ids=(ids); end
 
+    # This method is created by ActiveRecord on the `Decomp` class because it declared `has_many :stages`.
+    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
     sig { returns(::Stage::PrivateCollectionProxy) }
     def stages; end
 
     sig { params(value: T::Enumerable[::Stage]).void }
     def stages=(value); end
+
+    sig { returns(T::Array[T.untyped]) }
+    def user_ids; end
+
+    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
+    def user_ids=(ids); end
+
+    # This method is created by ActiveRecord on the `Decomp` class because it declared `has_many :users, through: :participations`.
+    # 🔗 [Rails guide for `has_many_through` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)
+    sig { returns(::User::PrivateCollectionProxy) }
+    def users; end
+
+    sig { params(value: T::Enumerable[::User]).void }
+    def users=(value); end
   end
 
   module GeneratedAssociationRelationMethods
@@ -219,6 +263,9 @@ class Decomp
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def extract_associated(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def fibonacci(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def from(*args, &blk); end
@@ -292,6 +339,9 @@ class Decomp
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def none(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
+    def not_fibonacci(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateAssociationRelation) }
     def offset(*args, &blk); end
@@ -515,6 +565,9 @@ class Decomp
     def restore_invite_token!; end
 
     sig { void }
+    def restore_story_point_set!; end
+
+    sig { void }
     def restore_topic!; end
 
     sig { void }
@@ -538,6 +591,12 @@ class Decomp
     sig { returns(T::Boolean) }
     def saved_change_to_invite_token?; end
 
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def saved_change_to_story_point_set; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_story_point_set?; end
+
     sig { returns(T.nilable([::String, ::String])) }
     def saved_change_to_topic; end
 
@@ -549,6 +608,55 @@ class Decomp
 
     sig { returns(T::Boolean) }
     def saved_change_to_updated_at?; end
+
+    sig { returns(T.nilable(::String)) }
+    def story_point_set; end
+
+    sig do
+      params(
+        value: T.nilable(T.any(::String, ::Symbol, ::Integer))
+      ).returns(T.nilable(T.any(::String, ::Symbol, ::Integer)))
+    end
+    def story_point_set=(value); end
+
+    sig { returns(T::Boolean) }
+    def story_point_set?; end
+
+    sig { returns(T.nilable(::String)) }
+    def story_point_set_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def story_point_set_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def story_point_set_came_from_user?; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def story_point_set_change; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def story_point_set_change_to_be_saved; end
+
+    sig { returns(T::Boolean) }
+    def story_point_set_changed?; end
+
+    sig { returns(T.nilable(::String)) }
+    def story_point_set_in_database; end
+
+    sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
+    def story_point_set_previous_change; end
+
+    sig { returns(T::Boolean) }
+    def story_point_set_previously_changed?; end
+
+    sig { returns(T.nilable(::String)) }
+    def story_point_set_previously_was; end
+
+    sig { returns(T.nilable(::String)) }
+    def story_point_set_was; end
+
+    sig { void }
+    def story_point_set_will_change!; end
 
     sig { returns(::String) }
     def topic; end
@@ -650,6 +758,9 @@ class Decomp
     def will_save_change_to_invite_token?; end
 
     sig { returns(T::Boolean) }
+    def will_save_change_to_story_point_set?; end
+
+    sig { returns(T::Boolean) }
     def will_save_change_to_topic?; end
 
     sig { returns(T::Boolean) }
@@ -686,6 +797,9 @@ class Decomp
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def extract_associated(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def fibonacci(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def from(*args, &blk); end
@@ -725,6 +839,9 @@ class Decomp
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def none(*args, &blk); end
+
+    sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
+    def not_fibonacci(*args, &blk); end
 
     sig { params(args: T.untyped, blk: T.untyped).returns(PrivateRelation) }
     def offset(*args, &blk); end
