@@ -1,5 +1,8 @@
-<% decomp.estimates.to_h.each do |name, story_point| %>
-  <div data-testid="estimate">
-    <%= name %> estimated <%= story_point %>
-  </div>
-<% end %>
+<div class="flex flex-row justify-around">
+  <% decomp.estimates.to_h.each do |name, story_point| %>
+    <div data-testid="estimate" class="text-center text-3xl flex flex-col">
+      <div class="p-12 bg-gradient-to-b from-emerald-500 to-sky-500 rounded-tl-lg rounded-tr-lg"><%= story_point %></div>
+      <div class="px-12 bg-zinc-700 rounded-bl-lg rounded-br-lg"><%= name %></div>
+    </div>
+  <% end %>
+</div>

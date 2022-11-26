@@ -48,7 +48,9 @@
     <%= button_to 'Clear Estimates', clear_decomp_estimates_path(decomp), method: :delete, class: "btn-rose mr-4 text-sm" %>
   </h2>
 
-  <%= turbo_frame_tag "estimates" %>
+  <%= turbo_frame_tag "estimates" do %>
+    <%= render partial: "estimates/estimates", locals: {decomp: decomp} %>
+  <% end %>
 
   <hr class="my-4">
 
