@@ -7,4 +7,5 @@ end
 
 class ApplicationRecord
   def self.broadcasts_to(*); end
+  def broadcast_update_to(*); end
 end

@@ -83,6 +83,7 @@ end
 group :test do
   gem "capybara"
   gem "cuprite"
+  gem "mock_redis"
   gem "rails-controller-testing"
   gem "shoulda"
 end

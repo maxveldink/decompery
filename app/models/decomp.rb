@@ -13,6 +13,7 @@ class Decomp < ApplicationRecord
   validates :topic, presence: true
 
   enum :story_point_set, { fibonacci: 0 }
+  kredis_hash :estimates, typed: :integer, after_change: :broadcast_estimates
 
   sig { params(user_id: String).void }
   def add_participant(user_id)
@@ -34,5 +35,13 @@ class Decomp < ApplicationRecord
     else
       raise NotImplementedError, "Can't fetch available story points for unknown set."
     end
+  end
+
+  private
+
+  sig { void }
+  def broadcast_estimates
+    broadcast_update_to([self, "estimates"], target: "estimates", partial: "estimates/estimates",
+                                             locals: { decomp: self })
   end
 end

@@ -9,6 +9,12 @@ module GeneratedUrlHelpersModule
   include ::ActionDispatch::Routing::PolymorphicRoutes
 
   sig { params(args: T.untyped).returns(String) }
+  def clear_decomp_estimates_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def decomp_estimates_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def decomp_stage_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }

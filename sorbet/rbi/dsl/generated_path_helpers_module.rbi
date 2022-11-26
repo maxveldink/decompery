@@ -9,6 +9,12 @@ module GeneratedPathHelpersModule
   include ::ActionDispatch::Routing::PolymorphicRoutes
 
   sig { params(args: T.untyped).returns(String) }
+  def clear_decomp_estimates_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def decomp_estimates_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def decomp_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }

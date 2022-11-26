@@ -1,5 +1,6 @@
 <%= turbo_stream_from [decomp, "stages"] %>
 <%= turbo_stream_from [decomp, "participations"] %>
+<%= turbo_stream_from [decomp, "estimates"] %>
 
 <%= turbo_frame_tag @decomp do %>
   <%= link_to '⬅ Decay something else', decomps_path, class: "btn-rose mr-4" %>
@@ -11,6 +12,10 @@
     🔗 Invite Others
   </div>
   <%= link_to '🌱 Edit Decomp', edit_decomp_path(@decomp), class: "btn-sky" %>
+
+  <h2 class="text-2xl mt-4">
+    Decomposable
+  </h2>
 
   <div class="flex justify-between mt-4">
     <p class="my-5 text-xl">
@@ -28,13 +33,28 @@
 
   <div class="flex flex-row justify-around">
     <% decomp.available_story_points.each do |story_point| %>
-      <div class="p-12 rounded bg-gradient-to-b from-emerald-500 to-sky-500 text-3xl">
-        <%= story_point %>
-      </div>
+      <%= form_with(url: decomp_estimates_url(decomp)) do |f| %>
+        <%= f.hidden_field(:name, value: current_user.name) %>
+        <%= f.hidden_field(:story_point, value: story_point) %>
+        <%= f.submit(story_point, class: "p-12 rounded bg-gradient-to-b from-emerald-500 to-sky-500 text-3xl cursor-pointer") %>
+      <% end %>
     <% end %>
   </div>
 
   <hr class="my-4">
+
+  <h2 class="text-2xl flex flex-row items-center mb-4">
+    <span class="mr-4">Deliberation</span>
+    <%= button_to 'Clear Estimates', clear_decomp_estimates_path(decomp), method: :delete, class: "btn-rose mr-4 text-sm" %>
+  </h2>
+
+  <%= turbo_frame_tag "estimates" %>
+
+  <hr class="my-4">
+
+  <h2 class="text-2xl">
+    The Breakdown
+  </h2>
 
   <%= turbo_frame_tag "stages" do %>
     <%= render decomp.stages %>
