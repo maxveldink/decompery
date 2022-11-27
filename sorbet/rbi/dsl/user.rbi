@@ -175,7 +175,21 @@ class User
     def third_to_last!; end
   end
 
-  module GeneratedAssociationMethods; end
+  module GeneratedAssociationMethods
+    sig { returns(T::Array[T.untyped]) }
+    def estimate_ids; end
+
+    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
+    def estimate_ids=(ids); end
+
+    # This method is created by ActiveRecord on the `User` class because it declared `has_many :estimates`.
+    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
+    sig { returns(::Estimate::PrivateCollectionProxy) }
+    def estimates; end
+
+    sig { params(value: T::Enumerable[::Estimate]).void }
+    def estimates=(value); end
+  end
 
   module GeneratedAssociationRelationMethods
     sig { returns(PrivateAssociationRelation) }

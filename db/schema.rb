@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_25_105623) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_27_174637) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_25_105623) do
     t.string "invite_token"
     t.integer "story_point_set", default: 0
     t.index ["invite_token"], name: "index_decomps_on_invite_token", unique: true
+  end
+
+  create_table "estimates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "decomp_id", null: false
+    t.uuid "user_id", null: false
+    t.integer "story_point", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decomp_id"], name: "index_estimates_on_decomp_id"
+    t.index ["user_id"], name: "index_estimates_on_user_id"
   end
 
   create_table "good_job_processes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -88,5 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_25_105623) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "estimates", "decomps"
+  add_foreign_key "estimates", "users"
   add_foreign_key "stages", "decomps"
 end

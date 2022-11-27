@@ -9,11 +9,11 @@ class Decomp < ApplicationRecord
   has_many :stages, dependent: :destroy
   has_many :participations, dependent: :destroy
   has_many :users, through: :participations
+  has_many :estimates, dependent: :destroy
 
   validates :topic, presence: true
 
   enum :story_point_set, { fibonacci: 0 }
-  kredis_hash :estimates, typed: :integer, after_change: :broadcast_estimates
 
   sig { params(user_id: String).void }
   def add_participant(user_id)
@@ -36,23 +36,4 @@ class Decomp < ApplicationRecord
       raise NotImplementedError, "Can't fetch available story points for unknown set."
     end
   end
-
-  private
-
-  # rubocop:disable Metrics/MethodLength
-  sig { void }
-  def broadcast_estimates
-    broadcast_update_to(
-      [self, "estimates"],
-      target: "estimates",
-      html: ApplicationController.render(
-        EstimatesComponent.new(
-          estimates: estimates.to_h,
-          participant_count: participations.count
-        ),
-        layout: false
-      )
-    )
-  end
-  # rubocop:enable Metrics/MethodLength
 end

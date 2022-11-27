@@ -4,13 +4,13 @@
 class EstimatesComponent < ViewComponent::Base
   extend T::Sig
 
-  sig { returns(T::Hash[String, Integer]) }
+  sig { returns(T::Array[Estimate]) }
   attr_reader :estimates
 
   sig { returns(Integer) }
   attr_reader :participant_count
 
-  sig { params(estimates: T::Hash[String, Integer], participant_count: Integer).void }
+  sig { params(estimates: T::Array[Estimate], participant_count: Integer).void }
   def initialize(estimates:, participant_count:)
     @estimates = estimates
     @participant_count = participant_count
@@ -18,15 +18,15 @@ class EstimatesComponent < ViewComponent::Base
 
   sig { returns(T::Boolean) }
   def show_estimates?
-    estimates.values.size == participant_count
+    estimates.size == participant_count
   end
 
-  # rubocop:disable Metrics/AbcSize
   sig { returns(String) }
   def prompt
-    return "" unless participant_count > 1 && estimates.values.size > 1 && show_estimates?
+    return "" unless participant_count > 1 && estimates.size > 1 && show_estimates?
 
-    distance = T.must(estimates.values.max) - T.must(estimates.values.min)
+    story_points = estimates.map(&:story_point)
+    distance = T.must(story_points.max) - T.must(story_points.min)
 
     if distance.zero?
       "🎉 Everyone agrees! Let's break down some more!"
@@ -36,5 +36,4 @@ class EstimatesComponent < ViewComponent::Base
       "🍄 There are different ideas about the effort here. Do we need to decompose more or clarify requirements?"
     end
   end
-  # rubocop:enable Metrics/AbcSize
 end

@@ -44,9 +44,6 @@ gem "view_component"
 
 gem "good_job"
 
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
-gem "kredis"
-
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 
@@ -84,7 +81,6 @@ group :test do
   gem "capybara"
   gem "cuprite"
   gem "factory_bot_rails"
-  gem "mock_redis"
   gem "rails-controller-testing"
   gem "shoulda"
 end

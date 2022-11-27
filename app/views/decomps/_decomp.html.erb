@@ -34,7 +34,7 @@
   <div class="flex flex-row justify-around">
     <% decomp.available_story_points.each do |story_point| %>
       <%= form_with(url: decomp_estimates_url(decomp)) do |f| %>
-        <%= f.hidden_field(:name, value: current_user.name) %>
+        <%= f.hidden_field(:user_id, value: current_user.id) %>
         <%= f.hidden_field(:story_point, value: story_point) %>
         <%= f.submit(story_point, class: "p-12 rounded bg-gradient-to-b from-emerald-500 to-sky-500 text-3xl cursor-pointer") %>
       <% end %>
@@ -49,7 +49,7 @@
   </h2>
 
   <%= turbo_frame_tag "estimates" do %>
-    <%= render EstimatesComponent.new(estimates: decomp.estimates.to_h, participant_count: decomp.participations.count) %>
+    <%= render EstimatesComponent.new(estimates: decomp.estimates.to_a, participant_count: decomp.participations.count) %>
   <% end %>
 
   <hr class="my-4">

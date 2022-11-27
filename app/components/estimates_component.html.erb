@@ -1,8 +1,8 @@
 <div class="flex flex-row justify-around">
-  <% estimates.each do |name, story_point| %>
+  <% estimates.each do |estimate| %>
     <div data-testid="estimate" class="text-center text-3xl flex flex-col">
-      <div class="p-12 bg-gradient-to-b from-emerald-500 to-sky-500 rounded-tl-lg rounded-tr-lg"><%= show_estimates? ? story_point : "?" %></div>
-      <div class="px-12 bg-zinc-700 rounded-bl-lg rounded-br-lg"><%= name %></div>
+      <div class="p-12 bg-gradient-to-b from-emerald-500 to-sky-500 rounded-tl-lg rounded-tr-lg"><%= show_estimates? ? estimate.story_point : "?" %></div>
+      <div class="px-12 bg-zinc-700 rounded-bl-lg rounded-br-lg"><%= estimate.user.name %></div>
     </div>
   <% end %>
 </div>

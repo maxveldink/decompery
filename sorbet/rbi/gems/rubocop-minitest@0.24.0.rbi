@@ -1829,6 +1829,53 @@ end
 # source://rubocop-minitest//lib/rubocop/cop/minitest/skip_ensure.rb#65
 RuboCop::Cop::Minitest::SkipEnsure::MSG = T.let(T.unsafe(nil), String)
 
+# Checks for skipped tests missing the skipping reason.
+#
+# @example
+#   # bad
+#   skip
+#   skip('')
+#
+#   # bad
+#   if condition?
+#   skip
+#   else
+#   skip
+#   end
+#
+#   # good
+#   skip("Reason why the test was skipped")
+#
+#   # good
+#   skip if condition?
+#
+# source://rubocop-minitest//lib/rubocop/cop/minitest/skip_without_reason.rb#26
+class RuboCop::Cop::Minitest::SkipWithoutReason < ::RuboCop::Cop::Base
+  # source://rubocop-minitest//lib/rubocop/cop/minitest/skip_without_reason.rb#31
+  def on_send(node); end
+
+  private
+
+  # @return [Boolean]
+  #
+  # source://rubocop-minitest//lib/rubocop/cop/minitest/skip_without_reason.rb#44
+  def blank_argument?(node); end
+
+  # source://rubocop-minitest//lib/rubocop/cop/minitest/skip_without_reason.rb#49
+  def conditional_parent(node); end
+
+  # @return [Boolean]
+  #
+  # source://rubocop-minitest//lib/rubocop/cop/minitest/skip_without_reason.rb#59
+  def only_skip_branches?(node); end
+end
+
+# source://rubocop-minitest//lib/rubocop/cop/minitest/skip_without_reason.rb#27
+RuboCop::Cop::Minitest::SkipWithoutReason::MSG = T.let(T.unsafe(nil), String)
+
+# source://rubocop-minitest//lib/rubocop/cop/minitest/skip_without_reason.rb#29
+RuboCop::Cop::Minitest::SkipWithoutReason::RESTRICT_ON_SEND = T.let(T.unsafe(nil), Array)
+
 # Enforces that test method names start with `test_` prefix.
 # It aims to prevent tests that aren't executed by forgetting to start test method name with `test_`.
 #
