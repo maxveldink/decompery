@@ -18,14 +18,16 @@ class DecompsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "show redirects to index when invite token doesn't match" do
-    get decomp_path(decomps(:roasting_max)), params: { invite_token: "garbage" }
+    decomp = FactoryBot.create(:decomp)
+
+    get decomp_path(decomp), params: { invite_token: "garbage" }
 
     assert_redirected_to decomps_path
     assert_equal "Decomp has expired or does not exist.", flash[:notice]
   end
 
   test "show renders when invite token in session matches" do
-    decomp = Decomp.create(topic: "Testing")
+    decomp = FactoryBot.create(:decomp)
 
     get decomp_path(decomp), params: { invite_token: decomp.invite_token }
 
@@ -61,13 +63,15 @@ class DecompsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "edit renders" do
-    get edit_decomp_path(decomps(:roasting_max))
+    decomp = FactoryBot.create(:decomp)
+
+    get edit_decomp_path(decomp) + "?invite_token=#{decomp.invite_token}"
 
     assert_template :edit
   end
 
   test "update decomp" do
-    decomp = Decomp.create(topic: "Banana")
+    decomp = FactoryBot.create(:decomp, topic: "Banana")
 
     patch decomp_path(decomp) + "?invite_token=#{decomp.invite_token}", params: { decomp: { topic: "Apples" } }
 
@@ -75,7 +79,7 @@ class DecompsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "update decomp with invalid data" do
-    decomp = Decomp.create(topic: "Banana")
+    decomp = FactoryBot.create(:decomp, topic: "Banana")
 
     patch decomp_path(decomp) + "?invite_token=#{decomp.invite_token}", params: { decomp: { fruit: "Apples" } }
 

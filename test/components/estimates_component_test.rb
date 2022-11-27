@@ -42,4 +42,22 @@ class EstimatesComponentTest < ViewComponent::TestCase
       component.prompt
     )
   end
+
+  def test_component_renders_when_hidden
+    component = EstimatesComponent.new(estimates: { "User 1" => 8, "User 2" => 1 }, participant_count: 3)
+    render_inline(component)
+
+    assert_selector("div[data-testid='estimate']", text: "?")
+    assert_no_selector("div[data-testid='estimate']", text: "8")
+    assert_no_selector("p[data-testid='prompt']")
+  end
+
+  def test_component_renders_when_shown
+    component = EstimatesComponent.new(estimates: { "User 1" => 8, "User 2" => 1, "User 3" => 4 }, participant_count: 3)
+    render_inline(component)
+
+    assert_selector("div[data-testid='estimate']", text: "8")
+    assert_no_selector("div[data-testid='estimate']", text: "?")
+    assert_selector("p[data-testid='prompt']")
+  end
 end

@@ -16,10 +16,15 @@ class EstimatesComponent < ViewComponent::Base
     @participant_count = participant_count
   end
 
+  sig { returns(T::Boolean) }
+  def show_estimates?
+    estimates.values.size == participant_count
+  end
+
   # rubocop:disable Metrics/AbcSize
   sig { returns(String) }
   def prompt
-    return "" if participant_count <= 1 || estimates.values.size <= 1 || estimates.values.size != participant_count
+    return "" unless participant_count > 1 && estimates.values.size > 1 && show_estimates?
 
     distance = T.must(estimates.values.max) - T.must(estimates.values.min)
 

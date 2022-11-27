@@ -44,9 +44,10 @@ class DecompsTest < ApplicationSystemTestCase
   end
 
   test "adding additional stages of decomp" do
-    visit decomp_path(decomps(:roasting_max))
+    decomp = FactoryBot.create(:decomp, topic: "Roasting max")
+    visit decomp_path(decomp) + "?invite_token=#{decomp.invite_token}"
 
-    assert_text decomps(:roasting_max).topic
+    assert_text "Roasting max"
     assert_no_text "A sub bullet"
 
     click_on "Decompose more"
@@ -57,7 +58,7 @@ class DecompsTest < ApplicationSystemTestCase
   end
 
   test "editing a decomp" do
-    decomp = Decomp.create(topic: "Banana")
+    decomp = FactoryBot.create(:decomp, topic: "Banana")
 
     visit decomp_path(decomp) + "?invite_token=#{decomp.invite_token}"
 
@@ -70,10 +71,9 @@ class DecompsTest < ApplicationSystemTestCase
   end
 
   test "deleting a stage works" do
-    decomp = Decomp.create(topic: "Banana")
-    stage = Stage.create(decomp:, description: "Testing")
+    stage = FactoryBot.create(:stage)
 
-    visit decomp_path(decomp) + "?invite_token=#{decomp.invite_token}"
+    visit decomp_path(stage.decomp) + "?invite_token=#{stage.decomp.invite_token}"
 
     click_on "❌"
 
