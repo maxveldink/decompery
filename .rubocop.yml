@@ -15,6 +15,9 @@ Lint/MissingSuper:
 Minitest/MultipleAssertions:
   Max: 4
 
+Style/AccessorGrouping:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 

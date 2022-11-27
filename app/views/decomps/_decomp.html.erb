@@ -49,7 +49,7 @@
   </h2>
 
   <%= turbo_frame_tag "estimates" do %>
-    <%= render partial: "estimates/estimates", locals: {decomp: decomp} %>
+    <%= render EstimatesComponent.new(estimates: decomp.estimates.to_h, participant_count: decomp.participations.count) %>
   <% end %>
 
   <hr class="my-4">

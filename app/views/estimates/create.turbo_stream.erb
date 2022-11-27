@@ -1,1 +1,3 @@
-<%= turbo_stream.update(:estimates, partial: "estimates/estimates", locals: { decomp: @decomp }) %>
+<%= turbo_stream.update(:estimates) do %>
+  <%= render EstimatesComponent.new(estimates: @decomp.estimates.to_h, participant_count: @decomp.participations.count) %>
+<% end %>

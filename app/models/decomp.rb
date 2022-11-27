@@ -39,9 +39,20 @@ class Decomp < ApplicationRecord
 
   private
 
+  # rubocop:disable Metrics/MethodLength
   sig { void }
   def broadcast_estimates
-    broadcast_update_to([self, "estimates"], target: "estimates", partial: "estimates/estimates",
-                                             locals: { decomp: self })
+    broadcast_update_to(
+      [self, "estimates"],
+      target: "estimates",
+      html: ApplicationController.render(
+        EstimatesComponent.new(
+          estimates: estimates.to_h,
+          participant_count: participations.count
+        ),
+        layout: false
+      )
+    )
   end
+  # rubocop:enable Metrics/MethodLength
 end
