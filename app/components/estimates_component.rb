@@ -18,7 +18,7 @@ class EstimatesComponent < ViewComponent::Base
 
   sig { returns(T::Boolean) }
   def show_estimates?
-    estimates.size == participant_count
+    estimates.size == participant_count && participant_count > 1
   end
 
   sig { returns(String) }

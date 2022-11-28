@@ -12,7 +12,7 @@ class DecompChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    stop_all_streams
+    # stop_all_streams
 
     @decomp.remove_participant(params[:user_id])
   end

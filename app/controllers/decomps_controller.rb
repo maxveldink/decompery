@@ -41,7 +41,7 @@ class DecompsController < ApplicationController
 
   def check_decomp_access
     @decomp = Decomp.find_by(id: params[:id])
-    passed_token = session[:last_decomp_invite_token] || params[:invite_token]
+    passed_token = params[:invite_token] || session[:last_decomp_invite_token]
 
     redirect_to decomps_path, notice: t(".missing") if @decomp.blank? || @decomp.invite_token != passed_token
   end
