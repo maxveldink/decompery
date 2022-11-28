@@ -22,7 +22,9 @@
         <% end %>
       </div>
       <div class="mb-4 md:mb-0 md:col-span-2">
-        <h1 class="uppercase"><span class="text-4xl">De</span><span class="text-3xl">co</span><span class="text-xl">mp</span><span class="text-base">ery</span></h1>
+        <%= link_to root_path do %>
+          <h1 class="uppercase"><span class="text-4xl">De</span><span class="text-3xl">co</span><span class="text-xl">mp</span><span class="text-base">ery</span></h1>
+        <% end %>
         <h2 class="text-lg">Opinionated sprint tools for nimble teams.</h2>
       </div>
       <%= render UserInfoComponent.new(user: current_user) %>

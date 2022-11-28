@@ -5,7 +5,7 @@ require "application_system_test_case"
 
 class DecompsTest < ApplicationSystemTestCase
   test "decomp can be created" do
-    visit root_url
+    visit decomps_url
 
     assert_text "Decomps"
 
@@ -24,10 +24,11 @@ class DecompsTest < ApplicationSystemTestCase
   end
 
   test "link to existing decomp appears once visited" do
-    visit root_url
+    visit root_path
 
     assert_no_text "currently decomposing"
 
+    click_on "Start Decomposing"
     click_on "New decomp"
     fill_in "Topic", with: "Testing 123"
     click_on "Create Decomp"

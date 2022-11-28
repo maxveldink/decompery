@@ -4,7 +4,7 @@
 Rails.application.routes.draw do
   mount GoodJob::Engine => "good_job"
 
-  root "decomps#index"
+  root "pages#home"
 
   resources :decomps, only: %i[index show new create edit update] do
     resources :stages, only: %i[new create destroy]
