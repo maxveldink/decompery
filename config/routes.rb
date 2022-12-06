@@ -12,5 +12,7 @@ Rails.application.routes.draw do
     resources :estimates, only: %i[create] do
       delete :clear, on: :collection
     end
+
+    resources :participations, only: %i[create destroy]
   end
 end

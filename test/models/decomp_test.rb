@@ -17,42 +17,6 @@ class DecompTest < ActiveSupport::TestCase
     assert_not_nil @decomp.invite_token
   end
 
-  test "add participant creates participant if user is found" do
-    assert_changes -> { Participation.count } do
-      @decomp.add_participant(@user.id)
-    end
-  end
-
-  test "add participant does nothing if user is not found" do
-    assert_no_changes -> { Participation.count } do
-      @decomp.add_participant("garbage")
-    end
-  end
-
-  test "add participant doesn't duplicate existing participants" do
-    @decomp.add_participant(@user.id)
-
-    assert_no_changes -> { Participation.count } do
-      @decomp.add_participant(@user.id)
-    end
-  end
-
-  test "remove participant destroys participation if user is found" do
-    @decomp.add_participant(@user.id)
-
-    assert_changes -> { Participation.count } do
-      @decomp.remove_participant(@user.id)
-    end
-  end
-
-  test "remove participant does nothing if user is not found" do
-    @decomp.add_participant(@user.id)
-
-    assert_no_changes -> { Participation.count } do
-      @decomp.remove_participant("garbage")
-    end
-  end
-
   test "returns available story points" do
     assert_equal([1, 2, 3, 5, 8, 13], @decomp.available_story_points)
   end
