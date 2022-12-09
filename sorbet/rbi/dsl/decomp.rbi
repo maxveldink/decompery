@@ -579,6 +579,9 @@ class Decomp
     def restore_invite_token!; end
 
     sig { void }
+    def restore_show_estimates!; end
+
+    sig { void }
     def restore_story_point_set!; end
 
     sig { void }
@@ -605,6 +608,12 @@ class Decomp
     sig { returns(T::Boolean) }
     def saved_change_to_invite_token?; end
 
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def saved_change_to_show_estimates; end
+
+    sig { returns(T::Boolean) }
+    def saved_change_to_show_estimates?; end
+
     sig { returns(T.nilable([T.nilable(::String), T.nilable(::String)])) }
     def saved_change_to_story_point_set; end
 
@@ -622,6 +631,51 @@ class Decomp
 
     sig { returns(T::Boolean) }
     def saved_change_to_updated_at?; end
+
+    sig { returns(T::Boolean) }
+    def show_estimates; end
+
+    sig { params(value: T::Boolean).returns(T::Boolean) }
+    def show_estimates=(value); end
+
+    sig { returns(T::Boolean) }
+    def show_estimates?; end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def show_estimates_before_last_save; end
+
+    sig { returns(T.untyped) }
+    def show_estimates_before_type_cast; end
+
+    sig { returns(T::Boolean) }
+    def show_estimates_came_from_user?; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def show_estimates_change; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def show_estimates_change_to_be_saved; end
+
+    sig { returns(T::Boolean) }
+    def show_estimates_changed?; end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def show_estimates_in_database; end
+
+    sig { returns(T.nilable([T::Boolean, T::Boolean])) }
+    def show_estimates_previous_change; end
+
+    sig { returns(T::Boolean) }
+    def show_estimates_previously_changed?; end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def show_estimates_previously_was; end
+
+    sig { returns(T.nilable(T::Boolean)) }
+    def show_estimates_was; end
+
+    sig { void }
+    def show_estimates_will_change!; end
 
     sig { returns(T.nilable(::String)) }
     def story_point_set; end
@@ -770,6 +824,9 @@ class Decomp
 
     sig { returns(T::Boolean) }
     def will_save_change_to_invite_token?; end
+
+    sig { returns(T::Boolean) }
+    def will_save_change_to_show_estimates?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_story_point_set?; end

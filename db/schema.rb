@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_27_174637) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_09_113818) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_27_174637) do
     t.datetime "updated_at", null: false
     t.string "invite_token"
     t.integer "story_point_set", default: 0
+    t.boolean "show_estimates", default: false, null: false
     t.index ["invite_token"], name: "index_decomps_on_invite_token", unique: true
   end
 
