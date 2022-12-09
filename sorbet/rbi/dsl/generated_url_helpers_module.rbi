@@ -15,6 +15,12 @@ module GeneratedUrlHelpersModule
   def decomp_estimates_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def decomp_participation_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def decomp_participations_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def decomp_stage_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -130,6 +136,9 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def root_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def toggle_decomp_estimates_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def turbo_recede_historical_location_url(*args); end

@@ -7,6 +7,10 @@ require:
 AllCops:
   NewCops: enable
   TargetRubyVersion: 3.1
+  Exclude:
+    - sorbet/rbi/**/*.rbi
+    - db/schema.rb
+    - bin/*
 
 Lint/MissingSuper:
   Exclude:

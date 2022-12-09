@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :stages, only: %i[new create destroy]
 
     resources :estimates, only: %i[create] do
+      get :toggle, on: :collection
       delete :clear, on: :collection
     end
 

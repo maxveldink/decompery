@@ -10,7 +10,6 @@ class Estimate < ApplicationRecord
 
   private
 
-  # rubocop:disable Metrics/MethodLength
   sig { void }
   def notify_decomps
     broadcast_update_to(
@@ -18,12 +17,10 @@ class Estimate < ApplicationRecord
       target: "estimates",
       html: ApplicationController.render(
         EstimatesComponent.new(
-          estimates: T.must(decomp).estimates.to_a,
-          participant_count: T.must(decomp).participations.count
+          decomp: T.must(decomp)
         ),
         layout: false
       )
     )
   end
-  # rubocop:enable Metrics/MethodLength
 end

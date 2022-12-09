@@ -15,6 +15,12 @@ module GeneratedPathHelpersModule
   def decomp_estimates_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def decomp_participation_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def decomp_participations_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def decomp_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -130,6 +136,9 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def root_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
+  def toggle_decomp_estimates_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def turbo_recede_historical_location_path(*args); end

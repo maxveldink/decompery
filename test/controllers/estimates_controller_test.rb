@@ -14,14 +14,14 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
 
     post decomp_estimates_path(@decomp), params: { user_id: @user.id, story_point: 2 }
 
-    assert_equal(@user.id, @decomp.estimates.first.user.id)
+    assert_equal(@user.id, @decomp.reload.estimates.first.user.id)
     assert_equal(2, @decomp.estimates.first.story_point)
   end
 
   test "create overwrites existing estimate" do
     FactoryBot.create(:estimate, decomp: @decomp, user: @user, story_point: 2)
 
-    assert_equal(2, @decomp.estimates.first.story_point)
+    assert_equal(2, @decomp.reload.estimates.first.story_point)
 
     assert_no_changes -> { Estimate.count } do
       post decomp_estimates_path(@decomp), params: { user_id: @user.id, story_point: 5 }
@@ -29,6 +29,20 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal(@user.id, @decomp.reload.estimates.first.user.id)
     assert_equal(5, @decomp.estimates.first.story_point)
+  end
+
+  test "toggle changes false show estimates to true" do
+    get toggle_decomp_estimates_path(@decomp)
+
+    assert @decomp.reload.show_estimates
+  end
+
+  test "toggle changes true show estimates to false" do
+    decomp = FactoryBot.create(:decomp, show_estimates: true)
+
+    get toggle_decomp_estimates_path(decomp)
+
+    assert_not decomp.reload.show_estimates
   end
 
   test "clear removes all estimates" do

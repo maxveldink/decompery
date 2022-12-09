@@ -1,13 +1,13 @@
 <div class="flex flex-row justify-around">
-  <% estimates.each do |estimate| %>
+  <% decomp.estimates.each do |estimate| %>
     <div data-testid="estimate" class="text-center text-3xl flex flex-col">
-      <div class="p-12 bg-gradient-to-b from-emerald-500 to-sky-500 rounded-tl-lg rounded-tr-lg"><%= show_estimates? ? estimate.story_point : "?" %></div>
+      <div class="p-12 bg-gradient-to-b from-emerald-500 to-sky-500 rounded-tl-lg rounded-tr-lg"><%= decomp.show_estimates ? estimate.story_point : "?" %></div>
       <div class="px-12 bg-zinc-700 rounded-bl-lg rounded-br-lg"><%= estimate.user.name %></div>
     </div>
   <% end %>
 </div>
 
-<% if show_estimates? %>
+<% if decomp.show_estimates %>
   <div class="flex flex-row">
     <div class="w-1/4"></div>
     <p data-testid="prompt" class="rounded my-4 text-center py-2 px-4 bg-sky-500 text-white w-1/2">

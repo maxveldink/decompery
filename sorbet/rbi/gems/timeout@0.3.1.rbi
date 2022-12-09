@@ -34,11 +34,11 @@ module Timeout
   # Timeout</tt> into your classes so they have a #timeout method, as well as
   # a module method, so you can call it directly as Timeout.timeout().
   #
-  # source://timeout//lib/timeout.rb#162
+  # source://timeout//lib/timeout.rb#172
   def timeout(sec, klass = T.unsafe(nil), message = T.unsafe(nil), &block); end
 
   class << self
-    # source://timeout//lib/timeout.rb#126
+    # source://timeout//lib/timeout.rb#130
     def ensure_timeout_thread_created; end
 
     # Perform an operation in a block, raising an error if it takes longer than
@@ -67,7 +67,7 @@ module Timeout
     # Timeout</tt> into your classes so they have a #timeout method, as well as
     # a module method, so you can call it directly as Timeout.timeout().
     #
-    # source://timeout//lib/timeout.rb#162
+    # source://timeout//lib/timeout.rb#172
     def timeout(sec, klass = T.unsafe(nil), message = T.unsafe(nil), &block); end
 
     private
@@ -99,6 +99,12 @@ class Timeout::Error < ::RuntimeError
     def catch(*args); end
   end
 end
+
+# We keep a private reference so that time mocking libraries won't break
+# Timeout.
+#
+# source://timeout//lib/timeout.rb#142
+Timeout::GET_TIME = T.let(T.unsafe(nil), Method)
 
 # source://timeout//lib/timeout.rb#54
 Timeout::QUEUE = T.let(T.unsafe(nil), Thread::Queue)
