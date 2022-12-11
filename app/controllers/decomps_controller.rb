@@ -10,6 +10,7 @@ class DecompsController < ApplicationController
 
   def show
     put_decomp_in_session
+    Participation.find_or_create_by(decomp: @decomp, user: helpers.current_user)
   end
 
   def new
