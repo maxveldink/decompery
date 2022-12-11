@@ -1,6 +1,6 @@
 <div class="group inline-block relative">
   <button
-    class="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center"
+    class="w-60 justify-center bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center"
   >
     <span class="mr-1">Howdy <%= @user.name %></span>
     <svg
@@ -18,16 +18,16 @@
       <%= button_to(
         "Regenerate Your Name",
         regenerate_name_user_path(@user),
-        class: "rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+        class: "w-60 rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
         ) %>
     </li>
 
     <li>
       <%= form_with(
         model: @user,
-        class: "rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+        class: "w-60 rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
         ) do |f| %>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, class: "bg-sky-700 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
       <% end %>
     </li>
   </ul>
