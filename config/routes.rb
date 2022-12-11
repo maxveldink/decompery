@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :participations, only: %i[create destroy]
   end
 
-  resources :users, only: [] do
+  resources :users, only: %i[update] do
     post :regenerate_name, on: :member
   end
 end

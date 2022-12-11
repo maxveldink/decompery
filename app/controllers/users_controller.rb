@@ -10,6 +10,15 @@ class UsersController < ApplicationController
     @user.update(name:)
 
     respond_to do |format|
+      format.turbo_stream { render :update }
+      format.html { redirect_to(root_path) }
+    end
+  end
+
+  def update
+    @user.update(user_params)
+
+    respond_to do |format|
       format.turbo_stream
       format.html { redirect_to(root_path) }
     end
@@ -19,5 +28,9 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:name)
   end
 end
