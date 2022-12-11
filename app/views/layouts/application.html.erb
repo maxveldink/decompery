@@ -27,7 +27,9 @@
         <% end %>
         <h2 class="text-lg">Opinionated sprint tools for nimble teams.</h2>
       </div>
-      <%= render UserInfoComponent.new(user: current_user) %>
+      <%= turbo_frame_tag :user_info do %>
+        <%= render UserInfoComponent.new(user: current_user) %>
+      <% end %>
     </header>
     <main class="container mx-auto mt-6 mb-auto flex flex-col">
       <%= yield %>

@@ -1,0 +1,3 @@
+<%= turbo_stream.update(:user_info) do %>
+  <%= render UserInfoComponent.new(user: @user) %>
+<% end %>

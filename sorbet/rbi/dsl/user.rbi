@@ -177,6 +177,20 @@ class User
 
   module GeneratedAssociationMethods
     sig { returns(T::Array[T.untyped]) }
+    def decomp_ids; end
+
+    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
+    def decomp_ids=(ids); end
+
+    # This method is created by ActiveRecord on the `User` class because it declared `has_many :decomps, through: :participations`.
+    # 🔗 [Rails guide for `has_many_through` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-through-association)
+    sig { returns(::Decomp::PrivateCollectionProxy) }
+    def decomps; end
+
+    sig { params(value: T::Enumerable[::Decomp]).void }
+    def decomps=(value); end
+
+    sig { returns(T::Array[T.untyped]) }
     def estimate_ids; end
 
     sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
@@ -189,6 +203,20 @@ class User
 
     sig { params(value: T::Enumerable[::Estimate]).void }
     def estimates=(value); end
+
+    sig { returns(T::Array[T.untyped]) }
+    def participation_ids; end
+
+    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
+    def participation_ids=(ids); end
+
+    # This method is created by ActiveRecord on the `User` class because it declared `has_many :participations`.
+    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
+    sig { returns(::Participation::PrivateCollectionProxy) }
+    def participations; end
+
+    sig { params(value: T::Enumerable[::Participation]).void }
+    def participations=(value); end
   end
 
   module GeneratedAssociationRelationMethods
