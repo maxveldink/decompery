@@ -12,12 +12,17 @@
       </div>
     <% end %>
 
-    <div class="my-5">
-      <%= form.label :description %>
-      <%= form.text_area :description, rows: 4, class: "text-box-sky" %>
+    <div class="my-5 mx-4">
+      <%= form.label :description, class: "hidden" %>
+      <%= form.text_area(
+        :description,
+        rows: 4,
+        placeholder: "How can we make this smaller? What other considerations do we need?",
+        class: "text-box-sky"
+      ) %>
     </div>
 
-    <div class="inline">
+    <div class="inline mx-4">
       <%= form.submit "Decompose", class: "btn-sky" %>
     </div>
   <% end %>

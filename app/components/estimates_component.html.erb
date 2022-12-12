@@ -1,4 +1,4 @@
-<div class="flex flex-row justify-around">
+<div class="flex flex-row flex-wrap gap-4 justify-around">
   <% decomp.estimates.each do |estimate| %>
     <div data-testid="estimate" class="text-center text-3xl flex flex-col">
       <div class="p-12 bg-gradient-to-b from-emerald-500 to-sky-500 rounded-tl-lg rounded-tr-lg"><%= decomp.show_estimates ? estimate.story_point : "?" %></div>
