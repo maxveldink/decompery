@@ -36,10 +36,10 @@ module RuboCop::Cop::ArgumentRangeHelper
   def first_argument_range(node); end
 end
 
-# source://rubocop/1.39.0/lib/rubocop/cop/mixin/allowed_methods.rb#38
+# source://rubocop/1.40.0/lib/rubocop/cop/mixin/allowed_methods.rb#38
 RuboCop::Cop::IgnoredMethods = RuboCop::Cop::AllowedMethods
 
-# source://rubocop/1.39.0/lib/rubocop/cop/mixin/allowed_pattern.rb#54
+# source://rubocop/1.40.0/lib/rubocop/cop/mixin/allowed_pattern.rb#54
 RuboCop::Cop::IgnoredPattern = RuboCop::Cop::AllowedPattern
 
 # Common functionality for `AssertInDelta` and `RefuteInDelta` cops.
@@ -2123,11 +2123,11 @@ end
 # source://rubocop-minitest//lib/rubocop/minitest/version.rb#7
 RuboCop::Minitest::Version::STRING = T.let(T.unsafe(nil), String)
 
-# source://rubocop/1.39.0/lib/rubocop/ast_aliases.rb#5
+# source://rubocop/1.40.0/lib/rubocop/ast_aliases.rb#5
 RuboCop::NodePattern = RuboCop::AST::NodePattern
 
-# source://rubocop/1.39.0/lib/rubocop/ast_aliases.rb#6
+# source://rubocop/1.40.0/lib/rubocop/ast_aliases.rb#6
 RuboCop::ProcessedSource = RuboCop::AST::ProcessedSource
 
-# source://rubocop/1.39.0/lib/rubocop/ast_aliases.rb#7
+# source://rubocop/1.40.0/lib/rubocop/ast_aliases.rb#7
 RuboCop::Token = RuboCop::AST::Token
