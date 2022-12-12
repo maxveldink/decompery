@@ -3,7 +3,7 @@
 <%= turbo_stream_from [decomp, "estimates"] %>
 
 <%= turbo_frame_tag @decomp do %>
-  <%= link_to '⬅ Decay something else', decomps_path, class: "btn-rose mr-4" %>
+  <%= link_to '⬅ Decay something else', new_decomp_path, class: "btn-rose mr-4" %>
   <div
     class="btn-emerald cursor-pointer mr-4"
     data-controller="clipboard"

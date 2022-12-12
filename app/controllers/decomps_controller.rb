@@ -4,10 +4,6 @@
 class DecompsController < ApplicationController
   before_action :check_decomp_access, only: %i[show edit update]
 
-  def index
-    @decomps = Decomp.all
-  end
-
   def show
     put_decomp_in_session
     Participation.find_or_create_by(decomp: @decomp, user: helpers.current_user)
@@ -44,7 +40,7 @@ class DecompsController < ApplicationController
     @decomp = Decomp.find_by(id: params[:id])
     passed_token = params[:invite_token] || session[:last_decomp_invite_token]
 
-    redirect_to decomps_path, notice: t(".missing") if @decomp.blank? || @decomp.invite_token != passed_token
+    redirect_to root_path, notice: t(".missing") if @decomp.blank? || @decomp.invite_token != passed_token
   end
 
   def decomp_params

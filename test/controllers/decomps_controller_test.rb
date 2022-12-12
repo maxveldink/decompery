@@ -4,16 +4,10 @@
 require "test_helper"
 
 class DecompsControllerTest < ActionDispatch::IntegrationTest
-  test "index renders" do
-    get decomps_path
-
-    assert_template :index
-  end
-
   test "show redirects to index when decomp not found" do
     get decomp_path(123)
 
-    assert_redirected_to decomps_path
+    assert_redirected_to root_path
     assert_equal "Decomp has expired or does not exist.", flash[:notice]
   end
 
@@ -22,7 +16,7 @@ class DecompsControllerTest < ActionDispatch::IntegrationTest
 
     get decomp_path(decomp), params: { invite_token: "garbage" }
 
-    assert_redirected_to decomps_path
+    assert_redirected_to root_path
     assert_equal "Decomp has expired or does not exist.", flash[:notice]
   end
 

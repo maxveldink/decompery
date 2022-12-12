@@ -12,9 +12,9 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-sky-900 text-zinc-200 flex flex-col justify-between h-screen">
-    <header class="m-8 text-center md:grid md:grid-cols-4">
-      <div>
+  <body class="bg-sky-900 text-zinc-200 flex flex-col h-screen items-center">
+    <header class="container my-12 text-center flex flex-col md:grid md:grid-cols-4">
+      <div class="order-last md:order-none mx-4 md:mx-0">
         <% if notice.present? %>
           <%= render NotificationComponent.new(description: notice) %>
         <% elsif session[:last_decomp_id].present? %>
@@ -27,11 +27,13 @@
         <% end %>
         <h2 class="text-lg">Opinionated sprint tools for nimble teams.</h2>
       </div>
-      <%= turbo_frame_tag :user_info do %>
-        <%= render UserInfoComponent.new(user: current_user) %>
-      <% end %>
+      <div class="mb-4 flex justify-center md:justify-end">
+        <%= turbo_frame_tag :user_info do %>
+          <%= render UserInfoComponent.new(user: current_user) %>
+        <% end %>
+      </div>
     </header>
-    <main class="container mx-auto mt-6 mb-auto flex flex-col">
+    <main class="container mb-auto">
       <%= yield %>
     </main>
     <footer class="text-center my-4">

@@ -16,6 +16,6 @@
   }
 
   .text-box-sky {
-    @apply block shadow rounded-md border border-slate-200 outline-none px-3 py-2 mt-2 w-full bg-sky-700;
+    @apply block shadow rounded-md border border-slate-200 outline-none px-3 py-2 mt-2 w-full bg-sky-700 placeholder:text-slate-400;
   }
 }
