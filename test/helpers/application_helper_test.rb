@@ -5,7 +5,7 @@ require "test_helper"
 
 class ApplicationHelperTest < ActionView::TestCase
   setup do
-    @decomp = Decomp.create(topic: "Banana")
+    @decomp = Decomp.create
   end
 
   test "invite_path works" do

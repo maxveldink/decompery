@@ -11,8 +11,6 @@ class Decomp < ApplicationRecord
   has_many :estimates, dependent: :destroy
   after_commit :notify
 
-  validates :topic, presence: true
-
   enum :story_point_set, { fibonacci: 0 }
 
   sig { returns(T::Array[Integer]) }

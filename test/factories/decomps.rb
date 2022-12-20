@@ -3,7 +3,6 @@
 
 FactoryBot.define do
   factory :decomp do
-    topic { "Roasting Max" }
     show_estimates { false }
   end
 end

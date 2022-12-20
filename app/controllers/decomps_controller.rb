@@ -2,36 +2,18 @@
 # frozen_string_literal: true
 
 class DecompsController < ApplicationController
-  before_action :check_decomp_access, only: %i[show edit update]
+  before_action :check_decomp_access, only: %i[show]
 
   def show
     put_decomp_in_session
     Participation.find_or_create_by(decomp: @decomp, user: helpers.current_user)
   end
 
-  def new
-    @decomp = Decomp.new
-  end
-
-  def edit; end
-
   def create
-    @decomp = Decomp.new(decomp_params)
+    @decomp = Decomp.create
 
-    if @decomp.save
-      put_decomp_in_session
-      redirect_to decomp_url(@decomp), notice: t(".success")
-    else
-      render :new, status: :unprocessable_entity
-    end
-  end
-
-  def update
-    if @decomp.update(decomp_params)
-      redirect_to decomp_url(@decomp)
-    else
-      render :edit, status: :unprocessable_entity
-    end
+    put_decomp_in_session
+    redirect_to decomp_url(@decomp), notice: t(".success")
   end
 
   private
@@ -41,10 +23,6 @@ class DecompsController < ApplicationController
     passed_token = params[:invite_token] || session[:last_decomp_invite_token]
 
     redirect_to root_path, notice: t(".missing") if @decomp.blank? || @decomp.invite_token != passed_token
-  end
-
-  def decomp_params
-    params.require(:decomp).permit(:topic)
   end
 
   def put_decomp_in_session

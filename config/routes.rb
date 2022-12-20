@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root "pages#home"
 
-  resources :decomps, only: %i[show new create edit update] do
+  resources :decomps, only: %i[show create] do
     resources :estimates, only: %i[create] do
       get :toggle, on: :collection
       delete :clear, on: :collection

@@ -5,7 +5,7 @@ require "application_system_test_case"
 
 class ParticipationTest < ApplicationSystemTestCase
   setup do
-    @decomp = Decomp.create(topic: "Multiples")
+    @decomp = Decomp.create
   end
 
   test "it tracks who is on a decomp" do

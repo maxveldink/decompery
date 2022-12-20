@@ -5,7 +5,7 @@ require "application_system_test_case"
 
 class EstimatesTest < ApplicationSystemTestCase
   setup do
-    @decomp = FactoryBot.create(:decomp, topic: "Multiples")
+    @decomp = FactoryBot.create(:decomp)
   end
 
   test "it allows estimation" do

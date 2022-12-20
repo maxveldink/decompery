@@ -27,9 +27,6 @@ module GeneratedUrlHelpersModule
   def decomps_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def edit_decomp_url(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
   def edit_rails_conductor_inbound_email_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }

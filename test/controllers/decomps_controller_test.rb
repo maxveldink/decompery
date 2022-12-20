@@ -30,53 +30,12 @@ class DecompsControllerTest < ActionDispatch::IntegrationTest
     assert_equal decomp.invite_token, session[:last_decomp_invite_token]
   end
 
-  test "new renders" do
-    get new_decomp_path
-
-    assert_template :new
-  end
-
   test "create decomp" do
     assert_changes -> { Decomp.count } do
-      post decomps_path, params: { decomp: { topic: "Hello!" } }
+      post decomps_path
     end
 
     assert_not_nil session[:last_decomp_id]
     assert_not_nil session[:last_decomp_invite_token]
-  end
-
-  test "create decomp with invalid data" do
-    assert_no_changes -> { Decomp.count } do
-      post decomps_path, params: { decomp: { fruit: "Hello!" } }
-    end
-
-    assert_response(:unprocessable_entity)
-
-    assert_nil session[:last_decomp_id]
-    assert_nil session[:last_decomp_invite_token]
-  end
-
-  test "edit renders" do
-    decomp = FactoryBot.create(:decomp)
-
-    get edit_decomp_path(decomp) + "?invite_token=#{decomp.invite_token}"
-
-    assert_template :edit
-  end
-
-  test "update decomp" do
-    decomp = FactoryBot.create(:decomp, topic: "Banana")
-
-    patch decomp_path(decomp) + "?invite_token=#{decomp.invite_token}", params: { decomp: { topic: "Apples" } }
-
-    assert_equal "Apples", decomp.reload.topic
-  end
-
-  test "update decomp with invalid data" do
-    decomp = FactoryBot.create(:decomp, topic: "Banana")
-
-    patch decomp_path(decomp) + "?invite_token=#{decomp.invite_token}", params: { decomp: { fruit: "Apples" } }
-
-    assert_equal "Banana", decomp.reload.topic
   end
 end

@@ -577,9 +577,6 @@ class Decomp
     def restore_story_point_set!; end
 
     sig { void }
-    def restore_topic!; end
-
-    sig { void }
     def restore_updated_at!; end
 
     sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
@@ -611,12 +608,6 @@ class Decomp
 
     sig { returns(T::Boolean) }
     def saved_change_to_story_point_set?; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def saved_change_to_topic; end
-
-    sig { returns(T::Boolean) }
-    def saved_change_to_topic?; end
 
     sig { returns(T.nilable([T.nilable(::ActiveSupport::TimeWithZone), T.nilable(::ActiveSupport::TimeWithZone)])) }
     def saved_change_to_updated_at; end
@@ -718,51 +709,6 @@ class Decomp
     sig { void }
     def story_point_set_will_change!; end
 
-    sig { returns(::String) }
-    def topic; end
-
-    sig { params(value: ::String).returns(::String) }
-    def topic=(value); end
-
-    sig { returns(T::Boolean) }
-    def topic?; end
-
-    sig { returns(T.nilable(::String)) }
-    def topic_before_last_save; end
-
-    sig { returns(T.untyped) }
-    def topic_before_type_cast; end
-
-    sig { returns(T::Boolean) }
-    def topic_came_from_user?; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def topic_change; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def topic_change_to_be_saved; end
-
-    sig { returns(T::Boolean) }
-    def topic_changed?; end
-
-    sig { returns(T.nilable(::String)) }
-    def topic_in_database; end
-
-    sig { returns(T.nilable([::String, ::String])) }
-    def topic_previous_change; end
-
-    sig { returns(T::Boolean) }
-    def topic_previously_changed?; end
-
-    sig { returns(T.nilable(::String)) }
-    def topic_previously_was; end
-
-    sig { returns(T.nilable(::String)) }
-    def topic_was; end
-
-    sig { void }
-    def topic_will_change!; end
-
     sig { returns(T.nilable(::ActiveSupport::TimeWithZone)) }
     def updated_at; end
 
@@ -822,9 +768,6 @@ class Decomp
 
     sig { returns(T::Boolean) }
     def will_save_change_to_story_point_set?; end
-
-    sig { returns(T::Boolean) }
-    def will_save_change_to_topic?; end
 
     sig { returns(T::Boolean) }
     def will_save_change_to_updated_at?; end

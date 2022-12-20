@@ -6,7 +6,7 @@
     <h2 class="text-2xl mb-2 md:mb-0 md:mr-2">
       Decomping
     </h2>
-    <%= link_to '⬅ Decay something else', new_decomp_path, class: "btn-rose md:mr-4 w-56 mb-2 md:mb-0 text-sm" %>
+    <%= link_to '⬅ Decay something else', root_path, class: "btn-rose md:mr-4 w-56 mb-2 md:mb-0 text-sm" %>
     <div
       class="btn-emerald cursor-pointer md:mr-4 w-56 mb-2 md:mb-0 text-sm"
       data-controller="clipboard"
@@ -14,31 +14,24 @@
       data-clipboard-contents-to-copy-value="<%= invite_url(@decomp) %>">
       🔗 Invite Others
     </div>
-    <%= link_to '🌱 Edit Decomp', edit_decomp_path(@decomp), class: "btn-sky w-56 mb-2 md:mb-0 text-sm" %>
   </div>
 
   <div class="flex flex-col md:flex-row justify-between mt-4">
-    <p class="my-5 text-xl text-center">
-      <%= decomp.topic %>
-    </p>
-    <div class="p-4 bg-sky-500 rounded w-full md:w-1/4 text-center">
+    <div class="flex flex-row flex-wrap justify-around items-center gap-4 mb-4 md:mb-0 w-full">
+      <% decomp.available_story_points.each do |story_point| %>
+        <%= form_with(url: decomp_estimates_url(decomp), class: "shrink") do |f| %>
+          <%= f.hidden_field(:user_id, value: current_user.id) %>
+          <%= f.hidden_field(:story_point, value: story_point) %>
+          <%= f.submit(story_point, class: "p-12 rounded bg-gradient-to-b from-emerald-500 to-sky-500 text-3xl cursor-pointer") %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="p-4 bg-sky-500 rounded w-full md:w-1/3 text-center">
       <h3 class="text-xl">Fellow Fungi</h3>
       <%= turbo_frame_tag "participations" do %>
         <%= render decomp.participations %>
       <% end %>
     </div>
-  </div>
-
-  <hr class="my-4">
-
-  <div class="flex flex-row flex-wrap justify-around gap-4">
-    <% decomp.available_story_points.each do |story_point| %>
-      <%= form_with(url: decomp_estimates_url(decomp), class: "shrink") do |f| %>
-        <%= f.hidden_field(:user_id, value: current_user.id) %>
-        <%= f.hidden_field(:story_point, value: story_point) %>
-        <%= f.submit(story_point, class: "p-12 rounded bg-gradient-to-b from-emerald-500 to-sky-500 text-3xl cursor-pointer") %>
-      <% end %>
-    <% end %>
   </div>
 
   <hr class="my-4">
