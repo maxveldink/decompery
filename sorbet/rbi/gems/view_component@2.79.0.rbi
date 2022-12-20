@@ -681,49 +681,49 @@ class ViewComponent::Compiler
 
   private
 
-  # source://view_component//lib/view_component/compiler.rb#248
+  # source://view_component//lib/view_component/compiler.rb#247
   def call_method_name(variant); end
 
-  # source://view_component//lib/view_component/compiler.rb#230
+  # source://view_component//lib/view_component/compiler.rb#229
   def compiled_template(file_path); end
 
   # Returns the value of attribute component_class.
   #
-  # source://view_component//lib/view_component/compiler.rb#91
+  # source://view_component//lib/view_component/compiler.rb#90
   def component_class; end
 
-  # source://view_component//lib/view_component/compiler.rb#93
+  # source://view_component//lib/view_component/compiler.rb#92
   def define_render_template_for; end
 
-  # source://view_component//lib/view_component/compiler.rb#199
+  # source://view_component//lib/view_component/compiler.rb#198
   def inline_calls; end
 
-  # source://view_component//lib/view_component/compiler.rb#214
+  # source://view_component//lib/view_component/compiler.rb#213
   def inline_calls_defined_on_self; end
 
-  # source://view_component//lib/view_component/compiler.rb#256
+  # source://view_component//lib/view_component/compiler.rb#255
   def normalized_variant_name(variant); end
 
   # Returns the value of attribute redefinition_lock.
   #
-  # source://view_component//lib/view_component/compiler.rb#91
+  # source://view_component//lib/view_component/compiler.rb#90
   def redefinition_lock; end
 
   # @return [Boolean]
   #
-  # source://view_component//lib/view_component/compiler.rb#260
+  # source://view_component//lib/view_component/compiler.rb#259
   def should_compile_superclass?; end
 
-  # source://view_component//lib/view_component/compiler.rb#117
+  # source://view_component//lib/view_component/compiler.rb#116
   def template_errors; end
 
-  # source://view_component//lib/view_component/compiler.rb#183
+  # source://view_component//lib/view_component/compiler.rb#182
   def templates; end
 
-  # source://view_component//lib/view_component/compiler.rb#218
+  # source://view_component//lib/view_component/compiler.rb#217
   def variants; end
 
-  # source://view_component//lib/view_component/compiler.rb#224
+  # source://view_component//lib/view_component/compiler.rb#223
   def variants_from_inline_calls(calls); end
 
   class << self
@@ -756,23 +756,23 @@ class ViewComponent::ComponentError < ::StandardError; end
 class ViewComponent::Config
   # @return [Config] a new instance of Config
   #
-  # source://view_component//lib/view_component/config.rb#140
+  # source://view_component//lib/view_component/config.rb#157
   def initialize; end
 
   # source://activesupport/7.0.4/lib/active_support/core_ext/module/delegation.rb#302
   def method_missing(method, *args, **_arg2, &block); end
 
-  # source://view_component//lib/view_component/config.rb#144
+  # source://view_component//lib/view_component/config.rb#161
   def preview_path; end
 
-  # source://view_component//lib/view_component/config.rb#148
+  # source://view_component//lib/view_component/config.rb#165
   def preview_path=(new_value); end
 
   private
 
   # Returns the value of attribute config.
   #
-  # source://view_component//lib/view_component/config.rb#157
+  # source://view_component//lib/view_component/config.rb#174
   def config; end
 
   # source://activesupport/7.0.4/lib/active_support/core_ext/module/delegation.rb#294
@@ -784,13 +784,16 @@ class ViewComponent::Config
     # future.
     def default(*_arg0); end
 
+    # source://view_component//lib/view_component/config.rb#150
+    def default_generate_options; end
+
     # A custom default layout used for the previews index page and individual
     # previews.
     # Defaults to `nil`. If this is falsy, `"component_preview"` is used.
     #
     # @return [String]
     #
-    # source://view_component//lib/view_component/config.rb#133
+    # source://view_component//lib/view_component/config.rb#144
     def default_preview_paths; end
 
     # source://view_component//lib/view_component/config.rb#13
@@ -819,7 +822,7 @@ module ViewComponent::ContentAreas::ClassMethods
 end
 
 # source://view_component//lib/view_component/deprecation.rb#6
-ViewComponent::DEPRECATION_HORIZON = T.let(T.unsafe(nil), Integer)
+ViewComponent::DEPRECATION_HORIZON = T.let(T.unsafe(nil), String)
 
 ViewComponent::Deprecation = T.let(T.unsafe(nil), ActiveSupport::Deprecation)
 
@@ -1087,7 +1090,7 @@ module ViewComponent::Slotable
   #   <% end %>
   # <% end %>
   #
-  # source://view_component//lib/view_component/slotable.rb#107
+  # source://view_component//lib/view_component/slotable.rb#106
   def slot(slot_name, **args, &block); end
 
   module GeneratedClassMethods
@@ -1105,7 +1108,7 @@ end
 
 # source://view_component//lib/view_component/slotable.rb#0
 module ViewComponent::Slotable::ClassMethods
-  # source://view_component//lib/view_component/slotable.rb#84
+  # source://view_component//lib/view_component/slotable.rb#83
   def inherited(child); end
 
   # source://view_component//lib/view_component/slotable.rb#25
@@ -1120,10 +1123,10 @@ module ViewComponent::SlotableV2
   mixes_in_class_methods GeneratedClassMethods
   mixes_in_class_methods ::ViewComponent::SlotableV2::ClassMethods
 
-  # source://view_component//lib/view_component/slotable_v2.rb#316
+  # source://view_component//lib/view_component/slotable_v2.rb#318
   def get_slot(slot_name); end
 
-  # source://view_component//lib/view_component/slotable_v2.rb#331
+  # source://view_component//lib/view_component/slotable_v2.rb#333
   def set_slot(slot_name, slot_definition = T.unsafe(nil), *args, **_arg3, &block); end
 
   module GeneratedClassMethods
@@ -1147,16 +1150,16 @@ end
 
 # source://view_component//lib/view_component/slotable_v2.rb#0
 module ViewComponent::SlotableV2::ClassMethods
-  # source://view_component//lib/view_component/slotable_v2.rb#222
+  # source://view_component//lib/view_component/slotable_v2.rb#224
   def inherited(child); end
 
-  # source://view_component//lib/view_component/slotable_v2.rb#151
+  # source://view_component//lib/view_component/slotable_v2.rb#153
   def renders_many(slot_name, callable = T.unsafe(nil)); end
 
   # source://view_component//lib/view_component/slotable_v2.rb#81
   def renders_one(slot_name, callable = T.unsafe(nil)); end
 
-  # source://view_component//lib/view_component/slotable_v2.rb#209
+  # source://view_component//lib/view_component/slotable_v2.rb#211
   def slot_type(slot_name); end
 
   # source://view_component//lib/view_component/slotable_v2.rb#29
@@ -1164,27 +1167,51 @@ module ViewComponent::SlotableV2::ClassMethods
 
   private
 
-  # source://view_component//lib/view_component/slotable_v2.rb#233
+  # source://view_component//lib/view_component/slotable_v2.rb#235
   def define_slot(slot_name, collection:, callable:); end
 
-  # source://view_component//lib/view_component/slotable_v2.rb#304
+  # source://view_component//lib/view_component/slotable_v2.rb#306
   def raise_if_slot_ends_with_question_mark(slot_name); end
 
-  # source://view_component//lib/view_component/slotable_v2.rb#294
+  # source://view_component//lib/view_component/slotable_v2.rb#296
   def raise_if_slot_registered(slot_name); end
 
-  # source://view_component//lib/view_component/slotable_v2.rb#229
+  # source://view_component//lib/view_component/slotable_v2.rb#231
   def register_slot(slot_name, **kwargs); end
 
-  # source://view_component//lib/view_component/slotable_v2.rb#262
+  # source://view_component//lib/view_component/slotable_v2.rb#264
   def validate_plural_slot_name(slot_name); end
 
-  # source://view_component//lib/view_component/slotable_v2.rb#274
+  # source://view_component//lib/view_component/slotable_v2.rb#276
   def validate_singular_slot_name(slot_name); end
 end
 
 # source://view_component//lib/view_component/slotable_v2.rb#10
 ViewComponent::SlotableV2::RESERVED_NAMES = T.let(T.unsafe(nil), Hash)
+
+# source://view_component//lib/view_component/system_test_case.rb#6
+class ViewComponent::SystemTestCase < ::ActionDispatch::SystemTestCase
+  include ::ViewComponent::TestHelpers
+  include ::ViewComponent::SystemTestHelpers
+
+  # source://view_component//lib/view_component/system_test_case.rb#9
+  def page; end
+end
+
+# source://view_component//lib/view_component/system_test_helpers.rb#4
+module ViewComponent::SystemTestHelpers
+  include ::Capybara::Minitest::Assertions
+  include ::ViewComponent::TestHelpers
+
+  # Returns a block that can be used to visit the path of the inline rendered component.
+  #
+  # @param fragment [Nokogiri::Fragment] The fragment returned from `render_inline`.
+  # @param layout [String] The (optional) layout to use.
+  # @return [Proc] A block that can be used to visit the path of the inline rendered component.
+  #
+  # source://view_component//lib/view_component/system_test_helpers.rb#12
+  def with_rendered_component_path(fragment, layout: T.unsafe(nil), &block); end
+end
 
 # source://view_component//lib/view_component/template_error.rb#4
 class ViewComponent::TemplateError < ::StandardError
@@ -1206,12 +1233,12 @@ module ViewComponent::TestHelpers
 
   # @private
   #
-  # source://view_component//lib/view_component/test_helpers.rb#204
+  # source://view_component//lib/view_component/test_helpers.rb#201
   def build_controller(klass); end
 
   # @private
   #
-  # source://view_component//lib/view_component/test_helpers.rb#122
+  # source://view_component//lib/view_component/test_helpers.rb#119
   def controller; end
 
   # source://view_component//lib/view_component/test_helpers.rb#10
@@ -1231,7 +1258,7 @@ module ViewComponent::TestHelpers
   # assert_text("Hello, World!")
   # ```
   #
-  # source://view_component//lib/view_component/test_helpers.rb#115
+  # source://view_component//lib/view_component/test_helpers.rb#112
   def render_in_view_context(&block); end
 
   # Render a component inline. Internally sets `page` to be a `Capybara::Node::Simple`,
@@ -1245,7 +1272,7 @@ module ViewComponent::TestHelpers
   # @param component [ViewComponent::Base, ViewComponent::Collection] The instance of the component to be rendered.
   # @return [Nokogiri::HTML]
   #
-  # source://view_component//lib/view_component/test_helpers.rb#56
+  # source://view_component//lib/view_component/test_helpers.rb#53
   def render_inline(component, **args, &block); end
 
   # Render a preview inline. Internally sets `page` to be a `Capybara::Node::Simple`,
@@ -1268,7 +1295,7 @@ module ViewComponent::TestHelpers
   # @param params [Hash] Parameters to be passed to the preview.
   # @return [Nokogiri::HTML]
   #
-  # source://view_component//lib/view_component/test_helpers.rb#87
+  # source://view_component//lib/view_component/test_helpers.rb#84
   def render_preview(name, from: T.unsafe(nil), params: T.unsafe(nil)); end
 
   # Returns the result of a render_inline call.
@@ -1285,7 +1312,7 @@ module ViewComponent::TestHelpers
 
   # @private
   #
-  # source://view_component//lib/view_component/test_helpers.rb#127
+  # source://view_component//lib/view_component/test_helpers.rb#124
   def request; end
 
   # Set the controller to be used while executing the given block,
@@ -1299,7 +1326,7 @@ module ViewComponent::TestHelpers
   #
   # @param klass [ActionController::Base] The controller to be used.
   #
-  # source://view_component//lib/view_component/test_helpers.rb#164
+  # source://view_component//lib/view_component/test_helpers.rb#161
   def with_controller_class(klass); end
 
   # Set the URL of the current request (such as when using request-dependent path helpers):
@@ -1312,7 +1339,7 @@ module ViewComponent::TestHelpers
   #
   # @param path [String] The path to set for the current request.
   #
-  # source://view_component//lib/view_component/test_helpers.rb#182
+  # source://view_component//lib/view_component/test_helpers.rb#179
   def with_request_url(path); end
 
   # Set the Action Pack request variant for the given block:
@@ -1325,12 +1352,12 @@ module ViewComponent::TestHelpers
   #
   # @param variant [Symbol] The variant to be set for the provided block.
   #
-  # source://view_component//lib/view_component/test_helpers.rb#145
+  # source://view_component//lib/view_component/test_helpers.rb#142
   def with_variant(variant); end
 
   private
 
-  # source://view_component//lib/view_component/test_helpers.rb#210
+  # source://view_component//lib/view_component/test_helpers.rb#207
   def preview_class; end
 end
 

@@ -1476,7 +1476,7 @@ class GoodJob::Execution < ::GoodJob::BaseRecord
   # source://activesupport/7.0.4/lib/active_support/callbacks.rb#928
   def _run_perform_unlocked_callbacks(&block); end
 
-  def active_job; end
+  def active_job(ignore_deserialization_errors: T.unsafe(nil)); end
   def advisory_lockable_function; end
   def advisory_lockable_function=(_arg0); end
   def advisory_lockable_function?; end

@@ -11,6 +11,8 @@
 # or a StringIO, or anything that responds to +read+ and
 # +close+. Which makes it particularly easy to sanitize mass
 # quantities of docs.
+#
+# source://loofah//lib/loofah/version.rb#2
 module Loofah
   class << self
     # Shortcut for Loofah::HTML::Document.parse
@@ -79,11 +81,13 @@ module Loofah
   end
 end
 
+# source://loofah//lib/loofah/instance_methods.rb#126
 module Loofah::DocumentDecorator
   # source://loofah//lib/loofah/instance_methods.rb#127
   def initialize(*args, &block); end
 end
 
+# source://loofah//lib/loofah/elements.rb#5
 module Loofah::Elements; end
 
 # source://loofah//lib/loofah/elements.rb#91
@@ -114,8 +118,13 @@ Loofah::Elements::STRICT_BLOCK_LEVEL_HTML4 = T.let(T.unsafe(nil), Set)
 # source://loofah//lib/loofah/elements.rb#34
 Loofah::Elements::STRICT_BLOCK_LEVEL_HTML5 = T.let(T.unsafe(nil), Set)
 
+# source://loofah//lib/loofah/html/document.rb#3
 module Loofah::HTML; end
+
+# source://loofah//lib/loofah/html5/safelist.rb#5
 module Loofah::HTML5; end
+
+# source://loofah//lib/loofah/html5/safelist.rb#48
 module Loofah::HTML5::SafeList; end
 
 # source://loofah//lib/loofah/html5/safelist.rb#226
@@ -155,33 +164,33 @@ Loofah::HTML5::SafeList::ACCEPTABLE_SVG_PROPERTIES = T.let(T.unsafe(nil), Set)
 # source://loofah//lib/loofah/html5/safelist.rb#998
 Loofah::HTML5::SafeList::ACCEPTABLE_URI_DATA_MEDIATYPES = T.let(T.unsafe(nil), Set)
 
-# source://loofah//lib/loofah/html5/safelist.rb#1009
+# source://loofah//lib/loofah/html5/safelist.rb#1008
 Loofah::HTML5::SafeList::ALLOWED_ATTRIBUTES = T.let(T.unsafe(nil), Set)
 
-# source://loofah//lib/loofah/html5/safelist.rb#1012
+# source://loofah//lib/loofah/html5/safelist.rb#1011
 Loofah::HTML5::SafeList::ALLOWED_CSS_FUNCTIONS = T.let(T.unsafe(nil), Set)
 
-# source://loofah//lib/loofah/html5/safelist.rb#1011
+# source://loofah//lib/loofah/html5/safelist.rb#1010
 Loofah::HTML5::SafeList::ALLOWED_CSS_KEYWORDS = T.let(T.unsafe(nil), Set)
 
-# source://loofah//lib/loofah/html5/safelist.rb#1010
+# source://loofah//lib/loofah/html5/safelist.rb#1009
 Loofah::HTML5::SafeList::ALLOWED_CSS_PROPERTIES = T.let(T.unsafe(nil), Set)
 
 # subclasses may define their own versions of these constants
 #
-# source://loofah//lib/loofah/html5/safelist.rb#1008
+# source://loofah//lib/loofah/html5/safelist.rb#1007
 Loofah::HTML5::SafeList::ALLOWED_ELEMENTS = T.let(T.unsafe(nil), Set)
 
-# source://loofah//lib/loofah/html5/safelist.rb#1033
+# source://loofah//lib/loofah/html5/safelist.rb#1032
 Loofah::HTML5::SafeList::ALLOWED_ELEMENTS_WITH_LIBXML2 = T.let(T.unsafe(nil), Set)
 
-# source://loofah//lib/loofah/html5/safelist.rb#1014
+# source://loofah//lib/loofah/html5/safelist.rb#1013
 Loofah::HTML5::SafeList::ALLOWED_PROTOCOLS = T.let(T.unsafe(nil), Set)
 
-# source://loofah//lib/loofah/html5/safelist.rb#1013
+# source://loofah//lib/loofah/html5/safelist.rb#1012
 Loofah::HTML5::SafeList::ALLOWED_SVG_PROPERTIES = T.let(T.unsafe(nil), Set)
 
-# source://loofah//lib/loofah/html5/safelist.rb#1015
+# source://loofah//lib/loofah/html5/safelist.rb#1014
 Loofah::HTML5::SafeList::ALLOWED_URI_DATA_MEDIATYPES = T.let(T.unsafe(nil), Set)
 
 # source://loofah//lib/loofah/html5/safelist.rb#515
@@ -216,15 +225,16 @@ Loofah::HTML5::SafeList::SVG_ELEMENTS = T.let(T.unsafe(nil), Set)
 
 # additional tags we should consider safe since we have libxml2 fixing up our documents.
 #
-# source://loofah//lib/loofah/html5/safelist.rb#1028
+# source://loofah//lib/loofah/html5/safelist.rb#1027
 Loofah::HTML5::SafeList::TAGS_SAFE_WITH_LIBXML2 = T.let(T.unsafe(nil), Set)
 
 # TODO: remove VOID_ELEMENTS in a future major release
 # and put it in the tests (it is used only for testing, not for functional behavior)
 #
-# source://loofah//lib/loofah/html5/safelist.rb#1019
+# source://loofah//lib/loofah/html5/safelist.rb#1018
 Loofah::HTML5::SafeList::VOID_ELEMENTS = T.let(T.unsafe(nil), Set)
 
+# source://loofah//lib/loofah/html5/scrub.rb#7
 module Loofah::HTML5::Scrub
   class << self
     # @return [Boolean]
@@ -232,23 +242,40 @@ module Loofah::HTML5::Scrub
     # source://loofah//lib/loofah/html5/scrub.rb#16
     def allowed_element?(element_name); end
 
+    # source://loofah//lib/loofah/html5/scrub.rb#191
+    def cdata_escape(node); end
+
+    # @return [Boolean]
+    #
+    # source://loofah//lib/loofah/html5/scrub.rb#186
+    def cdata_needs_escaping?(node); end
+
+    # source://loofah//lib/loofah/html5/scrub.rb#206
+    def escape_tags(string); end
+
     # libxml2 >= 2.9.2 fails to escape comments within some attributes.
     #
     #  see comments about CVE-2018-8048 within the tests for more information
     #
-    # source://loofah//lib/loofah/html5/scrub.rb#135
+    # source://loofah//lib/loofah/html5/scrub.rb#165
     def force_correct_attribute_escaping!(node); end
+
+    # source://loofah//lib/loofah/html5/scrub.rb#119
+    def scrub_attribute_that_allows_local_ref(attr_node); end
 
     # alternative implementation of the html5lib attribute scrubbing algorithm
     #
     # source://loofah//lib/loofah/html5/scrub.rb#21
     def scrub_attributes(node); end
 
-    # source://loofah//lib/loofah/html5/scrub.rb#79
+    # source://loofah//lib/loofah/html5/scrub.rb#68
     def scrub_css(style); end
 
-    # source://loofah//lib/loofah/html5/scrub.rb#74
+    # source://loofah//lib/loofah/html5/scrub.rb#63
     def scrub_css_attribute(node); end
+
+    # source://loofah//lib/loofah/html5/scrub.rb#142
+    def scrub_uri_attribute(attr_node); end
   end
 end
 
@@ -270,12 +297,14 @@ Loofah::HTML5::Scrub::CSS_PROPERTY_STRING_WITHOUT_EMBEDDED_QUOTES = T.let(T.unsa
 # source://loofah//lib/loofah/html5/scrub.rb#13
 Loofah::HTML5::Scrub::DATA_ATTRIBUTE_NAME = T.let(T.unsafe(nil), Regexp)
 
-# source://loofah//lib/loofah/html5/safelist.rb#1036
+# source://loofah//lib/loofah/html5/safelist.rb#1035
 Loofah::HTML5::WhiteList = Loofah::HTML5::SafeList
 
 # Subclass of Nokogiri::HTML::Document.
 #
 #  See Loofah::ScrubBehavior and Loofah::TextBehavior for additional methods.
+#
+# source://loofah//lib/loofah/html/document.rb#9
 class Loofah::HTML::Document < ::Nokogiri::HTML4::Document
   include ::Loofah::ScrubBehavior::Node
   include ::Loofah::DocumentDecorator
@@ -288,6 +317,8 @@ end
 # Subclass of Nokogiri::HTML::DocumentFragment.
 #
 #  See Loofah::ScrubBehavior and Loofah::TextBehavior for additional methods.
+#
+# source://loofah//lib/loofah/html/document_fragment.rb#9
 class Loofah::HTML::DocumentFragment < ::Nokogiri::HTML4::DocumentFragment
   include ::Loofah::TextBehavior
 
@@ -317,6 +348,8 @@ end
 # constants related to working around unhelpful libxml2 behavior
 #
 #  ಠ_ಠ
+#
+# source://loofah//lib/loofah/html5/libxml2_workarounds.rb#11
 module Loofah::LibxmlWorkarounds; end
 
 # these attributes and qualifying parent tags are determined by the code at:
@@ -331,6 +364,7 @@ Loofah::LibxmlWorkarounds::BROKEN_ESCAPING_ATTRIBUTES = T.let(T.unsafe(nil), Set
 # source://loofah//lib/loofah/html5/libxml2_workarounds.rb#25
 Loofah::LibxmlWorkarounds::BROKEN_ESCAPING_ATTRIBUTES_QUALIFYING_TAG = T.let(T.unsafe(nil), Hash)
 
+# source://loofah//lib/loofah/metahelpers.rb#3
 module Loofah::MetaHelpers
   class << self
     # source://loofah//lib/loofah/metahelpers.rb#4
@@ -363,6 +397,8 @@ end
 #
 #  Please see Scrubber for more information on implementation and traversal, and
 #  README.rdoc for more example usage.
+#
+# source://loofah//lib/loofah/instance_methods.rb#30
 module Loofah::ScrubBehavior
   class << self
     # source://loofah//lib/loofah/instance_methods.rb#60
@@ -370,11 +406,13 @@ module Loofah::ScrubBehavior
   end
 end
 
+# source://loofah//lib/loofah/instance_methods.rb#31
 module Loofah::ScrubBehavior::Node
   # source://loofah//lib/loofah/instance_methods.rb#32
   def scrub!(scrubber); end
 end
 
+# source://loofah//lib/loofah/instance_methods.rb#53
 module Loofah::ScrubBehavior::NodeSet
   # source://loofah//lib/loofah/instance_methods.rb#54
   def scrub!(scrubber); end
@@ -404,6 +442,8 @@ end
 #  Scrubbers can be run on a document in either a top-down traversal (the
 #  default) or bottom-up. Top-down scrubbers can optionally return
 #  Scrubber::STOP to terminate the traversal of a subtree.
+#
+# source://loofah//lib/loofah/scrubber.rb#34
 class Loofah::Scrubber
   # Options may include
   #    :direction => :top_down (the default)
@@ -462,10 +502,10 @@ class Loofah::Scrubber
   # source://loofah//lib/loofah/scrubber.rb#103
   def html5lib_sanitize(node); end
 
-  # source://loofah//lib/loofah/scrubber.rb#125
+  # source://loofah//lib/loofah/scrubber.rb#129
   def traverse_conditionally_bottom_up(node); end
 
-  # source://loofah//lib/loofah/scrubber.rb#116
+  # source://loofah//lib/loofah/scrubber.rb#120
   def traverse_conditionally_top_down(node); end
 end
 
@@ -480,6 +520,8 @@ Loofah::Scrubber::CONTINUE = T.let(T.unsafe(nil), Object)
 Loofah::Scrubber::STOP = T.let(T.unsafe(nil), Object)
 
 # A RuntimeError raised when Loofah could not find an appropriate scrubber.
+#
+# source://loofah//lib/loofah/scrubber.rb#6
 class Loofah::ScrubberNotFound < ::RuntimeError; end
 
 # Loofah provides some built-in scrubbers for sanitizing with
@@ -563,11 +605,13 @@ class Loofah::ScrubberNotFound < ::RuntimeError; end
 #  the content is ever parsed by JavaScript - more information here:
 #
 #     http://timelessrepo.com/json-isnt-a-javascript-subset
+#
+# source://loofah//lib/loofah/scrubbers.rb#86
 module Loofah::Scrubbers
   class << self
     # Returns an array of symbols representing the built-in scrubbers
     #
-    # source://loofah//lib/loofah/scrubbers.rb#299
+    # source://loofah//lib/loofah/scrubbers.rb#295
     def scrubber_symbols; end
   end
 end
@@ -579,29 +623,33 @@ end
 #     unsafe_html = "ohai! <div>div is safe</div> <foo>but foo is <b>not</b></foo>"
 #     Loofah.fragment(unsafe_html).scrub!(:escape)
 #     => "ohai! <div>div is safe</div> &lt;foo&gt;but foo is &lt;b&gt;not&lt;/b&gt;&lt;/foo&gt;"
+#
+# source://loofah//lib/loofah/scrubbers.rb#139
 class Loofah::Scrubbers::Escape < ::Loofah::Scrubber
   # @return [Escape] a new instance of Escape
   #
-  # source://loofah//lib/loofah/scrubbers.rb#144
+  # source://loofah//lib/loofah/scrubbers.rb#140
   def initialize; end
 
-  # source://loofah//lib/loofah/scrubbers.rb#148
+  # source://loofah//lib/loofah/scrubbers.rb#144
   def scrub(node); end
 end
 
 # A hash that maps a symbol (like +:prune+) to the appropriate Scrubber (Loofah::Scrubbers::Prune).
 #
-# source://loofah//lib/loofah/scrubbers.rb#285
+# source://loofah//lib/loofah/scrubbers.rb#281
 Loofah::Scrubbers::MAP = T.let(T.unsafe(nil), Hash)
 
 # This class probably isn't useful publicly, but is used for #to_text's current implemention
+#
+# source://loofah//lib/loofah/scrubbers.rb#233
 class Loofah::Scrubbers::NewlineBlockElements < ::Loofah::Scrubber
   # @return [NewlineBlockElements] a new instance of NewlineBlockElements
   #
-  # source://loofah//lib/loofah/scrubbers.rb#238
+  # source://loofah//lib/loofah/scrubbers.rb#234
   def initialize; end
 
-  # source://loofah//lib/loofah/scrubbers.rb#242
+  # source://loofah//lib/loofah/scrubbers.rb#238
   def scrub(node); end
 end
 
@@ -612,13 +660,15 @@ end
 #     link_farmers_markup = "ohai! <a href='http://www.myswarmysite.com/'>I like your blog post</a>"
 #     Loofah.fragment(link_farmers_markup).scrub!(:nofollow)
 #     => "ohai! <a href='http://www.myswarmysite.com/' rel="nofollow">I like your blog post</a>"
+#
+# source://loofah//lib/loofah/scrubbers.rb#199
 class Loofah::Scrubbers::NoFollow < ::Loofah::Scrubber
   # @return [NoFollow] a new instance of NoFollow
   #
-  # source://loofah//lib/loofah/scrubbers.rb#204
+  # source://loofah//lib/loofah/scrubbers.rb#200
   def initialize; end
 
-  # source://loofah//lib/loofah/scrubbers.rb#208
+  # source://loofah//lib/loofah/scrubbers.rb#204
   def scrub(node); end
 end
 
@@ -629,13 +679,15 @@ end
 #     link_farmers_markup = "ohai! <a href='http://www.myswarmysite.com/'>I like your blog post</a>"
 #     Loofah.fragment(link_farmers_markup).scrub!(:noopener)
 #     => "ohai! <a href='http://www.myswarmysite.com/' rel="noopener">I like your blog post</a>"
+#
+# source://loofah//lib/loofah/scrubbers.rb#220
 class Loofah::Scrubbers::NoOpener < ::Loofah::Scrubber
   # @return [NoOpener] a new instance of NoOpener
   #
-  # source://loofah//lib/loofah/scrubbers.rb#225
+  # source://loofah//lib/loofah/scrubbers.rb#221
   def initialize; end
 
-  # source://loofah//lib/loofah/scrubbers.rb#229
+  # source://loofah//lib/loofah/scrubbers.rb#225
   def scrub(node); end
 end
 
@@ -646,13 +698,15 @@ end
 #     unsafe_html = "ohai! <div>div is safe</div> <foo>but foo is <b>not</b></foo>"
 #     Loofah.fragment(unsafe_html).scrub!(:prune)
 #     => "ohai! <div>div is safe</div> "
+#
+# source://loofah//lib/loofah/scrubbers.rb#118
 class Loofah::Scrubbers::Prune < ::Loofah::Scrubber
   # @return [Prune] a new instance of Prune
   #
-  # source://loofah//lib/loofah/scrubbers.rb#123
+  # source://loofah//lib/loofah/scrubbers.rb#119
   def initialize; end
 
-  # source://loofah//lib/loofah/scrubbers.rb#127
+  # source://loofah//lib/loofah/scrubbers.rb#123
   def scrub(node); end
 end
 
@@ -663,6 +717,8 @@ end
 #     unsafe_html = "ohai! <div>div is safe</div> <foo>but foo is <b>not</b></foo>"
 #     Loofah.fragment(unsafe_html).scrub!(:strip)
 #     => "ohai! <div>div is safe</div> but foo is <b>not</b>"
+#
+# source://loofah//lib/loofah/scrubbers.rb#96
 class Loofah::Scrubbers::Strip < ::Loofah::Scrubber
   # @return [Strip] a new instance of Strip
   #
@@ -686,13 +742,15 @@ end
 #  the content is ever parsed by JavaScript - more information here:
 #
 #     http://timelessrepo.com/json-isnt-a-javascript-subset
+#
+# source://loofah//lib/loofah/scrubbers.rb#265
 class Loofah::Scrubbers::Unprintable < ::Loofah::Scrubber
   # @return [Unprintable] a new instance of Unprintable
   #
-  # source://loofah//lib/loofah/scrubbers.rb#270
+  # source://loofah//lib/loofah/scrubbers.rb#266
   def initialize; end
 
-  # source://loofah//lib/loofah/scrubbers.rb#274
+  # source://loofah//lib/loofah/scrubbers.rb#270
   def scrub(node); end
 end
 
@@ -712,18 +770,22 @@ end
 #  rich text editor. Microsoft's software is famous for injecting
 #  all kinds of cruft into its HTML output. Who needs that crap?
 #  Certainly not me.
+#
+# source://loofah//lib/loofah/scrubbers.rb#170
 class Loofah::Scrubbers::Whitewash < ::Loofah::Scrubber
   # @return [Whitewash] a new instance of Whitewash
   #
-  # source://loofah//lib/loofah/scrubbers.rb#175
+  # source://loofah//lib/loofah/scrubbers.rb#171
   def initialize; end
 
-  # source://loofah//lib/loofah/scrubbers.rb#179
+  # source://loofah//lib/loofah/scrubbers.rb#175
   def scrub(node); end
 end
 
 # Overrides +text+ in HTML::Document and HTML::DocumentFragment,
 #  and mixes in +to_text+.
+#
+# source://loofah//lib/loofah/instance_methods.rb#73
 module Loofah::TextBehavior
   # Returns a plain-text version of the markup contained by the document,
   #  with HTML entities encoded.
@@ -812,11 +874,14 @@ end
 # source://loofah//lib/loofah/version.rb#4
 Loofah::VERSION = T.let(T.unsafe(nil), String)
 
+# source://loofah//lib/loofah/xml/document.rb#3
 module Loofah::XML; end
 
 # Subclass of Nokogiri::XML::Document.
 #
 #  See Loofah::ScrubBehavior and Loofah::DocumentDecorator for additional methods.
+#
+# source://loofah//lib/loofah/xml/document.rb#9
 class Loofah::XML::Document < ::Nokogiri::XML::Document
   include ::Loofah::ScrubBehavior::Node
   include ::Loofah::DocumentDecorator
@@ -825,6 +890,8 @@ end
 # Subclass of Nokogiri::XML::DocumentFragment.
 #
 #  See Loofah::ScrubBehavior for additional methods.
+#
+# source://loofah//lib/loofah/xml/document_fragment.rb#9
 class Loofah::XML::DocumentFragment < ::Nokogiri::XML::DocumentFragment
   class << self
     # Overridden Nokogiri::XML::DocumentFragment
@@ -835,871 +902,3 @@ class Loofah::XML::DocumentFragment < ::Nokogiri::XML::DocumentFragment
     def parse(tags); end
   end
 end
-
-module Nokogiri::ClassResolver
-  # source://nokogiri/1.13.9/lib/nokogiri/class_resolver.rb#46
-  def related_class(class_name); end
-end
-
-# source://nokogiri/1.13.9/lib/nokogiri/class_resolver.rb#21
-Nokogiri::ClassResolver::VALID_NAMESPACES = T.let(T.unsafe(nil), Set)
-
-class Nokogiri::HTML4::Document < ::Nokogiri::XML::Document
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#149
-  def fragment(tags = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#12
-  def meta_encoding; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#36
-  def meta_encoding=(encoding); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#142
-  def serialize(options = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#70
-  def title; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#85
-  def title=(text); end
-
-  def type; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#159
-  def xpath_doctype; end
-
-  private
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#60
-  def meta_content_type; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#103
-  def set_metadata_element(element); end
-
-  class << self
-    def new(*_arg0); end
-
-    # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#172
-    def parse(string_or_io, url = T.unsafe(nil), encoding = T.unsafe(nil), options = T.unsafe(nil)); end
-
-    def read_io(_arg0, _arg1, _arg2, _arg3); end
-    def read_memory(_arg0, _arg1, _arg2, _arg3); end
-  end
-end
-
-class Nokogiri::HTML4::Document::EncodingFound < ::StandardError
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#227
-  def initialize(encoding); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#225
-  def found_encoding; end
-end
-
-class Nokogiri::HTML4::Document::EncodingReader
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#293
-  def initialize(io); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#302
-  def encoding_found; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#304
-  def read(len); end
-
-  class << self
-    # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#270
-    def detect_encoding(chunk); end
-  end
-end
-
-class Nokogiri::HTML4::Document::EncodingReader::JumpSAXHandler < ::Nokogiri::HTML4::Document::EncodingReader::SAXHandler
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#258
-  def initialize(jumptag); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#263
-  def start_element(name, attrs = T.unsafe(nil)); end
-end
-
-class Nokogiri::HTML4::Document::EncodingReader::SAXHandler < ::Nokogiri::XML::SAX::Document
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#238
-  def initialize; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#236
-  def encoding; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document.rb#243
-  def start_element(name, attrs = T.unsafe(nil)); end
-end
-
-class Nokogiri::HTML4::DocumentFragment < ::Nokogiri::XML::DocumentFragment
-  # source://nokogiri/1.13.9/lib/nokogiri/html4/document_fragment.rb#27
-  def initialize(document, tags = T.unsafe(nil), ctx = T.unsafe(nil), options = T.unsafe(nil)); end
-
-  class << self
-    # source://nokogiri/1.13.9/lib/nokogiri/html4/document_fragment.rb#8
-    def parse(tags, encoding = T.unsafe(nil), options = T.unsafe(nil), &block); end
-  end
-end
-
-module Nokogiri::HTML5::Node
-  # source://nokogiri/1.13.9/lib/nokogiri/html5/node.rb#67
-  def fragment(tags); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html5/node.rb#28
-  def inner_html(options = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html5/node.rb#36
-  def write_to(io, *options); end
-
-  private
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html5/node.rb#80
-  def add_child_node_and_reparent_attrs(node); end
-end
-
-class Nokogiri::XML::Document < ::Nokogiri::XML::Node
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#168
-  def initialize(*args); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#384
-  def <<(node_or_tags); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#384
-  def add_child(node_or_tags); end
-
-  def canonicalize(*_arg0); end
-  def clone(*_arg0); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#307
-  def collect_namespaces; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#252
-  def create_cdata(string, &block); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#257
-  def create_comment(string, &block); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#222
-  def create_element(name, *contents_or_attrs, &block); end
-
-  def create_entity(*_arg0); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#247
-  def create_text_node(string, &block); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#355
-  def decorate(node); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#314
-  def decorators(key); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#267
-  def document; end
-
-  def dup(*_arg0); end
-  def encoding; end
-  def encoding=(_arg0); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#119
-  def errors; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#119
-  def errors=(_arg0); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#376
-  def fragment(tags = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#262
-  def name; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#166
-  def namespace_inheritance; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#166
-  def namespace_inheritance=(_arg0); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#369
-  def namespaces; end
-
-  def remove_namespaces!; end
-  def root; end
-  def root=(_arg0); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#344
-  def slop!; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1187
-  def to_xml(*args, &block); end
-
-  def url; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#322
-  def validate; end
-
-  def version; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#404
-  def xpath_doctype; end
-
-  private
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#418
-  def inspect_attributes; end
-
-  class << self
-    # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#410
-    def empty_doc?(string_or_io); end
-
-    def new(*_arg0); end
-
-    # source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#48
-    def parse(string_or_io, url = T.unsafe(nil), encoding = T.unsafe(nil), options = T.unsafe(nil)); end
-
-    def read_io(_arg0, _arg1, _arg2, _arg3); end
-    def read_memory(_arg0, _arg1, _arg2, _arg3); end
-  end
-end
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#416
-Nokogiri::XML::Document::IMPLIED_XPATH_CONTEXTS = T.let(T.unsafe(nil), Array)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#19
-Nokogiri::XML::Document::NCNAME_CHAR = T.let(T.unsafe(nil), String)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#20
-Nokogiri::XML::Document::NCNAME_RE = T.let(T.unsafe(nil), Regexp)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/document.rb#18
-Nokogiri::XML::Document::NCNAME_START_CHAR = T.let(T.unsafe(nil), String)
-
-class Nokogiri::XML::DocumentFragment < ::Nokogiri::XML::Node
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#18
-  def initialize(document, tags = T.unsafe(nil), ctx = T.unsafe(nil), options = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#105
-  def css(*args); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#41
-  def dup; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#139
-  def errors; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#143
-  def errors=(things); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#147
-  def fragment(data); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#53
-  def name; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#124
-  def search(*rules); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#59
-  def serialize; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#66
-  def to_html(*args); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#59
-  def to_s; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#80
-  def to_xhtml(*args); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#94
-  def to_xml(*args); end
-
-  private
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#154
-  def namespace_declarations(ctx); end
-
-  class << self
-    def new(*_arg0); end
-
-    # source://nokogiri/1.13.9/lib/nokogiri/xml/document_fragment.rb#8
-    def parse(tags, options = T.unsafe(nil), &block); end
-  end
-end
-
-class Nokogiri::XML::Node
-  include ::Nokogiri::HTML5::Node
-  include ::Nokogiri::XML::PP::Node
-  include ::Nokogiri::XML::Searchable
-  include ::Nokogiri::ClassResolver
-  include ::Enumerable
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#126
-  def initialize(name, document); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#191
-  def <<(node_or_tags); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1163
-  def <=>(other); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1153
-  def ==(other); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#419
-  def [](name); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#457
-  def []=(name, value); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1147
-  def accept(visitor); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#145
-  def add_child(node_or_tags); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#622
-  def add_class(names); end
-
-  def add_namespace(_arg0, _arg1); end
-  def add_namespace_definition(_arg0, _arg1); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#217
-  def add_next_sibling(node_or_tags); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#203
-  def add_previous_sibling(node_or_tags); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#243
-  def after(node_or_tags); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1116
-  def ancestors(selector = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#666
-  def append_class(names); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#419
-  def attr(name); end
-
-  def attribute(_arg0); end
-  def attribute_nodes; end
-  def attribute_with_ns(_arg0, _arg1); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#516
-  def attributes; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#231
-  def before(node_or_tags); end
-
-  def blank?; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1306
-  def canonicalize(mode = T.unsafe(nil), inclusive_namespaces = T.unsafe(nil), with_comments = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1037
-  def cdata?; end
-
-  def child; end
-  def children; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#262
-  def children=(node_or_tags); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#576
-  def classes; end
-
-  def clone(*_arg0); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1032
-  def comment?; end
-
-  def content; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#318
-  def content=(string); end
-
-  def create_external_subset(_arg0, _arg1, _arg2); end
-  def create_internal_subset(_arg0, _arg1, _arg2); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1107
-  def css_path; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#132
-  def decorate!; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#334
-  def default_namespace=(url); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#550
-  def delete(name); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1074
-  def description; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#361
-  def do_xinclude(options = T.unsafe(nil)); end
-
-  def document; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1052
-  def document?; end
-
-  def dup(*_arg0); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#542
-  def each; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1088
-  def elem?; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1088
-  def element?; end
-
-  def element_children; end
-  def elements; end
-  def encode_special_chars(_arg0); end
-  def external_subset; end
-  def first_element_child; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html5/node.rb#67
-  def fragment(tags); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1067
-  def fragment?; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#419
-  def get_attribute(name); end
-
-  def has_attribute?(_arg0); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1047
-  def html?; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html5/node.rb#28
-  def inner_html(options = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#253
-  def inner_html=(node_or_tags); end
-
-  def inner_text; end
-  def internal_subset; end
-  def key?(_arg0); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#536
-  def keys; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#799
-  def kwattr_add(attribute_name, keywords); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#852
-  def kwattr_append(attribute_name, keywords); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#895
-  def kwattr_remove(attribute_name, keywords); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#745
-  def kwattr_values(attribute_name); end
-
-  def lang; end
-  def lang=(_arg0); end
-  def last_element_child; end
-  def line; end
-  def line=(_arg0); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#922
-  def matches?(selector); end
-
-  def name; end
-  def name=(_arg0); end
-  def namespace; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#344
-  def namespace=(ns); end
-
-  def namespace_definitions; end
-  def namespace_scopes; end
-  def namespaced_key?(_arg0, _arg1); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1023
-  def namespaces; end
-
-  def native_content=(_arg0); end
-  def next; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#217
-  def next=(node_or_tags); end
-
-  def next_element; end
-  def next_sibling; end
-  def node_name; end
-  def node_name=(_arg0); end
-  def node_type; end
-  def parent; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#324
-  def parent=(parent_node); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#937
-  def parse(string_or_io, options = T.unsafe(nil)); end
-
-  def path; end
-  def pointer_id; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#162
-  def prepend_child(node_or_tags); end
-
-  def previous; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#203
-  def previous=(node_or_tags); end
-
-  def previous_element; end
-  def previous_sibling; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1057
-  def processing_instruction?; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1082
-  def read_only?; end
-
-  def remove; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#550
-  def remove_attribute(name); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#716
-  def remove_class(names = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#279
-  def replace(node_or_tags); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1187
-  def serialize(*args, &block); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#457
-  def set_attribute(name, value); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#311
-  def swap(node_or_tags); end
-
-  def text; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1062
-  def text?; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1214
-  def to_html(options = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1097
-  def to_s; end
-
-  def to_str; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1235
-  def to_xhtml(options = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1224
-  def to_xml(options = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1140
-  def traverse(&block); end
-
-  def type; end
-  def unlink; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#530
-  def value?(value); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#524
-  def values; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#177
-  def wrap(html); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1283
-  def write_html_to(io, options = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html5/node.rb#36
-  def write_to(io, *options); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1291
-  def write_xhtml_to(io, options = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1301
-  def write_xml_to(io, options = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1042
-  def xml?; end
-
-  protected
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1318
-  def coerce(data); end
-
-  private
-
-  def add_child_node(_arg0); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/html5/node.rb#80
-  def add_child_node_and_reparent_attrs(node); end
-
-  def add_next_sibling_node(_arg0); end
-  def add_previous_sibling_node(_arg0); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1352
-  def add_sibling(next_or_previous, node_or_tags); end
-
-  def compare(_arg0); end
-  def dump_html; end
-  def get(_arg0); end
-  def in_context(_arg0, _arg1); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1391
-  def inspect_attributes; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1340
-  def keywordify(keywords); end
-
-  def native_write_to(_arg0, _arg1, _arg2, _arg3); end
-  def process_xincludes(_arg0); end
-  def replace_node(_arg0); end
-  def set(_arg0, _arg1); end
-  def set_namespace(_arg0); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1377
-  def to_format(save_option, options); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1384
-  def write_format_to(save_option, io, options); end
-
-  class << self
-    def new(*_arg0); end
-  end
-end
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#93
-Nokogiri::XML::Node::ATTRIBUTE_DECL = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#65
-Nokogiri::XML::Node::ATTRIBUTE_NODE = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#69
-Nokogiri::XML::Node::CDATA_SECTION_NODE = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#77
-Nokogiri::XML::Node::COMMENT_NODE = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#103
-Nokogiri::XML::Node::DOCB_DOCUMENT_NODE = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#83
-Nokogiri::XML::Node::DOCUMENT_FRAG_NODE = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#79
-Nokogiri::XML::Node::DOCUMENT_NODE = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#81
-Nokogiri::XML::Node::DOCUMENT_TYPE_NODE = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#89
-Nokogiri::XML::Node::DTD_NODE = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#91
-Nokogiri::XML::Node::ELEMENT_DECL = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#63
-Nokogiri::XML::Node::ELEMENT_NODE = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#95
-Nokogiri::XML::Node::ENTITY_DECL = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#73
-Nokogiri::XML::Node::ENTITY_NODE = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#71
-Nokogiri::XML::Node::ENTITY_REF_NODE = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#87
-Nokogiri::XML::Node::HTML_DOCUMENT_NODE = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#1395
-Nokogiri::XML::Node::IMPLIED_XPATH_CONTEXTS = T.let(T.unsafe(nil), Array)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#97
-Nokogiri::XML::Node::NAMESPACE_DECL = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#85
-Nokogiri::XML::Node::NOTATION_NODE = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#75
-Nokogiri::XML::Node::PI_NODE = T.let(T.unsafe(nil), Integer)
-
-class Nokogiri::XML::Node::SaveOptions
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node/save_options.rb#45
-  def initialize(options = T.unsafe(nil)); end
-
-  def as_html; end
-  def as_html?; end
-  def as_xhtml; end
-  def as_xhtml?; end
-  def as_xml; end
-  def as_xml?; end
-  def default_html; end
-  def default_html?; end
-  def default_xhtml; end
-  def default_xhtml?; end
-  def default_xml; end
-  def default_xml?; end
-  def format; end
-  def format?; end
-  def no_declaration; end
-  def no_declaration?; end
-  def no_empty_tags; end
-  def no_empty_tags?; end
-  def no_xhtml; end
-  def no_xhtml?; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node/save_options.rb#42
-  def options; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/node/save_options.rb#42
-  def to_i; end
-end
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node/save_options.rb#23
-Nokogiri::XML::Node::SaveOptions::AS_HTML = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node/save_options.rb#19
-Nokogiri::XML::Node::SaveOptions::AS_XHTML = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node/save_options.rb#21
-Nokogiri::XML::Node::SaveOptions::AS_XML = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node/save_options.rb#36
-Nokogiri::XML::Node::SaveOptions::DEFAULT_HTML = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node/save_options.rb#39
-Nokogiri::XML::Node::SaveOptions::DEFAULT_XHTML = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node/save_options.rb#34
-Nokogiri::XML::Node::SaveOptions::DEFAULT_XML = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node/save_options.rb#11
-Nokogiri::XML::Node::SaveOptions::FORMAT = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node/save_options.rb#13
-Nokogiri::XML::Node::SaveOptions::NO_DECLARATION = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node/save_options.rb#15
-Nokogiri::XML::Node::SaveOptions::NO_EMPTY_TAGS = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node/save_options.rb#17
-Nokogiri::XML::Node::SaveOptions::NO_XHTML = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#67
-Nokogiri::XML::Node::TEXT_NODE = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#101
-Nokogiri::XML::Node::XINCLUDE_END = T.let(T.unsafe(nil), Integer)
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/node.rb#99
-Nokogiri::XML::Node::XINCLUDE_START = T.let(T.unsafe(nil), Integer)
-
-module Nokogiri::XML::PP::Node
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/pp/node.rb#8
-  def inspect; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/pp/node.rb#20
-  def pretty_print(pp); end
-end
-
-class Nokogiri::XML::SAX::Document
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/sax/document.rb#155
-  def cdata_block(string); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/sax/document.rb#131
-  def characters(string); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/sax/document.rb#137
-  def comment(string); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/sax/document.rb#79
-  def end_document; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/sax/document.rb#93
-  def end_element(name); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/sax/document.rb#120
-  def end_element_namespace(name, prefix = T.unsafe(nil), uri = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/sax/document.rb#149
-  def error(string); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/sax/document.rb#162
-  def processing_instruction(name, content); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/sax/document.rb#74
-  def start_document; end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/sax/document.rb#87
-  def start_element(name, attrs = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/sax/document.rb#103
-  def start_element_namespace(name, attrs = T.unsafe(nil), prefix = T.unsafe(nil), uri = T.unsafe(nil), ns = T.unsafe(nil)); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/sax/document.rb#143
-  def warning(string); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/sax/document.rb#69
-  def xmldecl(version, encoding, standalone); end
-end
-
-module Nokogiri::XML::Searchable
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#71
-  def %(*args); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#51
-  def /(*args); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#196
-  def >(selector); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#71
-  def at(*args); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#140
-  def at_css(*args); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#188
-  def at_xpath(*args); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#126
-  def css(*args); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#51
-  def search(*args); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#174
-  def xpath(*args); end
-
-  private
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#205
-  def css_internal(node, rules, handler, ns); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#236
-  def css_rules_to_xpath(rules, ns); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#251
-  def extract_params(params); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#224
-  def xpath_impl(node, path, handler, ns, binds); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#209
-  def xpath_internal(node, paths, handler, ns, binds); end
-
-  # source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#240
-  def xpath_query_from_css_rule(rule, ns); end
-end
-
-# source://nokogiri/1.13.9/lib/nokogiri/xml/searchable.rb#16
-Nokogiri::XML::Searchable::LOOKS_LIKE_XPATH = T.let(T.unsafe(nil), Regexp)
