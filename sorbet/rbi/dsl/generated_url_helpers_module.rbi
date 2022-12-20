@@ -21,12 +21,6 @@ module GeneratedUrlHelpersModule
   def decomp_participations_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def decomp_stage_url(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
-  def decomp_stages_url(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
   def decomp_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -40,9 +34,6 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def good_job_url(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
-  def new_decomp_stage_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def new_decomp_url(*args); end

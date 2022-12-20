@@ -225,20 +225,6 @@ class Decomp
     def participations=(value); end
 
     sig { returns(T::Array[T.untyped]) }
-    def stage_ids; end
-
-    sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }
-    def stage_ids=(ids); end
-
-    # This method is created by ActiveRecord on the `Decomp` class because it declared `has_many :stages`.
-    # 🔗 [Rails guide for `has_many` association](https://guides.rubyonrails.org/association_basics.html#the-has-many-association)
-    sig { returns(::Stage::PrivateCollectionProxy) }
-    def stages; end
-
-    sig { params(value: T::Enumerable[::Stage]).void }
-    def stages=(value); end
-
-    sig { returns(T::Array[T.untyped]) }
     def user_ids; end
 
     sig { params(ids: T::Array[T.untyped]).returns(T::Array[T.untyped]) }

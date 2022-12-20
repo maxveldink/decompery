@@ -6,7 +6,6 @@ class Decomp < ApplicationRecord
 
   has_secure_token :invite_token
 
-  has_many :stages, dependent: :destroy
   has_many :participations, dependent: :destroy
   has_many :users, through: :participations
   has_many :estimates, dependent: :destroy

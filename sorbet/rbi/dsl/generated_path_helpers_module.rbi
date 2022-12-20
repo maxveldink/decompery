@@ -24,12 +24,6 @@ module GeneratedPathHelpersModule
   def decomp_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
-  def decomp_stage_path(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
-  def decomp_stages_path(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
   def decomps_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -43,9 +37,6 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def new_decomp_path(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
-  def new_decomp_stage_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def new_rails_conductor_inbound_email_path(*args); end

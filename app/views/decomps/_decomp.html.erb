@@ -1,4 +1,3 @@
-<%= turbo_stream_from [decomp, "stages"] %>
 <%= turbo_stream_from [decomp, "participations"] %>
 <%= turbo_stream_from [decomp, "estimates"] %>
 
@@ -52,19 +51,5 @@
 
   <%= turbo_frame_tag "estimates" do %>
     <%= render EstimatesComponent.new(decomp:) %>
-  <% end %>
-
-  <hr class="my-4">
-
-  <h2 class="text-2xl text-center">
-    The Breakdown
-  </h2>
-
-  <%= turbo_frame_tag "stages" do %>
-    <%= render decomp.stages %>
-  <% end %>
-
-  <%= turbo_frame_tag "new_stage" do %>
-    <%= link_to "Decompose more", new_decomp_stage_path(decomp), class: "mt-4 btn-sky" %>
   <% end %>
 <% end %>

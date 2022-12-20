@@ -1,6 +1,0 @@
-<div id="<%= dom_id stage %>" class="flex flex-row items-center">
-  <p class="my-5">
-    <strong class="font-medium mb-1">Stage:</strong> <%= stage.description %>
-  </p>
-  <%= button_to "❌", decomp_stage_path(stage.decomp, stage), method: :delete, class: "ml-4 transition-transform hover:rotate-90" %>
-</div>
