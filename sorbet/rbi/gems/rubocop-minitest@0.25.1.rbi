@@ -36,10 +36,10 @@ module RuboCop::Cop::ArgumentRangeHelper
   def first_argument_range(node); end
 end
 
-# source://rubocop/1.40.0/lib/rubocop/cop/mixin/allowed_methods.rb#38
+# source://rubocop/1.42.0/lib/rubocop/cop/mixin/allowed_methods.rb#38
 RuboCop::Cop::IgnoredMethods = RuboCop::Cop::AllowedMethods
 
-# source://rubocop/1.40.0/lib/rubocop/cop/mixin/allowed_pattern.rb#54
+# source://rubocop/1.42.0/lib/rubocop/cop/mixin/allowed_pattern.rb#54
 RuboCop::Cop::IgnoredPattern = RuboCop::Cop::AllowedPattern
 
 # Common functionality for `AssertInDelta` and `RefuteInDelta` cops.
@@ -745,6 +745,9 @@ RuboCop::Cop::Minitest::AssertTruthy::RESTRICT_ON_SEND = T.let(T.unsafe(nil), Ar
 # Tries to detect when a user accidentally used
 # `assert` when they meant to use `assert_equal`.
 #
+# NOTE: The second argument to the `assert` method named `message` and `msg` is allowed.
+#       Because their names are inferred as message arguments.
+#
 # @example
 #   # bad
 #   assert(3, my_list.length)
@@ -754,20 +757,25 @@ RuboCop::Cop::Minitest::AssertTruthy::RESTRICT_ON_SEND = T.let(T.unsafe(nil), Ar
 #   assert_equal(3, my_list.length)
 #   assert_equal(expected, actual)
 #   assert(foo, 'message')
+#   assert(foo, message)
+#   assert(foo, msg)
 #
-# source://rubocop-minitest//lib/rubocop/cop/minitest/assert_with_expected_argument.rb#23
+# source://rubocop-minitest//lib/rubocop/cop/minitest/assert_with_expected_argument.rb#28
 class RuboCop::Cop::Minitest::AssertWithExpectedArgument < ::RuboCop::Cop::Base
-  # source://rubocop-minitest//lib/rubocop/cop/minitest/assert_with_expected_argument.rb#27
+  # source://rubocop-minitest//lib/rubocop/cop/minitest/assert_with_expected_argument.rb#33
   def assert_with_two_arguments?(param0 = T.unsafe(nil)); end
 
-  # source://rubocop-minitest//lib/rubocop/cop/minitest/assert_with_expected_argument.rb#31
+  # source://rubocop-minitest//lib/rubocop/cop/minitest/assert_with_expected_argument.rb#37
   def on_send(node); end
 end
 
-# source://rubocop-minitest//lib/rubocop/cop/minitest/assert_with_expected_argument.rb#24
+# source://rubocop-minitest//lib/rubocop/cop/minitest/assert_with_expected_argument.rb#31
+RuboCop::Cop::Minitest::AssertWithExpectedArgument::MESSAGE_VARIABLES = T.let(T.unsafe(nil), Array)
+
+# source://rubocop-minitest//lib/rubocop/cop/minitest/assert_with_expected_argument.rb#29
 RuboCop::Cop::Minitest::AssertWithExpectedArgument::MSG = T.let(T.unsafe(nil), String)
 
-# source://rubocop-minitest//lib/rubocop/cop/minitest/assert_with_expected_argument.rb#25
+# source://rubocop-minitest//lib/rubocop/cop/minitest/assert_with_expected_argument.rb#30
 RuboCop::Cop::Minitest::AssertWithExpectedArgument::RESTRICT_ON_SEND = T.let(T.unsafe(nil), Array)
 
 # Checks for usage of assertions in lifecycle hooks.
@@ -2123,11 +2131,11 @@ end
 # source://rubocop-minitest//lib/rubocop/minitest/version.rb#7
 RuboCop::Minitest::Version::STRING = T.let(T.unsafe(nil), String)
 
-# source://rubocop/1.40.0/lib/rubocop/ast_aliases.rb#5
+# source://rubocop/1.42.0/lib/rubocop/ast_aliases.rb#5
 RuboCop::NodePattern = RuboCop::AST::NodePattern
 
-# source://rubocop/1.40.0/lib/rubocop/ast_aliases.rb#6
+# source://rubocop/1.42.0/lib/rubocop/ast_aliases.rb#6
 RuboCop::ProcessedSource = RuboCop::AST::ProcessedSource
 
-# source://rubocop/1.40.0/lib/rubocop/ast_aliases.rb#7
+# source://rubocop/1.42.0/lib/rubocop/ast_aliases.rb#7
 RuboCop::Token = RuboCop::AST::Token
