@@ -5,7 +5,12 @@
 # Please instead update this file by running `bin/tapioca gem shoulda-matchers`.
 
 # source://shoulda-matchers//lib/shoulda/matchers/configuration.rb#1
-module Shoulda; end
+module Shoulda
+  class << self
+    # source://shoulda-context/2.0.0/lib/shoulda/context/autoload_macros.rb#38
+    def autoload_macros(root, *dirs); end
+  end
+end
 
 # source://shoulda-matchers//lib/shoulda/matchers/configuration.rb#2
 module Shoulda::Matchers
@@ -1756,25 +1761,25 @@ class Shoulda::Matchers::ActionController::SetFlashMatcher
   # source://shoulda-matchers//lib/shoulda/matchers/action_controller/set_flash_matcher.rb#190
   def [](key); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def description(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def failure_message(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def failure_message_for_should(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def failure_message_for_should_not(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def failure_message_when_negated(*args, **_arg1, &block); end
 
   # source://shoulda-matchers//lib/shoulda/matchers/action_controller/set_flash_matcher.rb#185
   def in_context(context); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def matches?(*args, **_arg1, &block); end
 
   # source://shoulda-matchers//lib/shoulda/matchers/action_controller/set_flash_matcher.rb#175
@@ -1823,25 +1828,25 @@ class Shoulda::Matchers::ActionController::SetSessionMatcher
   # source://shoulda-matchers//lib/shoulda/matchers/action_controller/set_session_matcher.rb#147
   def [](key); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def description(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def failure_message(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def failure_message_for_should(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def failure_message_for_should_not(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def failure_message_when_negated(*args, **_arg1, &block); end
 
   # source://shoulda-matchers//lib/shoulda/matchers/action_controller/set_session_matcher.rb#142
   def in_context(context); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def matches?(*args, **_arg1, &block); end
 
   # source://shoulda-matchers//lib/shoulda/matchers/action_controller/set_session_matcher.rb#152
@@ -4578,7 +4583,7 @@ class Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeSetterAndValid
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/allow_value_matcher/attribute_setter_and_validator.rb#22
   def initialize(allow_value_matcher, attribute_name, value); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def after_setting_value_callback(*args, **_arg1, &block); end
 
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/allow_value_matcher/attribute_setter_and_validator.rb#30
@@ -4587,22 +4592,22 @@ class Shoulda::Matchers::ActiveModel::AllowValueMatcher::AttributeSetterAndValid
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/allow_value_matcher/attribute_setter_and_validator.rb#41
   def attribute_setter_description; end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def attribute_to_check_message_against(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def context(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def expected_message(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def expects_strict?(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def ignore_interference_by_writer(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def instance(*args, **_arg1, &block); end
 
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/allow_value_matcher/attribute_setter_and_validator.rb#45
@@ -4767,16 +4772,16 @@ class Shoulda::Matchers::ActiveModel::DisallowValueMatcher
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/disallow_value_matcher.rb#27
   def initialize(value); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def _after_setting_value(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def attribute_changed_value_message=(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def attribute_to_set(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def description(*args, **_arg1, &block); end
 
   # @return [Boolean]
@@ -4784,16 +4789,16 @@ class Shoulda::Matchers::ActiveModel::DisallowValueMatcher
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/disallow_value_matcher.rb#35
   def does_not_match?(subject); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def expects_strict?(*args, **_arg1, &block); end
 
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/disallow_value_matcher.rb#64
   def failure_message; end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def failure_message_preface(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def failure_message_preface=(*args, **_arg1, &block); end
 
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/disallow_value_matcher.rb#68
@@ -4802,16 +4807,16 @@ class Shoulda::Matchers::ActiveModel::DisallowValueMatcher
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/disallow_value_matcher.rb#39
   def for(attribute); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def ignore_interference_by_writer(*args, **_arg1, &block); end
 
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/disallow_value_matcher.rb#59
   def ignoring_interference_by_writer(value = T.unsafe(nil)); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def last_attribute_setter_used(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def last_value_set(*args, **_arg1, &block); end
 
   # @return [Boolean]
@@ -4819,19 +4824,19 @@ class Shoulda::Matchers::ActiveModel::DisallowValueMatcher
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/disallow_value_matcher.rb#31
   def matches?(subject); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def model(*args, **_arg1, &block); end
 
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/disallow_value_matcher.rb#44
   def on(context); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def simple_description(*args, **_arg1, &block); end
 
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/disallow_value_matcher.rb#54
   def strict(strict = T.unsafe(nil)); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def values_to_preset=(*args, **_arg1, &block); end
 
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/disallow_value_matcher.rb#49
@@ -5061,37 +5066,37 @@ class Shoulda::Matchers::ActiveModel::NumericalityMatchers::NumericTypeMatcher
   # source://shoulda-matchers//lib/shoulda/matchers/active_model/numericality_matchers/numeric_type_matcher.rb#39
   def diff_to_compare; end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def does_not_match?(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def expects_custom_validation_message?(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def expects_strict?(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def failure_message(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def failure_message_when_negated(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def ignore_interference_by_writer(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def ignoring_interference_by_writer(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def matches?(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def on(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def strict(*args, **_arg1, &block); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def with_message(*args, **_arg1, &block); end
 
   protected
@@ -10797,10 +10802,10 @@ module Shoulda::Matchers::Doublespeak
     # source://shoulda-matchers//lib/shoulda/matchers/doublespeak.rb#18
     def debugging_enabled?; end
 
-    # source://forwardable/1.3.2/forwardable.rb#229
+    # source://forwardable/1.3.3/forwardable.rb#231
     def double_collection_for(*args, **_arg1, &block); end
 
-    # source://forwardable/1.3.2/forwardable.rb#229
+    # source://forwardable/1.3.3/forwardable.rb#231
     def with_doubles_activated(*args, **_arg1, &block); end
 
     # source://shoulda-matchers//lib/shoulda/matchers/doublespeak.rb#14
@@ -11066,7 +11071,7 @@ class Shoulda::Matchers::Doublespeak::ProxyImplementation
   # source://shoulda-matchers//lib/shoulda/matchers/doublespeak/proxy_implementation.rb#20
   def call(call); end
 
-  # source://forwardable/1.3.2/forwardable.rb#229
+  # source://forwardable/1.3.3/forwardable.rb#231
   def returns(*args, **_arg1, &block); end
 
   protected
@@ -12204,3 +12209,6 @@ end
 
 # source://shoulda-matchers//lib/shoulda/matchers/util/word_wrap.rb#5
 Shoulda::Matchers::WordWrap::TERMINAL_WIDTH = T.let(T.unsafe(nil), Integer)
+
+# source://shoulda/4.0.0/lib/shoulda/version.rb#2
+Shoulda::VERSION = T.let(T.unsafe(nil), String)

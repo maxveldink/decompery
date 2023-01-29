@@ -7,7 +7,7 @@
 # source://stimulus-rails//lib/stimulus-rails.rb#1
 module Stimulus; end
 
-# source://stimulus-rails//lib/stimulus/engine.rb#8
+# source://stimulus-rails//lib/stimulus/engine.rb#2
 class Stimulus::Engine < ::Rails::Engine; end
 
 # If you don't want to precompile Stimulus's assets (e.g., you're using jsbundling),

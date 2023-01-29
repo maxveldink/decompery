@@ -9,13 +9,13 @@ module Turbo
   extend ::ActiveSupport::Autoload
 
   class << self
-    # source://railties/7.0.4/lib/rails/engine.rb#405
+    # source://railties/7.0.4.2/lib/rails/engine.rb#405
     def railtie_helpers_paths; end
 
-    # source://railties/7.0.4/lib/rails/engine.rb#394
+    # source://railties/7.0.4.2/lib/rails/engine.rb#394
     def railtie_namespace; end
 
-    # source://railties/7.0.4/lib/rails/engine.rb#409
+    # source://railties/7.0.4.2/lib/rails/engine.rb#409
     def railtie_routes_url_helpers(include_path_helpers = T.unsafe(nil)); end
 
     # source://turbo-rails//lib/turbo-rails.rb#9
@@ -31,10 +31,10 @@ module Turbo
     # source://turbo-rails//lib/turbo-rails.rb#7
     def signed_stream_verifier_key=(_arg0); end
 
-    # source://railties/7.0.4/lib/rails/engine.rb#397
+    # source://railties/7.0.4.2/lib/rails/engine.rb#397
     def table_name_prefix; end
 
-    # source://railties/7.0.4/lib/rails/engine.rb#401
+    # source://railties/7.0.4.2/lib/rails/engine.rb#401
     def use_relative_model_naming?; end
   end
 end

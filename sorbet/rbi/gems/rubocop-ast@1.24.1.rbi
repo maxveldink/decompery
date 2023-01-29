@@ -5253,6 +5253,9 @@ RuboCop::AST::NodePattern::Sets::SET_CLASS_MODULE = T.let(T.unsafe(nil), Set)
 RuboCop::AST::NodePattern::Sets::SET_CLASS_MODULE_STRUCT = T.let(T.unsafe(nil), Set)
 
 # source://rubocop-ast//lib/rubocop/ast/node_pattern/sets.rb#10
+RuboCop::AST::NodePattern::Sets::SET_CLONE_DUP_FREEZE = T.let(T.unsafe(nil), Set)
+
+# source://rubocop-ast//lib/rubocop/ast/node_pattern/sets.rb#10
 RuboCop::AST::NodePattern::Sets::SET_CONSTANTIZE_CONSTANTS_CONST_GET = T.let(T.unsafe(nil), Set)
 
 # source://rubocop-ast//lib/rubocop/ast/node_pattern/sets.rb#10
@@ -5280,6 +5283,9 @@ RuboCop::AST::NodePattern::Sets::SET_EACH_WITH_INDEX_WITH_INDEX = T.let(T.unsafe
 RuboCop::AST::NodePattern::Sets::SET_EACH_WITH_OBJECT_WITH_OBJECT = T.let(T.unsafe(nil), Set)
 
 # source://rubocop-ast//lib/rubocop/ast/node_pattern/sets.rb#10
+RuboCop::AST::NodePattern::Sets::SET_ENV = T.let(T.unsafe(nil), Set)
+
+# source://rubocop-ast//lib/rubocop/ast/node_pattern/sets.rb#10
 RuboCop::AST::NodePattern::Sets::SET_ESCAPE_ENCODE_UNESCAPE_DECODE = T.let(T.unsafe(nil), Set)
 
 # source://rubocop-ast//lib/rubocop/ast/node_pattern/sets.rb#10
@@ -5287,6 +5293,9 @@ RuboCop::AST::NodePattern::Sets::SET_EXIST_EXISTS = T.let(T.unsafe(nil), Set)
 
 # source://rubocop-ast//lib/rubocop/ast/node_pattern/sets.rb#10
 RuboCop::AST::NodePattern::Sets::SET_FILETEST_FILE_DIR_SHELL = T.let(T.unsafe(nil), Set)
+
+# source://rubocop-ast//lib/rubocop/ast/node_pattern/sets.rb#10
+RuboCop::AST::NodePattern::Sets::SET_FILE_DIR = T.let(T.unsafe(nil), Set)
 
 # source://rubocop-ast//lib/rubocop/ast/node_pattern/sets.rb#10
 RuboCop::AST::NodePattern::Sets::SET_FIRST_LAST__ETC = T.let(T.unsafe(nil), Set)
@@ -5299,6 +5308,9 @@ RuboCop::AST::NodePattern::Sets::SET_FLATTEN_FLATTEN = T.let(T.unsafe(nil), Set)
 
 # source://rubocop-ast//lib/rubocop/ast/node_pattern/sets.rb#10
 RuboCop::AST::NodePattern::Sets::SET_FORMAT_SPRINTF_PRINTF = T.let(T.unsafe(nil), Set)
+
+# source://rubocop-ast//lib/rubocop/ast/node_pattern/sets.rb#10
+RuboCop::AST::NodePattern::Sets::SET_GETHOSTBYADDR_GETHOSTBYNAME = T.let(T.unsafe(nil), Set)
 
 # source://rubocop-ast//lib/rubocop/ast/node_pattern/sets.rb#10
 RuboCop::AST::NodePattern::Sets::SET_GET_POST_PUT_ETC = T.let(T.unsafe(nil), Set)
@@ -7180,11 +7192,11 @@ class RuboCop::AST::YieldNode < ::RuboCop::AST::Node
   def node_parts; end
 end
 
-# source://rubocop/1.42.0/lib/rubocop/ast_aliases.rb#5
+# source://rubocop/1.44.1/lib/rubocop/ast_aliases.rb#5
 RuboCop::NodePattern = RuboCop::AST::NodePattern
 
-# source://rubocop/1.42.0/lib/rubocop/ast_aliases.rb#6
+# source://rubocop/1.44.1/lib/rubocop/ast_aliases.rb#6
 RuboCop::ProcessedSource = RuboCop::AST::ProcessedSource
 
-# source://rubocop/1.42.0/lib/rubocop/ast_aliases.rb#7
+# source://rubocop/1.44.1/lib/rubocop/ast_aliases.rb#7
 RuboCop::Token = RuboCop::AST::Token

@@ -222,7 +222,7 @@ class ViewComponent::Base < ::ActionView::Base
   # @param variant [Symbol] The variant to be used by the component.
   # @return [self]
   #
-  # source://activesupport/7.0.4/lib/active_support/deprecation/method_wrappers.rb#63
+  # source://activesupport/7.0.4.2/lib/active_support/deprecation/method_wrappers.rb#63
   def with_variant(*args, **_arg1, &block); end
 
   private
@@ -759,7 +759,7 @@ class ViewComponent::Config
   # source://view_component//lib/view_component/config.rb#157
   def initialize; end
 
-  # source://activesupport/7.0.4/lib/active_support/core_ext/module/delegation.rb#302
+  # source://activesupport/7.0.4.2/lib/active_support/core_ext/module/delegation.rb#302
   def method_missing(method, *args, **_arg2, &block); end
 
   # source://view_component//lib/view_component/config.rb#161
@@ -775,7 +775,7 @@ class ViewComponent::Config
   # source://view_component//lib/view_component/config.rb#174
   def config; end
 
-  # source://activesupport/7.0.4/lib/active_support/core_ext/module/delegation.rb#294
+  # source://activesupport/7.0.4.2/lib/active_support/core_ext/module/delegation.rb#294
   def respond_to_missing?(name, include_private = T.unsafe(nil)); end
 
   class << self
@@ -1234,12 +1234,12 @@ module ViewComponent::TestHelpers
 
   # @private
   #
-  # source://view_component//lib/view_component/test_helpers.rb#201
+  # source://view_component//lib/view_component/test_helpers.rb#203
   def build_controller(klass); end
 
   # @private
   #
-  # source://view_component//lib/view_component/test_helpers.rb#119
+  # source://view_component//lib/view_component/test_helpers.rb#121
   def controller; end
 
   # source://view_component//lib/view_component/test_helpers.rb#10
@@ -1248,19 +1248,20 @@ module ViewComponent::TestHelpers
   # source://view_component//lib/view_component/test_helpers.rb#14
   def refute_component_rendered; end
 
-  # Execute the given block in the view context. Internally sets `page` to be a
-  # `Capybara::Node::Simple`, allowing for Capybara assertions to be used:
+  # Execute the given block in the view context (using `instance_exec`).
+  # Internally sets `page` to be a `Capybara::Node::Simple`, allowing for
+  # Capybara assertions to be used. All arguments are forwarded to the block.
   #
   # ```ruby
-  # render_in_view_context do
-  #   render(MyComponent.new)
+  # render_in_view_context(arg1, arg2:) do |arg1, arg2:|
+  #   render(MyComponent.new(arg1, arg2))
   # end
   #
   # assert_text("Hello, World!")
   # ```
   #
-  # source://view_component//lib/view_component/test_helpers.rb#112
-  def render_in_view_context(&block); end
+  # source://view_component//lib/view_component/test_helpers.rb#113
+  def render_in_view_context(*args, **_arg1, &block); end
 
   # Render a component inline. Internally sets `page` to be a `Capybara::Node::Simple`,
   # allowing for Capybara assertions to be used:
@@ -1313,7 +1314,7 @@ module ViewComponent::TestHelpers
 
   # @private
   #
-  # source://view_component//lib/view_component/test_helpers.rb#124
+  # source://view_component//lib/view_component/test_helpers.rb#126
   def request; end
 
   # Set the controller to be used while executing the given block,
@@ -1327,7 +1328,7 @@ module ViewComponent::TestHelpers
   #
   # @param klass [ActionController::Base] The controller to be used.
   #
-  # source://view_component//lib/view_component/test_helpers.rb#161
+  # source://view_component//lib/view_component/test_helpers.rb#163
   def with_controller_class(klass); end
 
   # Set the URL of the current request (such as when using request-dependent path helpers):
@@ -1340,7 +1341,7 @@ module ViewComponent::TestHelpers
   #
   # @param path [String] The path to set for the current request.
   #
-  # source://view_component//lib/view_component/test_helpers.rb#179
+  # source://view_component//lib/view_component/test_helpers.rb#181
   def with_request_url(path); end
 
   # Set the Action Pack request variant for the given block:
@@ -1353,12 +1354,12 @@ module ViewComponent::TestHelpers
   #
   # @param variant [Symbol] The variant to be set for the provided block.
   #
-  # source://view_component//lib/view_component/test_helpers.rb#142
+  # source://view_component//lib/view_component/test_helpers.rb#144
   def with_variant(variant); end
 
   private
 
-  # source://view_component//lib/view_component/test_helpers.rb#207
+  # source://view_component//lib/view_component/test_helpers.rb#209
   def preview_class; end
 end
 
@@ -1449,28 +1450,28 @@ class ViewComponentsController < ::Rails::ApplicationController
 
   private
 
-  # source://actionview/7.0.4/lib/action_view/layouts.rb#328
+  # source://actionview/7.0.4.2/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
   class << self
-    # source://activesupport/7.0.4/lib/active_support/callbacks.rb#68
+    # source://activesupport/7.0.4.2/lib/active_support/callbacks.rb#68
     def __callbacks; end
 
-    # source://actionpack/7.0.4/lib/action_controller/metal.rb#210
+    # source://actionpack/7.0.4.2/lib/action_controller/metal.rb#210
     def middleware_stack; end
   end
 end
 
-class ViewComponentsSystemTestController < ::Rails::ApplicationController
+class ViewComponentsSystemTestController < ::ActionController::Base
   def system_test_entrypoint; end
 
   private
 
-  # source://actionview/7.0.4/lib/action_view/layouts.rb#328
+  # source://actionview/7.0.4.2/lib/action_view/layouts.rb#328
   def _layout(lookup_context, formats); end
 
   class << self
-    # source://actionpack/7.0.4/lib/action_controller/metal.rb#210
+    # source://actionpack/7.0.4.2/lib/action_controller/metal.rb#210
     def middleware_stack; end
   end
 end

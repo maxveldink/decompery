@@ -6,7 +6,7 @@ class ParticipationsController < ApplicationController
 
   def create
     if @user && @decomp
-      participation = Participation.find_or_create_by(decomp: @decomp, user: @user)
+      participation = Participation.create_or_find_by(decomp: @decomp, user: @user)
 
       render json: { participation_id: participation.id }
     else
