@@ -8,13 +8,13 @@
 class PG::Connection
   include ::PG::Constants
 
-  # source://pg/1.4.5/lib/pg/connection.rb#518
+  # source://pg/1.4.6/lib/pg/connection.rb#519
   def async_cancel; end
 
   def async_describe_portal(_arg0); end
   def async_describe_prepared(_arg0); end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#491
+  # source://pg/1.4.6/lib/pg/connection.rb#492
   def async_encrypt_password(password, username, algorithm = T.unsafe(nil)); end
 
   # source://rack-mini-profiler//lib/patches/db/pg.rb#109
@@ -25,49 +25,49 @@ class PG::Connection
   def async_exec_without_profiling(*_arg0); end
   def async_flush; end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#359
+  # source://pg/1.4.6/lib/pg/connection.rb#360
   def async_get_copy_data(async = T.unsafe(nil), decoder = T.unsafe(nil)); end
 
   def async_get_last_result; end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#336
+  # source://pg/1.4.6/lib/pg/connection.rb#337
   def async_get_result; end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#407
+  # source://pg/1.4.6/lib/pg/connection.rb#408
   def async_isnonblocking; end
 
   def async_prepare(*_arg0); end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#431
+  # source://pg/1.4.6/lib/pg/connection.rb#432
   def async_put_copy_data(buffer, encoder = T.unsafe(nil)); end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#461
+  # source://pg/1.4.6/lib/pg/connection.rb#462
   def async_put_copy_end(*args); end
 
   def async_query(*_arg0); end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#503
+  # source://pg/1.4.6/lib/pg/connection.rb#504
   def async_reset; end
 
   def async_set_client_encoding(_arg0); end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#393
+  # source://pg/1.4.6/lib/pg/connection.rb#394
   def async_setnonblocking(enabled); end
 
   def backend_key; end
   def backend_pid; end
   def block(*_arg0); end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#518
+  # source://pg/1.4.6/lib/pg/connection.rb#519
   def cancel; end
 
   def client_encoding=(_arg0); end
   def close; end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#274
+  # source://pg/1.4.6/lib/pg/connection.rb#275
   def conndefaults; end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#290
+  # source://pg/1.4.6/lib/pg/connection.rb#291
   def conndefaults_hash; end
 
   def connect_poll; end
@@ -75,12 +75,12 @@ class PG::Connection
   def connection_used_password; end
   def conninfo; end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#298
+  # source://pg/1.4.6/lib/pg/connection.rb#299
   def conninfo_hash; end
 
   def consume_input; end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#185
+  # source://pg/1.4.6/lib/pg/connection.rb#185
   def copy_data(sql, coder = T.unsafe(nil)); end
 
   def db; end
@@ -92,7 +92,7 @@ class PG::Connection
   def encoder_for_put_copy_data; end
   def encoder_for_put_copy_data=(_arg0); end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#491
+  # source://pg/1.4.6/lib/pg/connection.rb#492
   def encrypt_password(password, username, algorithm = T.unsafe(nil)); end
 
   def enter_pipeline_mode; end
@@ -125,25 +125,25 @@ class PG::Connection
   def flush; end
   def get_client_encoding; end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#359
+  # source://pg/1.4.6/lib/pg/connection.rb#360
   def get_copy_data(async = T.unsafe(nil), decoder = T.unsafe(nil)); end
 
   def get_last_result; end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#336
+  # source://pg/1.4.6/lib/pg/connection.rb#337
   def get_result; end
 
   def host; end
   def hostaddr; end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#97
+  # source://pg/1.4.6/lib/pg/connection.rb#97
   def inspect; end
 
   def internal_encoding; end
   def internal_encoding=(_arg0); end
   def is_busy; end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#407
+  # source://pg/1.4.6/lib/pg/connection.rb#408
   def isnonblocking; end
 
   def lo_close(_arg0); end
@@ -174,7 +174,7 @@ class PG::Connection
   def lowrite(_arg0, _arg1); end
   def make_empty_pgresult(_arg0); end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#407
+  # source://pg/1.4.6/lib/pg/connection.rb#408
   def nonblocking?; end
 
   def notifies; end
@@ -192,10 +192,10 @@ class PG::Connection
   def prepare_without_profiling(*_arg0); end
   def protocol_version; end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#431
+  # source://pg/1.4.6/lib/pg/connection.rb#432
   def put_copy_data(buffer, encoder = T.unsafe(nil)); end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#461
+  # source://pg/1.4.6/lib/pg/connection.rb#462
   def put_copy_end(*args); end
 
   # source://rack-mini-profiler//lib/patches/db/pg.rb#55
@@ -203,7 +203,7 @@ class PG::Connection
 
   def quote_ident(_arg0); end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#503
+  # source://pg/1.4.6/lib/pg/connection.rb#504
   def reset; end
 
   def reset_poll; end
@@ -228,7 +228,7 @@ class PG::Connection
   def set_notice_receiver; end
   def set_single_row_mode; end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#393
+  # source://pg/1.4.6/lib/pg/connection.rb#394
   def setnonblocking(enabled); end
 
   def socket; end
@@ -236,7 +236,7 @@ class PG::Connection
   def ssl_attribute(_arg0); end
   def ssl_attribute_names; end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#315
+  # source://pg/1.4.6/lib/pg/connection.rb#316
   def ssl_attributes; end
 
   def ssl_in_use?; end
@@ -261,7 +261,7 @@ class PG::Connection
   def sync_setnonblocking(_arg0); end
   def trace(_arg0); end
 
-  # source://pg/1.4.5/lib/pg/connection.rb#258
+  # source://pg/1.4.6/lib/pg/connection.rb#259
   def transaction; end
 
   def transaction_status; end
@@ -277,33 +277,33 @@ class PG::Connection
 
   private
 
-  # source://pg/1.4.5/lib/pg/connection.rb#573
+  # source://pg/1.4.6/lib/pg/connection.rb#574
   def async_connect_or_reset(poll_meth); end
 
   def flush_data=(_arg0); end
 
   class << self
-    # source://pg/1.4.5/lib/pg/connection.rb#864
+    # source://pg/1.4.6/lib/pg/connection.rb#865
     def async_api=(enable); end
 
-    # source://pg/1.4.5/lib/pg/connection.rb#694
+    # source://pg/1.4.6/lib/pg/connection.rb#695
     def async_connect(*args); end
 
-    # source://pg/1.4.5/lib/pg/connection.rb#789
+    # source://pg/1.4.6/lib/pg/connection.rb#790
     def async_ping(*args); end
 
-    # source://pg/1.4.5/lib/pg/connection.rb#841
+    # source://pg/1.4.6/lib/pg/connection.rb#842
     def async_send_api=(enable); end
 
     def conndefaults; end
 
-    # source://pg/1.4.5/lib/pg/connection.rb#282
+    # source://pg/1.4.6/lib/pg/connection.rb#283
     def conndefaults_hash; end
 
-    # source://pg/1.4.5/lib/pg/connection.rb#694
+    # source://pg/1.4.6/lib/pg/connection.rb#695
     def connect(*args); end
 
-    # source://pg/1.4.5/lib/pg/connection.rb#45
+    # source://pg/1.4.6/lib/pg/connection.rb#45
     def connect_hash_to_string(hash); end
 
     def connect_start(*_arg0); end
@@ -314,27 +314,27 @@ class PG::Connection
     def escape_string(_arg0); end
     def isthreadsafe; end
 
-    # source://pg/1.4.5/lib/pg/connection.rb#694
+    # source://pg/1.4.6/lib/pg/connection.rb#695
     def new(*args); end
 
-    # source://pg/1.4.5/lib/pg/connection.rb#694
+    # source://pg/1.4.6/lib/pg/connection.rb#695
     def open(*args); end
 
-    # source://pg/1.4.5/lib/pg/connection.rb#61
+    # source://pg/1.4.6/lib/pg/connection.rb#61
     def parse_connect_args(*args); end
 
-    # source://pg/1.4.5/lib/pg/connection.rb#789
+    # source://pg/1.4.6/lib/pg/connection.rb#790
     def ping(*args); end
 
-    # source://pg/1.4.5/lib/pg/connection.rb#38
+    # source://pg/1.4.6/lib/pg/connection.rb#38
     def quote_connstr(value); end
 
     def quote_ident(_arg0); end
 
-    # source://pg/1.4.5/lib/pg/connection.rb#694
+    # source://pg/1.4.6/lib/pg/connection.rb#695
     def setdb(*args); end
 
-    # source://pg/1.4.5/lib/pg/connection.rb#694
+    # source://pg/1.4.6/lib/pg/connection.rb#695
     def setdblogin(*args); end
 
     def sync_connect(*_arg0); end
@@ -343,16 +343,13 @@ class PG::Connection
 
     private
 
-    # source://pg/1.4.5/lib/pg/connection.rb#712
+    # source://pg/1.4.6/lib/pg/connection.rb#713
     def connect_to_hosts(*args); end
 
-    # source://pg/1.4.5/lib/pg/connection.rb#764
+    # source://pg/1.4.6/lib/pg/connection.rb#765
     def host_is_named_pipe?(host_string); end
   end
 end
-
-# source://pg/1.4.5/lib/pg/connection.rb#34
-PG::Connection::CONNECT_ARGUMENT_ORDER = T.let(T.unsafe(nil), Array)
 
 # PG patches, keep in mind exec and async_exec have a exec{|r| } semantics that is yet to be implemented
 #
@@ -383,7 +380,7 @@ class PG::Result
   def field_name_type; end
   def field_name_type=(_arg0); end
 
-  # source://pg/1.4.5/lib/pg/result.rb#26
+  # source://pg/1.4.6/lib/pg/result.rb#26
   def field_names_as(type); end
 
   def field_values(_arg0); end
@@ -399,10 +396,10 @@ class PG::Result
   def getlength(_arg0, _arg1); end
   def getvalue(_arg0, _arg1); end
 
-  # source://pg/1.4.5/lib/pg/result.rb#32
+  # source://pg/1.4.6/lib/pg/result.rb#32
   def inspect; end
 
-  # source://pg/1.4.5/lib/pg/result.rb#16
+  # source://pg/1.4.6/lib/pg/result.rb#16
   def map_types!(type_map); end
 
   # source://rack-mini-profiler//lib/patches/db/pg.rb#22
@@ -441,58 +438,13 @@ end
 # source://rack-mini-profiler//lib/mini_profiler/version.rb#3
 module Rack
   class << self
-    # source://rack/2.2.6.2/lib/rack/version.rb#26
+    # source://rack/2.2.6.4/lib/rack/version.rb#26
     def release; end
 
-    # source://rack/2.2.6.2/lib/rack/version.rb#19
+    # source://rack/2.2.6.4/lib/rack/version.rb#19
     def version; end
   end
 end
-
-# source://rack/2.2.6.2/lib/rack.rb#29
-Rack::CACHE_CONTROL = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#31
-Rack::CONTENT_LENGTH = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#32
-Rack::CONTENT_TYPE = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#43
-Rack::DELETE = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#36
-Rack::ETAG = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#30
-Rack::EXPIRES = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack/file.rb#6
-Rack::File = Rack::Files
-
-# source://rack/2.2.6.2/lib/rack.rb#39
-Rack::GET = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#44
-Rack::HEAD = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#20
-Rack::HTTPS = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#35
-Rack::HTTP_COOKIE = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#17
-Rack::HTTP_HOST = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#18
-Rack::HTTP_PORT = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#19
-Rack::HTTP_VERSION = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#46
-Rack::LINK = T.let(T.unsafe(nil), String)
 
 # source://rack-mini-profiler//lib/mini_profiler/version.rb#4
 class Rack::MiniProfiler
@@ -2299,144 +2251,6 @@ module Rack::MiniProfilerRailsMethods
   # source://rack-mini-profiler//lib/mini_profiler_rails/railtie_methods.rb#47
   def should_move?(child, node); end
 end
-
-# source://rack-test/2.0.2/lib/rack/test.rb#413
-Rack::MockSession = Rack::Test::Session
-
-# source://rack/2.2.6.2/lib/rack.rb#45
-Rack::OPTIONS = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#42
-Rack::PATCH = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#21
-Rack::PATH_INFO = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#40
-Rack::POST = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#41
-Rack::PUT = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#25
-Rack::QUERY_STRING = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#53
-Rack::RACK_ERRORS = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#63
-Rack::RACK_HIJACK = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#65
-Rack::RACK_HIJACK_IO = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#55
-Rack::RACK_INPUT = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#64
-Rack::RACK_IS_HIJACK = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#54
-Rack::RACK_LOGGER = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#76
-Rack::RACK_METHODOVERRIDE_ORIGINAL_METHOD = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#67
-Rack::RACK_MULTIPART_BUFFER_SIZE = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#68
-Rack::RACK_MULTIPART_TEMPFILE_FACTORY = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#60
-Rack::RACK_MULTIPROCESS = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#59
-Rack::RACK_MULTITHREAD = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#66
-Rack::RACK_RECURSIVE_INCLUDE = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#72
-Rack::RACK_REQUEST_COOKIE_HASH = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#73
-Rack::RACK_REQUEST_COOKIE_STRING = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#70
-Rack::RACK_REQUEST_FORM_HASH = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#69
-Rack::RACK_REQUEST_FORM_INPUT = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#71
-Rack::RACK_REQUEST_FORM_VARS = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#74
-Rack::RACK_REQUEST_QUERY_HASH = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#75
-Rack::RACK_REQUEST_QUERY_STRING = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#61
-Rack::RACK_RUNONCE = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#56
-Rack::RACK_SESSION = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#57
-Rack::RACK_SESSION_OPTIONS = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#77
-Rack::RACK_SESSION_UNPACKED_COOKIE_DATA = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#58
-Rack::RACK_SHOWSTATUS_DETAIL = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#52
-Rack::RACK_TEMPFILES = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#62
-Rack::RACK_URL_SCHEME = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#51
-Rack::RACK_VERSION = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack/version.rb#23
-Rack::RELEASE = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#22
-Rack::REQUEST_METHOD = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#23
-Rack::REQUEST_PATH = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#24
-Rack::SCRIPT_NAME = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#27
-Rack::SERVER_NAME = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#28
-Rack::SERVER_PORT = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#26
-Rack::SERVER_PROTOCOL = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#33
-Rack::SET_COOKIE = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#48
-Rack::TRACE = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#34
-Rack::TRANSFER_ENCODING = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack.rb#47
-Rack::UNLINK = T.let(T.unsafe(nil), String)
-
-# source://rack/2.2.6.2/lib/rack/version.rb#16
-Rack::VERSION = T.let(T.unsafe(nil), Array)
 
 # source://rack-mini-profiler//lib/patches/sql_patches.rb#3
 class SqlPatches

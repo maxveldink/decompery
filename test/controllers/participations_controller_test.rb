@@ -14,7 +14,7 @@ class DecompsControllerTest < ActionDispatch::IntegrationTest
       post decomp_participations_path(@decomp), params: { user_id: @user.id }
     end
 
-    assert_equal Participation.find_by(decomp: @decomp, user: @user).id, JSON.parse(response.body)["participation_id"]
+    assert_equal Participation.find_by(decomp: @decomp, user: @user).id, response.parsed_body["participation_id"]
   end
 
   test "create does nothing if user is not found" do
@@ -34,7 +34,7 @@ class DecompsControllerTest < ActionDispatch::IntegrationTest
   test "destroy destroys participation if user is found" do
     post decomp_participations_path(@decomp), params: { user_id: @user.id }
 
-    participation_id = JSON.parse(response.body)["participation_id"]
+    participation_id = response.parsed_body["participation_id"]
 
     assert_changes -> { Participation.count } do
       delete decomp_participation_path(@decomp, participation_id), params: { user_id: @user.id }

@@ -1,4 +1,5 @@
 require:
+  - rubocop-capybara
   - rubocop-minitest
   - rubocop-performance
   - rubocop-rails
@@ -12,9 +13,21 @@ AllCops:
     - db/schema.rb
     - bin/*
 
+Layout/LineLength:
+  Exclude:
+    - db/migrate/*.rb
+
 Lint/MissingSuper:
   Exclude:
     - app/components/**/*
+
+Metrics/AbcSize:
+  Exclude:
+    - db/migrate/*.rb
+
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*.rb
 
 Minitest/MultipleAssertions:
   Max: 4

@@ -565,6 +565,3 @@ end
 
 # source://shoulda-context//lib/shoulda/context/version.rb#3
 Shoulda::Context::VERSION = T.let(T.unsafe(nil), String)
-
-# source://shoulda/4.0.0/lib/shoulda/version.rb#2
-Shoulda::VERSION = T.let(T.unsafe(nil), String)
