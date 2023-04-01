@@ -8,7 +8,12 @@
 module Importmap; end
 
 # source://importmap-rails//lib/importmap/engine.rb#7
-class Importmap::Engine < ::Rails::Engine; end
+class Importmap::Engine < ::Rails::Engine
+  class << self
+    # source://activesupport/7.0.4.3/lib/active_support/callbacks.rb#68
+    def __callbacks; end
+  end
+end
 
 module Importmap::ImportmapTagsHelper
   def javascript_import_module_tag(*module_names); end

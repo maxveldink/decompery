@@ -31,9 +31,6 @@ class Array
   def place(*values); end
 end
 
-# source://activesupport/7.0.4.2/lib/active_support/core_ext/array/deprecated_conversions.rb#4
-Array::NOT_SET = T.let(T.unsafe(nil), Object)
-
 # source://yard//lib/yard/core_ext/file.rb#4
 class File < ::IO
   class << self
@@ -102,10 +99,6 @@ end
 #
 # source://yard//lib/yard/rubygems/backports/source_index.rb#363
 Gem::Cache = Gem::SourceIndex
-
-Gem::ConfigMap = T.let(T.unsafe(nil), Hash)
-Gem::RbConfigPriorities = T.let(T.unsafe(nil), Array)
-Gem::RubyGemsVersion = T.let(T.unsafe(nil), String)
 
 # The SourceIndex object indexes all the gems available from a
 # particular source (e.g. a list of gem directories, or a remote
@@ -289,9 +282,6 @@ class Gem::SourceIndex
   end
 end
 
-Gem::UNTAINT = T.let(T.unsafe(nil), Proc)
-Gem::UnsatisfiableDepedencyError = Gem::UnsatisfiableDependencyError
-
 # source://yard//lib/yard/parser/ruby/legacy/irb/slex.rb#17
 class IRB::SLex
   # @return [SLex] a new instance of SLex
@@ -461,18 +451,6 @@ class Insertion
   def insertion(val, rel, recursive = T.unsafe(nil), list = T.unsafe(nil)); end
 end
 
-# == Attribute Accessors per Thread
-#
-# Extends the module object with class/module and instance accessors for
-# class/module attributes, just like the native attr* accessors for instance
-# attributes, but does so on a per-thread basis.
-#
-# So the values are scoped within the Thread.current space under the class name
-# of the module.
-#
-# Note that it can also be scoped per-fiber if +Rails.application.config.active_support.isolation_level+
-# is set to +:fiber+.
-#
 # source://yard//lib/yard/core_ext/module.rb#2
 class Module
   # Returns the class name of a full module namespace path
@@ -485,33 +463,6 @@ class Module
   def class_name; end
 end
 
-# source://activesupport/7.0.4.2/lib/active_support/core_ext/module/delegation.rb#13
-Module::DELEGATION_RESERVED_KEYWORDS = T.let(T.unsafe(nil), Array)
-
-# source://activesupport/7.0.4.2/lib/active_support/core_ext/module/delegation.rb#14
-Module::DELEGATION_RESERVED_METHOD_NAMES = T.let(T.unsafe(nil), Set)
-
-# source://activesupport/7.0.4.2/lib/active_support/core_ext/module/delegation.rb#10
-Module::RUBY_RESERVED_KEYWORDS = T.let(T.unsafe(nil), Array)
-
-# --
-# Most objects are cloneable, but not all. For example you can't dup methods:
-#
-#   method(:puts).dup # => TypeError: allocator undefined for Method
-#
-# Classes may signal their instances are not duplicable removing +dup+/+clone+
-# or raising exceptions from them. So, to dup an arbitrary object you normally
-# use an optimistic approach and are ready to catch an exception, say:
-#
-#   arbitrary_object.dup rescue object
-#
-# Rails dups objects in a few critical spots where they are not that arbitrary.
-# That rescue is very expensive (like 40 times slower than a predicate), and it
-# is often triggered.
-#
-# That's why we hardcode the following cases and check duplicable? instead of
-# using that rescue idiom.
-# ++
 class Object < ::BasicObject
   include ::Kernel
   include ::PP::ObjectMixin
@@ -539,19 +490,19 @@ RUBY19 = T.let(T.unsafe(nil), TrueClass)
 #
 # source://yard//lib/yard/server/rack_adapter.rb#85
 class Rack::Request
-  # source://rack/2.2.6.2/lib/rack/request.rb#26
+  # source://rack/2.2.6.4/lib/rack/request.rb#26
   def initialize(env); end
 
-  # source://rack/2.2.6.2/lib/rack/request.rb#40
+  # source://rack/2.2.6.4/lib/rack/request.rb#40
   def delete_param(k); end
 
-  # source://rack/2.2.6.2/lib/rack/request.rb#31
+  # source://rack/2.2.6.4/lib/rack/request.rb#31
   def params; end
 
-  # source://rack/2.2.6.2/lib/rack/request.rb#31
+  # source://rack/2.2.6.4/lib/rack/request.rb#31
   def query; end
 
-  # source://rack/2.2.6.2/lib/rack/request.rb#35
+  # source://rack/2.2.6.4/lib/rack/request.rb#35
   def update_param(k, v); end
 
   # Returns the value of attribute version_supplied.
@@ -572,19 +523,13 @@ class Rack::Request
   def xhr?; end
 
   class << self
-    # source://rack/2.2.6.2/lib/rack/request.rb#16
+    # source://rack/2.2.6.4/lib/rack/request.rb#16
     def ip_filter; end
 
-    # source://rack/2.2.6.2/lib/rack/request.rb#16
+    # source://rack/2.2.6.4/lib/rack/request.rb#16
     def ip_filter=(_arg0); end
   end
 end
-
-# source://rack/2.2.6.2/lib/rack/request.rb#20
-Rack::Request::ALLOWED_SCHEMES = T.let(T.unsafe(nil), Array)
-
-# source://rack/2.2.6.2/lib/rack/request.rb#21
-Rack::Request::SCHEME_WHITELIST = T.let(T.unsafe(nil), Array)
 
 # source://yard//lib/yard/core_ext/string.rb#2
 class String
@@ -599,12 +544,6 @@ class String
   # source://yard//lib/yard/core_ext/string.rb#8
   def shell_split; end
 end
-
-# source://activesupport/7.0.4.2/lib/active_support/core_ext/object/blank.rb#104
-String::BLANK_RE = T.let(T.unsafe(nil), Regexp)
-
-# source://activesupport/7.0.4.2/lib/active_support/core_ext/object/blank.rb#105
-String::ENCODED_BLANKS = T.let(T.unsafe(nil), Concurrent::Map)
 
 # A subclass of Hash where all keys are converted into Symbols, and
 # optionally, all String values are converted into Symbols.
@@ -717,9 +656,6 @@ class WEBrick::HTTPRequest
   # source://yard//lib/yard/server/webrick_adapter.rb#44
   def xhr?; end
 end
-
-# source://webrick/1.7.0/lib/webrick/httprequest.rb#449
-WEBrick::HTTPRequest::MAX_HEADER_LENGTH = T.let(T.unsafe(nil), Integer)
 
 # Gem::YARDoc provides methods to generate YARDoc and yri data for installed gems
 # upon gem installation.

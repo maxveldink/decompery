@@ -111,15 +111,6 @@ class Module
   def rake_extension(method); end
 end
 
-# source://activesupport/7.0.4.2/lib/active_support/core_ext/module/delegation.rb#13
-Module::DELEGATION_RESERVED_KEYWORDS = T.let(T.unsafe(nil), Array)
-
-# source://activesupport/7.0.4.2/lib/active_support/core_ext/module/delegation.rb#14
-Module::DELEGATION_RESERVED_METHOD_NAMES = T.let(T.unsafe(nil), Set)
-
-# source://activesupport/7.0.4.2/lib/active_support/core_ext/module/delegation.rb#10
-Module::RUBY_RESERVED_KEYWORDS = T.let(T.unsafe(nil), Array)
-
 # source://rake//lib/rake/cloneable.rb#2
 module Rake
   extend ::FileUtils::StreamUtils_
@@ -2269,9 +2260,6 @@ class Rake::PseudoStatus
   def to_i; end
 end
 
-# source://rdoc/6.5.0/rdoc/task.rb#326
-Rake::RDocTask = RDoc::Task
-
 # Error indicating a recursion overflow error in task selection.
 #
 # source://rake//lib/rake/rule_recursion_overflow_error.rb#5
@@ -3124,9 +3112,3 @@ class String
   # source://rake//lib/rake/ext/string.rb#59
   def pathmap_replace(patterns, &block); end
 end
-
-# source://activesupport/7.0.4.2/lib/active_support/core_ext/object/blank.rb#104
-String::BLANK_RE = T.let(T.unsafe(nil), Regexp)
-
-# source://activesupport/7.0.4.2/lib/active_support/core_ext/object/blank.rb#105
-String::ENCODED_BLANKS = T.let(T.unsafe(nil), Concurrent::Map)

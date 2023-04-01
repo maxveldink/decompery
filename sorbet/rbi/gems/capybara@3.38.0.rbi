@@ -9502,21 +9502,6 @@ module XPath::DSL
   def ~(*args); end
 end
 
-# source://xpath/3.2.0/lib/xpath/dsl.rb#128
-XPath::DSL::AXES = T.let(T.unsafe(nil), Array)
-
-# source://xpath/3.2.0/lib/xpath/dsl.rb#152
-XPath::DSL::LOWERCASE_LETTERS = T.let(T.unsafe(nil), String)
-
-# source://xpath/3.2.0/lib/xpath/dsl.rb#75
-XPath::DSL::METHODS = T.let(T.unsafe(nil), Array)
-
-# source://xpath/3.2.0/lib/xpath/dsl.rb#105
-XPath::DSL::OPERATORS = T.let(T.unsafe(nil), Array)
-
-# source://xpath/3.2.0/lib/xpath/dsl.rb#151
-XPath::DSL::UPPERCASE_LETTERS = T.let(T.unsafe(nil), String)
-
 # source://capybara//lib/capybara/selector/xpath_extensions.rb#4
 class XPath::Renderer
   # source://xpath/3.2.0/lib/xpath/renderer.rb#9

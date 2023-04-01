@@ -12209,6 +12209,3 @@ end
 
 # source://shoulda-matchers//lib/shoulda/matchers/util/word_wrap.rb#5
 Shoulda::Matchers::WordWrap::TERMINAL_WIDTH = T.let(T.unsafe(nil), Integer)
-
-# source://shoulda/4.0.0/lib/shoulda/version.rb#2
-Shoulda::VERSION = T.let(T.unsafe(nil), String)
