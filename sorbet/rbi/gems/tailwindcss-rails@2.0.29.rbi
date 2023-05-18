@@ -21,11 +21,11 @@ module Tailwindcss::Commands
 
     # @return [Boolean]
     #
-    # source://tailwindcss-rails//lib/tailwindcss/commands.rb#93
+    # source://tailwindcss-rails//lib/tailwindcss/commands.rb#94
     def rails_css_compressor?; end
 
     # source://tailwindcss-rails//lib/tailwindcss/commands.rb#86
-    def watch_command(poll: T.unsafe(nil), **kwargs); end
+    def watch_command(always: T.unsafe(nil), poll: T.unsafe(nil), **kwargs); end
   end
 end
 

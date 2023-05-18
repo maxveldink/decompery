@@ -2929,7 +2929,7 @@ module Capybara::Node::Finders
   # @raise [Capybara::ExpectationNotMet] The number of elements found doesn't match the specified conditions
   # @return [Capybara::Result] A collection of found elements
   #
-  # source://capybara//lib/capybara/node/finders.rb#255
+  # source://capybara//lib/capybara/node/finders.rb#257
   def all(*args, allow_reload: T.unsafe(nil), **options, &optional_filter_block); end
 
   # Find an {Capybara::Node::Element} based on the given arguments that is also an ancestor of the element called on.
@@ -3051,7 +3051,7 @@ module Capybara::Node::Finders
   # @raise [Capybara::ExpectationNotMet] The number of elements found doesn't match the specified conditions
   # @return [Capybara::Result] A collection of found elements
   #
-  # source://capybara//lib/capybara/node/finders.rb#255
+  # source://capybara//lib/capybara/node/finders.rb#257
   def find_all(*args, allow_reload: T.unsafe(nil), **options, &optional_filter_block); end
 
   # Find a button on the page.
@@ -3062,7 +3062,7 @@ module Capybara::Node::Finders
   # @overload find_button
   # @return [Capybara::Node::Element] The found element
   #
-  # source://capybara//lib/capybara/node/finders.rb#182
+  # source://capybara//lib/capybara/node/finders.rb#184
   def find_button(locator = T.unsafe(nil), **options, &optional_filter_block); end
 
   # Find a element on the page, given its id.
@@ -3076,7 +3076,7 @@ module Capybara::Node::Finders
   # @param options [Hash] a customizable set of options
   # @return [Capybara::Node::Element] The found element
   #
-  # source://capybara//lib/capybara/node/finders.rb#196
+  # source://capybara//lib/capybara/node/finders.rb#198
   def find_by_id(id, **options, &optional_filter_block); end
 
   # Find a form field on the page. The field can be found by its name, id or label text.
@@ -3092,7 +3092,7 @@ module Capybara::Node::Finders
   # @overload find_link
   # @return [Capybara::Node::Element] The found element
   #
-  # source://capybara//lib/capybara/node/finders.rb#155
+  # source://capybara//lib/capybara/node/finders.rb#157
   def find_link(locator = T.unsafe(nil), **options, &optional_filter_block); end
 
   # Find the first element on the page matching the given selector
@@ -3104,7 +3104,7 @@ module Capybara::Node::Finders
   # @raise [Capybara::ElementNotFound] If element(s) matching the provided options can't be found before time expires
   # @return [Capybara::Node::Element] The found element or nil
   #
-  # source://capybara//lib/capybara/node/finders.rb#291
+  # source://capybara//lib/capybara/node/finders.rb#293
   def first(*args, **options, &optional_filter_block); end
 
   # Find an {Capybara::Node::Element} based on the given arguments that is also a sibling of the element called on.
@@ -3135,23 +3135,23 @@ module Capybara::Node::Finders
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/node/finders.rb#316
+  # source://capybara//lib/capybara/node/finders.rb#318
   def ambiguous?(query, result); end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/node/finders.rb#324
+  # source://capybara//lib/capybara/node/finders.rb#326
   def options_include_minimum?(opts); end
 
-  # source://capybara//lib/capybara/node/finders.rb#328
+  # source://capybara//lib/capybara/node/finders.rb#330
   def parent; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/node/finders.rb#320
+  # source://capybara//lib/capybara/node/finders.rb#322
   def prefer_exact?(query); end
 
-  # source://capybara//lib/capybara/node/finders.rb#298
+  # source://capybara//lib/capybara/node/finders.rb#300
   def synced_resolve(query); end
 end
 
@@ -3990,6 +3990,88 @@ end
 
 # source://capybara//lib/capybara/node/simple.rb#206
 Capybara::Node::Simple::VISIBILITY_XPATH = T.let(T.unsafe(nil), String)
+
+# {Capybara::Node::WhitespaceNormalizer} provides methods that
+# help to normalize the spacing of text content inside of
+# {Capybara::Node::Element}s by removing various unicode
+# spacing and directional markings.
+#
+# source://capybara//lib/capybara/node/whitespace_normalizer.rb#12
+module Capybara::Node::WhitespaceNormalizer
+  # Normalizes the spacing of a node's text to be similar to
+  # what matchers might expect.
+  #
+  # @param text [String]
+  # @return [String]
+  #
+  # source://capybara//lib/capybara/node/whitespace_normalizer.rb#53
+  def normalize_spacing(text); end
+
+  # Variant on {Capybara::Node::Normalizer#normalize_spacing} that
+  # targets the whitespace of visible elements only.
+  #
+  # @param text [String]
+  # @return [String]
+  #
+  # source://capybara//lib/capybara/node/whitespace_normalizer.rb#71
+  def normalize_visible_spacing(text); end
+end
+
+# All spaces except for NBSP
+#
+# source://capybara//lib/capybara/node/whitespace_normalizer.rb#19
+Capybara::Node::WhitespaceNormalizer::BREAKING_SPACES = T.let(T.unsafe(nil), String)
+
+# Matches multiple empty lines
+#
+# source://capybara//lib/capybara/node/whitespace_normalizer.rb#43
+Capybara::Node::WhitespaceNormalizer::EMPTY_LINES = T.let(T.unsafe(nil), Regexp)
+
+# Any whitespace at the front of text
+#
+# source://capybara//lib/capybara/node/whitespace_normalizer.rb#25
+Capybara::Node::WhitespaceNormalizer::LEADING_SPACES = T.let(T.unsafe(nil), Regexp)
+
+# Signifies text is read left to right
+#
+# source://capybara//lib/capybara/node/whitespace_normalizer.rb#34
+Capybara::Node::WhitespaceNormalizer::LEFT_TO_RIGHT_MARK = T.let(T.unsafe(nil), String)
+
+# source://capybara//lib/capybara/node/whitespace_normalizer.rb#15
+Capybara::Node::WhitespaceNormalizer::LINE_SEPERATOR = T.let(T.unsafe(nil), String)
+
+# Unicode for NBSP, or &nbsp;
+#
+# source://capybara//lib/capybara/node/whitespace_normalizer.rb#14
+Capybara::Node::WhitespaceNormalizer::NON_BREAKING_SPACE = T.let(T.unsafe(nil), String)
+
+# source://capybara//lib/capybara/node/whitespace_normalizer.rb#16
+Capybara::Node::WhitespaceNormalizer::PARAGRAPH_SEPERATOR = T.let(T.unsafe(nil), String)
+
+# Characters we want to truncate from text
+#
+# source://capybara//lib/capybara/node/whitespace_normalizer.rb#40
+Capybara::Node::WhitespaceNormalizer::REMOVED_CHARACTERS = T.let(T.unsafe(nil), String)
+
+# Signifies text is read right to left
+#
+# source://capybara//lib/capybara/node/whitespace_normalizer.rb#37
+Capybara::Node::WhitespaceNormalizer::RIGHT_TO_LEFT_MARK = T.let(T.unsafe(nil), String)
+
+# Whitespace we want to substitute with plain spaces
+#
+# source://capybara//lib/capybara/node/whitespace_normalizer.rb#22
+Capybara::Node::WhitespaceNormalizer::SQUEEZED_SPACES = T.let(T.unsafe(nil), String)
+
+# Any whitespace at the end of text
+#
+# source://capybara//lib/capybara/node/whitespace_normalizer.rb#28
+Capybara::Node::WhitespaceNormalizer::TRAILING_SPACES = T.let(T.unsafe(nil), Regexp)
+
+# "Invisible" space character
+#
+# source://capybara//lib/capybara/node/whitespace_normalizer.rb#31
+Capybara::Node::WhitespaceNormalizer::ZERO_WIDTH_SPACE = T.let(T.unsafe(nil), String)
 
 # source://capybara//lib/capybara.rb#20
 class Capybara::NotSupportedByDriverError < ::Capybara::CapybaraError; end
@@ -5177,244 +5259,246 @@ class Capybara::RackTest::Form::ParamsHash < ::Hash
   def to_params_hash; end
 end
 
-# source://capybara//lib/capybara/rack_test/node.rb#5
+# source://capybara//lib/capybara/rack_test/node.rb#6
 class Capybara::RackTest::Node < ::Capybara::Driver::Node
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  include ::Capybara::Node::WhitespaceNormalizer
+
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def [](*_arg0, **_arg1, &_arg2); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def all_text(*_arg0, **_arg1, &_arg2); end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def checked?(*_arg0, **_arg1, &_arg2); end
 
   # @raise [ArgumentError]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def click(*_arg0, **_arg1, &_arg2); end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def disabled?(*_arg0, **_arg1, &_arg2); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def find_css(*_arg0, **_arg1, &_arg2); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def find_xpath(*_arg0, **_arg1, &_arg2); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def path(*_arg0, **_arg1, &_arg2); end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def readonly?(*_arg0, **_arg1, &_arg2); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def select_option(*_arg0, **_arg1, &_arg2); end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def selected?(*_arg0, **_arg1, &_arg2); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def set(*_arg0, **_arg1, &_arg2); end
 
   # @raise [NotImplementedError]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def style(*_arg0, **_arg1, &_arg2); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def tag_name(*_arg0, **_arg1, &_arg2); end
 
   # @raise [Capybara::UnselectNotAllowed]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def unselect_option(*_arg0, **_arg1, &_arg2); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def value(*_arg0, **_arg1, &_arg2); end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def visible?(*_arg0, **_arg1, &_arg2); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#136
+  # source://capybara//lib/capybara/rack_test/node.rb#130
   def visible_text(*_arg0, **_arg1, &_arg2); end
 
   protected
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#291
+  # source://capybara//lib/capybara/rack_test/node.rb#294
   def checkbox?; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#287
+  # source://capybara//lib/capybara/rack_test/node.rb#290
   def checkbox_or_radio?(field = T.unsafe(nil)); end
 
   # @api private
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#152
+  # source://capybara//lib/capybara/rack_test/node.rb#146
   def displayed_text(check_ancestor: T.unsafe(nil)); end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#303
+  # source://capybara//lib/capybara/rack_test/node.rb#306
   def input_field?; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#295
+  # source://capybara//lib/capybara/rack_test/node.rb#298
   def radio?; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#311
+  # source://capybara//lib/capybara/rack_test/node.rb#314
   def range?; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#299
+  # source://capybara//lib/capybara/rack_test/node.rb#302
   def text_or_password?; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#307
+  # source://capybara//lib/capybara/rack_test/node.rb#310
   def textarea?; end
 
   private
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#242
+  # source://capybara//lib/capybara/rack_test/node.rb#245
   def attribute_is_not_blank?(attribute); end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#281
+  # source://capybara//lib/capybara/rack_test/node.rb#284
   def checkable?; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#252
+  # source://capybara//lib/capybara/rack_test/node.rb#255
   def click_label; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#176
+  # source://capybara//lib/capybara/rack_test/node.rb#172
   def deselect_options; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#246
+  # source://capybara//lib/capybara/rack_test/node.rb#249
   def follow_link; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#193
+  # source://capybara//lib/capybara/rack_test/node.rb#189
   def form; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#273
+  # source://capybara//lib/capybara/rack_test/node.rb#276
   def link?; end
 
   # a reference to the select node if this is an option node
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#185
+  # source://capybara//lib/capybara/rack_test/node.rb#181
   def select_node; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#207
+  # source://capybara//lib/capybara/rack_test/node.rb#203
   def set_checkbox(value); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#223
+  # source://capybara//lib/capybara/rack_test/node.rb#219
   def set_input(value); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#201
+  # source://capybara//lib/capybara/rack_test/node.rb#197
   def set_radio(_value); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#215
+  # source://capybara//lib/capybara/rack_test/node.rb#211
   def set_range(value); end
 
   # @raise [Capybara::RackTest::Errors::StaleElementReferenceError]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#172
+  # source://capybara//lib/capybara/rack_test/node.rb#168
   def stale_check; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#180
+  # source://capybara//lib/capybara/rack_test/node.rb#176
   def string_node; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/rack_test/node.rb#277
+  # source://capybara//lib/capybara/rack_test/node.rb#280
   def submits?; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#262
+  # source://capybara//lib/capybara/rack_test/node.rb#265
   def toggle_details(details = T.unsafe(nil)); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#189
+  # source://capybara//lib/capybara/rack_test/node.rb#185
   def type; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#8
+  # source://capybara//lib/capybara/rack_test/node.rb#11
   def unchecked_all_text; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#93
+  # source://capybara//lib/capybara/rack_test/node.rb#87
   def unchecked_checked?; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#67
+  # source://capybara//lib/capybara/rack_test/node.rb#61
   def unchecked_click(keys = T.unsafe(nil), **options); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#101
+  # source://capybara//lib/capybara/rack_test/node.rb#95
   def unchecked_disabled?; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#126
+  # source://capybara//lib/capybara/rack_test/node.rb#120
   def unchecked_find_css(locator, **_hints); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#122
+  # source://capybara//lib/capybara/rack_test/node.rb#116
   def unchecked_find_xpath(locator, **_hints); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#118
+  # source://capybara//lib/capybara/rack_test/node.rb#112
   def unchecked_path; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#111
+  # source://capybara//lib/capybara/rack_test/node.rb#105
   def unchecked_readonly?; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#54
+  # source://capybara//lib/capybara/rack_test/node.rb#48
   def unchecked_select_option; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#97
+  # source://capybara//lib/capybara/rack_test/node.rb#91
   def unchecked_selected?; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#37
+  # source://capybara//lib/capybara/rack_test/node.rb#31
   def unchecked_set(value, **options); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#29
+  # source://capybara//lib/capybara/rack_test/node.rb#23
   def unchecked_style(_styles); end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#85
+  # source://capybara//lib/capybara/rack_test/node.rb#79
   def unchecked_tag_name; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#61
+  # source://capybara//lib/capybara/rack_test/node.rb#55
   def unchecked_unselect_option; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#33
+  # source://capybara//lib/capybara/rack_test/node.rb#27
   def unchecked_value; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#89
+  # source://capybara//lib/capybara/rack_test/node.rb#83
   def unchecked_visible?; end
 
-  # source://capybara//lib/capybara/rack_test/node.rb#17
+  # source://capybara//lib/capybara/rack_test/node.rb#15
   def unchecked_visible_text; end
 end
 
-# source://capybara//lib/capybara/rack_test/node.rb#6
+# source://capybara//lib/capybara/rack_test/node.rb#9
 Capybara::RackTest::Node::BLOCK_ELEMENTS = T.let(T.unsafe(nil), Array)
 
-# source://capybara//lib/capybara/rack_test/node.rb#316
+# source://capybara//lib/capybara/rack_test/node.rb#319
 Capybara::RackTest::Node::DISABLED_BY_FIELDSET_XPATH = T.let(T.unsafe(nil), String)
 
-# source://capybara//lib/capybara/rack_test/node.rb#315
+# source://capybara//lib/capybara/rack_test/node.rb#318
 Capybara::RackTest::Node::OPTION_OWNER_XPATH = T.let(T.unsafe(nil), String)
 
 # source://capybara//lib/capybara.rb#24
@@ -6631,20 +6715,20 @@ class Capybara::Selenium::ChromeNode < ::Capybara::Selenium::Node
 
   private
 
-  # source://capybara//lib/capybara/selenium/nodes/chrome_node.rb#113
+  # source://capybara//lib/capybara/selenium/nodes/chrome_node.rb#117
   def browser_version(to_float: T.unsafe(nil)); end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/nodes/chrome_node.rb#120
+  # source://capybara//lib/capybara/selenium/nodes/chrome_node.rb#124
   def chromedriver_fixed_actions_key_state?; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/nodes/chrome_node.rb#124
+  # source://capybara//lib/capybara/selenium/nodes/chrome_node.rb#128
   def chromedriver_supports_displayed_endpoint?; end
 
-  # source://capybara//lib/capybara/selenium/nodes/chrome_node.rb#128
+  # source://capybara//lib/capybara/selenium/nodes/chrome_node.rb#132
   def chromedriver_version; end
 
   # source://capybara//lib/capybara/selenium/nodes/chrome_node.rb#107
@@ -6652,7 +6736,7 @@ class Capybara::Selenium::ChromeNode < ::Capybara::Selenium::Node
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/nodes/chrome_node.rb#132
+  # source://capybara//lib/capybara/selenium/nodes/chrome_node.rb#136
   def native_displayed?; end
 
   # @raise [ArgumentError]
@@ -6970,7 +7054,7 @@ module Capybara::Selenium::Driver::EdgeDriver
 
   private
 
-  # source://capybara//lib/capybara/selenium/driver_specializations/edge_driver.rb#111
+  # source://capybara//lib/capybara/selenium/driver_specializations/edge_driver.rb#115
   def build_node(native_node, initial_cache = T.unsafe(nil)); end
 
   # source://capybara//lib/capybara/selenium/driver_specializations/edge_driver.rb#101
@@ -6987,7 +7071,7 @@ module Capybara::Selenium::Driver::EdgeDriver
   # source://capybara//lib/capybara/selenium/driver_specializations/edge_driver.rb#92
   def delete_all_cookies; end
 
-  # source://capybara//lib/capybara/selenium/driver_specializations/edge_driver.rb#115
+  # source://capybara//lib/capybara/selenium/driver_specializations/edge_driver.rb#119
   def edgedriver_version; end
 
   # source://capybara//lib/capybara/selenium/driver_specializations/edge_driver.rb#105
@@ -7092,7 +7176,7 @@ class Capybara::Selenium::EdgeNode < ::Capybara::Selenium::Node
   include ::Capybara::Selenium::Node::Html5Drag
 
   # source://capybara//lib/capybara/selenium/nodes/edge_node.rb#41
-  def click(*_arg0); end
+  def click(*_arg0, **_arg1); end
 
   # @return [Boolean]
   #
@@ -7104,6 +7188,9 @@ class Capybara::Selenium::EdgeNode < ::Capybara::Selenium::Node
 
   # source://capybara//lib/capybara/selenium/nodes/edge_node.rb#58
   def select_option; end
+
+  # source://capybara//lib/capybara/selenium/nodes/edge_node.rb#80
+  def send_keys(*args); end
 
   # source://capybara//lib/capybara/selenium/nodes/edge_node.rb#17
   def set_file(value); end
@@ -7118,20 +7205,20 @@ class Capybara::Selenium::EdgeNode < ::Capybara::Selenium::Node
 
   private
 
-  # source://capybara//lib/capybara/selenium/nodes/edge_node.rb#88
+  # source://capybara//lib/capybara/selenium/nodes/edge_node.rb#110
   def browser_version; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/nodes/edge_node.rb#95
+  # source://capybara//lib/capybara/selenium/nodes/edge_node.rb#117
   def chrome_edge?; end
 
-  # source://capybara//lib/capybara/selenium/nodes/edge_node.rb#82
+  # source://capybara//lib/capybara/selenium/nodes/edge_node.rb#100
   def file_errors; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/nodes/edge_node.rb#99
+  # source://capybara//lib/capybara/selenium/nodes/edge_node.rb#121
   def native_displayed?; end
 end
 
@@ -7232,84 +7319,85 @@ class Capybara::Selenium::IENode < ::Capybara::Selenium::Node
   def disabled?; end
 end
 
-# source://capybara//lib/capybara/selenium/node.rb#8
+# source://capybara//lib/capybara/selenium/node.rb#9
 class Capybara::Selenium::Node < ::Capybara::Driver::Node
+  include ::Capybara::Node::WhitespaceNormalizer
   include ::Capybara::Selenium::Find
   include ::Capybara::Selenium::Scroll
 
-  # source://capybara//lib/capybara/selenium/node.rb#27
+  # source://capybara//lib/capybara/selenium/node.rb#25
   def [](name); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#18
+  # source://capybara//lib/capybara/selenium/node.rb#20
   def all_text; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#194
+  # source://capybara//lib/capybara/selenium/node.rb#192
   def checked?; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#108
+  # source://capybara//lib/capybara/selenium/node.rb#106
   def click(keys = T.unsafe(nil), **options); end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#204
+  # source://capybara//lib/capybara/selenium/node.rb#202
   def content_editable?; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#197
+  # source://capybara//lib/capybara/selenium/node.rb#195
   def disabled?; end
 
   # @raise [ArgumentError]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#148
+  # source://capybara//lib/capybara/selenium/node.rb#146
   def double_click(keys = T.unsafe(nil), **options); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#165
+  # source://capybara//lib/capybara/selenium/node.rb#163
   def drag_to(element, drop_modifiers: T.unsafe(nil), **_arg2); end
 
   # @raise [NotImplementedError]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#178
+  # source://capybara//lib/capybara/selenium/node.rb#176
   def drop(*_); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#161
+  # source://capybara//lib/capybara/selenium/node.rb#159
   def hover; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#193
+  # source://capybara//lib/capybara/selenium/node.rb#191
   def multiple?; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#212
+  # source://capybara//lib/capybara/selenium/node.rb#210
   def obscured?(x: T.unsafe(nil), y: T.unsafe(nil)); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#208
+  # source://capybara//lib/capybara/selenium/node.rb#206
   def path; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#192
+  # source://capybara//lib/capybara/selenium/node.rb#190
   def readonly?; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#219
+  # source://capybara//lib/capybara/selenium/node.rb#217
   def rect; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#131
+  # source://capybara//lib/capybara/selenium/node.rb#129
   def right_click(keys = T.unsafe(nil), **options); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#98
+  # source://capybara//lib/capybara/selenium/node.rb#96
   def select_option; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#194
+  # source://capybara//lib/capybara/selenium/node.rb#192
   def selected?; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#157
+  # source://capybara//lib/capybara/selenium/node.rb#155
   def send_keys(*args); end
 
   # Set the value of the form element to the given value.
@@ -7319,186 +7407,186 @@ class Capybara::Selenium::Node < ::Capybara::Driver::Node
   # @param value [String] The new value
   # @param options [Hash{}] Driver specific options for how to set the value
   #
-  # source://capybara//lib/capybara/selenium/node.rb#61
+  # source://capybara//lib/capybara/selenium/node.rb#59
   def set(value, **options); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#223
+  # source://capybara//lib/capybara/selenium/node.rb#221
   def shadow_root; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#41
+  # source://capybara//lib/capybara/selenium/node.rb#39
   def style(styles); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#182
+  # source://capybara//lib/capybara/selenium/node.rb#180
   def tag_name; end
 
   # @raise [Capybara::UnselectNotAllowed]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#102
+  # source://capybara//lib/capybara/selenium/node.rb#100
   def unselect_option; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#33
+  # source://capybara//lib/capybara/selenium/node.rb#31
   def value; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#191
+  # source://capybara//lib/capybara/selenium/node.rb#189
   def visible?; end
 
   # @raise [NotImplementedError]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#12
+  # source://capybara//lib/capybara/selenium/node.rb#14
   def visible_text; end
 
   protected
 
-  # source://capybara//lib/capybara/selenium/node.rb#232
+  # source://capybara//lib/capybara/selenium/node.rb#230
   def scroll_if_needed; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#239
+  # source://capybara//lib/capybara/selenium/node.rb#237
   def scroll_to_center; end
 
   private
 
-  # source://capybara//lib/capybara/selenium/node.rb#485
+  # source://capybara//lib/capybara/selenium/node.rb#483
   def action_pause(action, duration); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#417
+  # source://capybara//lib/capybara/selenium/node.rb#415
   def action_with_modifiers(click_options); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#520
+  # source://capybara//lib/capybara/selenium/node.rb#518
   def attrs(*attr_names); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#301
+  # source://capybara//lib/capybara/selenium/node.rb#299
   def auto_rapid_set_length; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#270
+  # source://capybara//lib/capybara/selenium/node.rb#268
   def boolean_attr(val); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#468
+  # source://capybara//lib/capybara/selenium/node.rb#466
   def bridge; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#464
+  # source://capybara//lib/capybara/selenium/node.rb#462
   def browser; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#472
+  # source://capybara//lib/capybara/selenium/node.rb#470
   def browser_action; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#516
+  # source://capybara//lib/capybara/selenium/node.rb#514
   def build_node(native_node, initial_cache = T.unsafe(nil)); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#476
+  # source://capybara//lib/capybara/selenium/node.rb#474
   def capabilities; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#508
+  # source://capybara//lib/capybara/selenium/node.rb#506
   def each_key(keys, &block); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#512
+  # source://capybara//lib/capybara/selenium/node.rb#510
   def find_context; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#454
+  # source://capybara//lib/capybara/selenium/node.rb#452
   def modifiers_down(actions, keys); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#459
+  # source://capybara//lib/capybara/selenium/node.rb#457
   def modifiers_up(actions, keys); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#532
+  # source://capybara//lib/capybara/selenium/node.rb#530
   def native_id; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#497
+  # source://capybara//lib/capybara/selenium/node.rb#495
   def normalize_keys(keys); end
 
   # @raise [ArgumentError]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#305
+  # source://capybara//lib/capybara/selenium/node.rb#303
   def perform_with_options(click_options, &block); end
 
   # a reference to the select node if this is an option node
   #
-  # source://capybara//lib/capybara/selenium/node.rb#275
+  # source://capybara//lib/capybara/selenium/node.rb#273
   def select_node; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#343
+  # source://capybara//lib/capybara/selenium/node.rb#341
   def set_color(value); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#393
+  # source://capybara//lib/capybara/selenium/node.rb#391
   def set_content_editable(value); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#319
+  # source://capybara//lib/capybara/selenium/node.rb#317
   def set_date(value); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#335
+  # source://capybara//lib/capybara/selenium/node.rb#333
   def set_datetime_local(value); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#365
+  # source://capybara//lib/capybara/selenium/node.rb#363
   def set_file(value); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#347
+  # source://capybara//lib/capybara/selenium/node.rb#345
   def set_range(value); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#279
+  # source://capybara//lib/capybara/selenium/node.rb#277
   def set_text(value, clear: T.unsafe(nil), rapid: T.unsafe(nil), **_unused); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#327
+  # source://capybara//lib/capybara/selenium/node.rb#325
   def set_time(value); end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#538
+  # source://capybara//lib/capybara/selenium/node.rb#536
   def shadow_root?; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#256
+  # source://capybara//lib/capybara/selenium/node.rb#254
   def sibling_index(parent, node, selector); end
 
-  # source://capybara//lib/capybara/selenium/node.rb#351
+  # source://capybara//lib/capybara/selenium/node.rb#349
   def update_value_js(value); end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#480
+  # source://capybara//lib/capybara/selenium/node.rb#478
   def w3c?; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#375
+  # source://capybara//lib/capybara/selenium/node.rb#373
   def with_file_detector; end
 end
 
 # ClickOptions encapsulates click option logic
 #
-# source://capybara//lib/capybara/selenium/node.rb#636
+# source://capybara//lib/capybara/selenium/node.rb#634
 class Capybara::Selenium::Node::ClickOptions
   # @return [ClickOptions] a new instance of ClickOptions
   #
-  # source://capybara//lib/capybara/selenium/node.rb#639
+  # source://capybara//lib/capybara/selenium/node.rb#637
   def initialize(keys, options); end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#652
+  # source://capybara//lib/capybara/selenium/node.rb#650
   def center_offset?; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#648
+  # source://capybara//lib/capybara/selenium/node.rb#646
   def coords; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#644
+  # source://capybara//lib/capybara/selenium/node.rb#642
   def coords?; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#660
+  # source://capybara//lib/capybara/selenium/node.rb#658
   def delay; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#656
+  # source://capybara//lib/capybara/selenium/node.rb#654
   def empty?; end
 
   # Returns the value of attribute keys.
   #
-  # source://capybara//lib/capybara/selenium/node.rb#637
+  # source://capybara//lib/capybara/selenium/node.rb#635
   def keys; end
 
   # Returns the value of attribute options.
   #
-  # source://capybara//lib/capybara/selenium/node.rb#637
+  # source://capybara//lib/capybara/selenium/node.rb#635
   def options; end
 end
 
@@ -7523,7 +7611,7 @@ module Capybara::Selenium::Node::FileInputClickEmulation
   def visible_file_field?; end
 end
 
-# source://capybara//lib/capybara/selenium/node.rb#542
+# source://capybara//lib/capybara/selenium/node.rb#540
 Capybara::Selenium::Node::GET_XPATH_SCRIPT = T.let(T.unsafe(nil), String)
 
 # source://capybara//lib/capybara/selenium/extensions/html5_drag.rb#4
@@ -7595,46 +7683,46 @@ class Capybara::Selenium::Node::ModifierKeysStack
   def push; end
 end
 
-# source://capybara//lib/capybara/selenium/node.rb#574
+# source://capybara//lib/capybara/selenium/node.rb#572
 Capybara::Selenium::Node::OBSCURED_OR_OFFSET_SCRIPT = T.let(T.unsafe(nil), String)
 
-# source://capybara//lib/capybara/selenium/node.rb#591
+# source://capybara//lib/capybara/selenium/node.rb#589
 Capybara::Selenium::Node::RAPID_APPEND_TEXT = T.let(T.unsafe(nil), String)
 
 # SettableValue encapsulates time/date field formatting
 #
-# source://capybara//lib/capybara/selenium/node.rb#602
+# source://capybara//lib/capybara/selenium/node.rb#600
 class Capybara::Selenium::Node::SettableValue
   # @return [SettableValue] a new instance of SettableValue
   #
-  # source://capybara//lib/capybara/selenium/node.rb#605
+  # source://capybara//lib/capybara/selenium/node.rb#603
   def initialize(value); end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#613
+  # source://capybara//lib/capybara/selenium/node.rb#611
   def dateable?; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/selenium/node.rb#621
+  # source://capybara//lib/capybara/selenium/node.rb#619
   def timeable?; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#617
+  # source://capybara//lib/capybara/selenium/node.rb#615
   def to_date_str; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#629
+  # source://capybara//lib/capybara/selenium/node.rb#627
   def to_datetime_str; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#609
+  # source://capybara//lib/capybara/selenium/node.rb#607
   def to_s; end
 
-  # source://capybara//lib/capybara/selenium/node.rb#625
+  # source://capybara//lib/capybara/selenium/node.rb#623
   def to_time_str; end
 
   # Returns the value of attribute value.
   #
-  # source://capybara//lib/capybara/selenium/node.rb#603
+  # source://capybara//lib/capybara/selenium/node.rb#601
   def value; end
 end
 
@@ -7803,30 +7891,30 @@ class Capybara::Server::AnimationDisabler
   # source://capybara//lib/capybara/server/animation_disabler.rb#17
   def initialize(app); end
 
-  # source://capybara//lib/capybara/server/animation_disabler.rb#25
+  # source://capybara//lib/capybara/server/animation_disabler.rb#24
   def call(env); end
 
   private
 
-  # source://capybara//lib/capybara/server/animation_disabler.rb#51
+  # source://capybara//lib/capybara/server/animation_disabler.rb#50
   def directive_nonces(headers); end
 
   # Returns the value of attribute disable_css_markup.
   #
-  # source://capybara//lib/capybara/server/animation_disabler.rb#40
+  # source://capybara//lib/capybara/server/animation_disabler.rb#39
   def disable_css_markup; end
 
   # Returns the value of attribute disable_js_markup.
   #
-  # source://capybara//lib/capybara/server/animation_disabler.rb#40
+  # source://capybara//lib/capybara/server/animation_disabler.rb#39
   def disable_js_markup; end
 
   # @return [Boolean]
   #
-  # source://capybara//lib/capybara/server/animation_disabler.rb#42
+  # source://capybara//lib/capybara/server/animation_disabler.rb#41
   def html_content?(headers); end
 
-  # source://capybara//lib/capybara/server/animation_disabler.rb#46
+  # source://capybara//lib/capybara/server/animation_disabler.rb#45
   def insert_disable(html, nonces); end
 
   class << self
@@ -7835,10 +7923,10 @@ class Capybara::Server::AnimationDisabler
   end
 end
 
-# source://capybara//lib/capybara/server/animation_disabler.rb#65
+# source://capybara//lib/capybara/server/animation_disabler.rb#64
 Capybara::Server::AnimationDisabler::DISABLE_CSS_MARKUP_TEMPLATE = T.let(T.unsafe(nil), String)
 
-# source://capybara//lib/capybara/server/animation_disabler.rb#74
+# source://capybara//lib/capybara/server/animation_disabler.rb#73
 Capybara::Server::AnimationDisabler::DISABLE_JS_MARKUP_TEMPLATE = T.let(T.unsafe(nil), String)
 
 # source://capybara//lib/capybara/server/checker.rb#5

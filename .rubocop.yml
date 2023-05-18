@@ -1,5 +1,6 @@
 require:
   - rubocop-capybara
+  - rubocop-factory_bot
   - rubocop-minitest
   - rubocop-performance
   - rubocop-rails
@@ -12,6 +13,7 @@ AllCops:
     - sorbet/rbi/**/*.rbi
     - db/schema.rb
     - bin/*
+    - db/migrate/*good_job*.rb
 
 Layout/LineLength:
   Exclude:
