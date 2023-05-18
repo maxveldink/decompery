@@ -69,7 +69,7 @@ jobs:
           bundler-cache: true
       - name: Prepare database
         env:
-          DATABASE_URL: postgres://postgres@localhost:5432/decomper_development
+          DATABASE_URL: postgres://postgres@localhost:5432/decompery_development
           RAILS_ENV: development
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: bin/rails db:prepare
