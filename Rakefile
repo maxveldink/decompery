@@ -20,6 +20,10 @@ task :sorbet do # rubocop:disable Rails/RakeEnvironment
   sh "bundle exec srb tc"
 end
 
+task tapioca: :environment do
+  sh "bundle exec tapioca gem; bundle exec tapioca dsl"
+end
+
 task code_quality: %i[bundle:leak sorbet rubocop]
 
 task default: %i[code_quality test:all]
