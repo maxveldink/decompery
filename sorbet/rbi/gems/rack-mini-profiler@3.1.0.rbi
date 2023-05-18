@@ -8,13 +8,13 @@
 class PG::Connection
   include ::PG::Constants
 
-  # source://pg/1.4.6/lib/pg/connection.rb#519
+  # source://pg/1.5.3/lib/pg/connection.rb#582
   def async_cancel; end
 
   def async_describe_portal(_arg0); end
   def async_describe_prepared(_arg0); end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#492
+  # source://pg/1.5.3/lib/pg/connection.rb#555
   def async_encrypt_password(password, username, algorithm = T.unsafe(nil)); end
 
   # source://rack-mini-profiler//lib/patches/db/pg.rb#109
@@ -25,49 +25,52 @@ class PG::Connection
   def async_exec_without_profiling(*_arg0); end
   def async_flush; end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#360
+  # source://pg/1.5.3/lib/pg/connection.rb#423
   def async_get_copy_data(async = T.unsafe(nil), decoder = T.unsafe(nil)); end
 
   def async_get_last_result; end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#337
+  # source://pg/1.5.3/lib/pg/connection.rb#400
   def async_get_result; end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#408
+  # source://pg/1.5.3/lib/pg/connection.rb#471
   def async_isnonblocking; end
 
   def async_prepare(*_arg0); end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#432
+  # source://pg/1.5.3/lib/pg/connection.rb#495
   def async_put_copy_data(buffer, encoder = T.unsafe(nil)); end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#462
+  # source://pg/1.5.3/lib/pg/connection.rb#525
   def async_put_copy_end(*args); end
 
   def async_query(*_arg0); end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#504
+  # source://pg/1.5.3/lib/pg/connection.rb#567
   def async_reset; end
 
   def async_set_client_encoding(_arg0); end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#394
+  # source://pg/1.5.3/lib/pg/connection.rb#457
   def async_setnonblocking(enabled); end
 
   def backend_key; end
   def backend_pid; end
   def block(*_arg0); end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#519
+  # source://pg/1.5.3/lib/pg/connection.rb#582
   def cancel; end
+
+  # source://pg/1.5.3/lib/pg/connection.rb#379
+  def check_socket; end
 
   def client_encoding=(_arg0); end
   def close; end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#275
+  # source://pg/1.5.3/lib/pg/connection.rb#321
   def conndefaults; end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#291
+  # source://pg/1.5.3/lib/pg/connection.rb#337
   def conndefaults_hash; end
 
   def connect_poll; end
@@ -75,12 +78,12 @@ class PG::Connection
   def connection_used_password; end
   def conninfo; end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#299
+  # source://pg/1.5.3/lib/pg/connection.rb#345
   def conninfo_hash; end
 
   def consume_input; end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#185
+  # source://pg/1.5.3/lib/pg/connection.rb#211
   def copy_data(sql, coder = T.unsafe(nil)); end
 
   def db; end
@@ -92,7 +95,7 @@ class PG::Connection
   def encoder_for_put_copy_data; end
   def encoder_for_put_copy_data=(_arg0); end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#492
+  # source://pg/1.5.3/lib/pg/connection.rb#555
   def encrypt_password(password, username, algorithm = T.unsafe(nil)); end
 
   def enter_pipeline_mode; end
@@ -125,25 +128,25 @@ class PG::Connection
   def flush; end
   def get_client_encoding; end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#360
+  # source://pg/1.5.3/lib/pg/connection.rb#423
   def get_copy_data(async = T.unsafe(nil), decoder = T.unsafe(nil)); end
 
   def get_last_result; end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#337
+  # source://pg/1.5.3/lib/pg/connection.rb#400
   def get_result; end
 
   def host; end
   def hostaddr; end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#97
+  # source://pg/1.5.3/lib/pg/connection.rb#100
   def inspect; end
 
   def internal_encoding; end
   def internal_encoding=(_arg0); end
   def is_busy; end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#408
+  # source://pg/1.5.3/lib/pg/connection.rb#471
   def isnonblocking; end
 
   def lo_close(_arg0); end
@@ -174,7 +177,7 @@ class PG::Connection
   def lowrite(_arg0, _arg1); end
   def make_empty_pgresult(_arg0); end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#408
+  # source://pg/1.5.3/lib/pg/connection.rb#471
   def nonblocking?; end
 
   def notifies; end
@@ -192,10 +195,10 @@ class PG::Connection
   def prepare_without_profiling(*_arg0); end
   def protocol_version; end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#432
+  # source://pg/1.5.3/lib/pg/connection.rb#495
   def put_copy_data(buffer, encoder = T.unsafe(nil)); end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#462
+  # source://pg/1.5.3/lib/pg/connection.rb#525
   def put_copy_end(*args); end
 
   # source://rack-mini-profiler//lib/patches/db/pg.rb#55
@@ -203,7 +206,7 @@ class PG::Connection
 
   def quote_ident(_arg0); end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#504
+  # source://pg/1.5.3/lib/pg/connection.rb#567
   def reset; end
 
   def reset_poll; end
@@ -228,7 +231,7 @@ class PG::Connection
   def set_notice_receiver; end
   def set_single_row_mode; end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#394
+  # source://pg/1.5.3/lib/pg/connection.rb#457
   def setnonblocking(enabled); end
 
   def socket; end
@@ -236,7 +239,7 @@ class PG::Connection
   def ssl_attribute(_arg0); end
   def ssl_attribute_names; end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#316
+  # source://pg/1.5.3/lib/pg/connection.rb#362
   def ssl_attributes; end
 
   def ssl_in_use?; end
@@ -261,7 +264,7 @@ class PG::Connection
   def sync_setnonblocking(_arg0); end
   def trace(_arg0); end
 
-  # source://pg/1.4.6/lib/pg/connection.rb#259
+  # source://pg/1.5.3/lib/pg/connection.rb#305
   def transaction; end
 
   def transaction_status; end
@@ -277,33 +280,33 @@ class PG::Connection
 
   private
 
-  # source://pg/1.4.6/lib/pg/connection.rb#574
+  # source://pg/1.5.3/lib/pg/connection.rb#637
   def async_connect_or_reset(poll_meth); end
 
   def flush_data=(_arg0); end
 
   class << self
-    # source://pg/1.4.6/lib/pg/connection.rb#865
+    # source://pg/1.5.3/lib/pg/connection.rb#937
     def async_api=(enable); end
 
-    # source://pg/1.4.6/lib/pg/connection.rb#695
+    # source://pg/1.5.3/lib/pg/connection.rb#758
     def async_connect(*args); end
 
-    # source://pg/1.4.6/lib/pg/connection.rb#790
+    # source://pg/1.5.3/lib/pg/connection.rb#858
     def async_ping(*args); end
 
-    # source://pg/1.4.6/lib/pg/connection.rb#842
+    # source://pg/1.5.3/lib/pg/connection.rb#914
     def async_send_api=(enable); end
 
     def conndefaults; end
 
-    # source://pg/1.4.6/lib/pg/connection.rb#283
+    # source://pg/1.5.3/lib/pg/connection.rb#329
     def conndefaults_hash; end
 
-    # source://pg/1.4.6/lib/pg/connection.rb#695
+    # source://pg/1.5.3/lib/pg/connection.rb#758
     def connect(*args); end
 
-    # source://pg/1.4.6/lib/pg/connection.rb#45
+    # source://pg/1.5.3/lib/pg/connection.rb#44
     def connect_hash_to_string(hash); end
 
     def connect_start(*_arg0); end
@@ -314,27 +317,27 @@ class PG::Connection
     def escape_string(_arg0); end
     def isthreadsafe; end
 
-    # source://pg/1.4.6/lib/pg/connection.rb#695
+    # source://pg/1.5.3/lib/pg/connection.rb#758
     def new(*args); end
 
-    # source://pg/1.4.6/lib/pg/connection.rb#695
+    # source://pg/1.5.3/lib/pg/connection.rb#758
     def open(*args); end
 
-    # source://pg/1.4.6/lib/pg/connection.rb#61
+    # source://pg/1.5.3/lib/pg/connection.rb#64
     def parse_connect_args(*args); end
 
-    # source://pg/1.4.6/lib/pg/connection.rb#790
+    # source://pg/1.5.3/lib/pg/connection.rb#858
     def ping(*args); end
 
-    # source://pg/1.4.6/lib/pg/connection.rb#38
+    # source://pg/1.5.3/lib/pg/connection.rb#37
     def quote_connstr(value); end
 
     def quote_ident(_arg0); end
 
-    # source://pg/1.4.6/lib/pg/connection.rb#695
+    # source://pg/1.5.3/lib/pg/connection.rb#758
     def setdb(*args); end
 
-    # source://pg/1.4.6/lib/pg/connection.rb#695
+    # source://pg/1.5.3/lib/pg/connection.rb#758
     def setdblogin(*args); end
 
     def sync_connect(*_arg0); end
@@ -343,13 +346,15 @@ class PG::Connection
 
     private
 
-    # source://pg/1.4.6/lib/pg/connection.rb#713
+    # source://pg/1.5.3/lib/pg/connection.rb#776
     def connect_to_hosts(*args); end
 
-    # source://pg/1.4.6/lib/pg/connection.rb#765
+    # source://pg/1.5.3/lib/pg/connection.rb#828
     def host_is_named_pipe?(host_string); end
   end
 end
+
+module PG::Constants; end
 
 # PG patches, keep in mind exec and async_exec have a exec{|r| } semantics that is yet to be implemented
 #
@@ -360,6 +365,7 @@ class PG::Result
 
   def [](_arg0); end
   def autoclear?; end
+  def binary_tuples; end
   def check; end
   def check_result; end
   def clear; end
@@ -380,7 +386,7 @@ class PG::Result
   def field_name_type; end
   def field_name_type=(_arg0); end
 
-  # source://pg/1.4.6/lib/pg/result.rb#26
+  # source://pg/1.5.3/lib/pg/result.rb#26
   def field_names_as(type); end
 
   def field_values(_arg0); end
@@ -388,6 +394,7 @@ class PG::Result
   def fmod(_arg0); end
   def fname(_arg0); end
   def fnumber(_arg0); end
+  def freeze; end
   def fsize(_arg0); end
   def ftable(_arg0); end
   def ftablecol(_arg0); end
@@ -396,10 +403,10 @@ class PG::Result
   def getlength(_arg0, _arg1); end
   def getvalue(_arg0, _arg1); end
 
-  # source://pg/1.4.6/lib/pg/result.rb#32
+  # source://pg/1.5.3/lib/pg/result.rb#32
   def inspect; end
 
-  # source://pg/1.4.6/lib/pg/result.rb#16
+  # source://pg/1.5.3/lib/pg/result.rb#16
   def map_types!(type_map); end
 
   # source://rack-mini-profiler//lib/patches/db/pg.rb#22
@@ -412,7 +419,7 @@ class PG::Result
   def num_tuples; end
   def oid_value; end
   def paramtype(_arg0); end
-  def res_status(_arg0); end
+  def res_status(*_arg0); end
   def result_error_field(_arg0); end
   def result_error_message; end
   def result_status; end
@@ -430,6 +437,10 @@ class PG::Result
 
   def values_without_profiling; end
   def verbose_error_message(_arg0, _arg1); end
+
+  class << self
+    def res_status(_arg0); end
+  end
 end
 
 # based off https://github.com/newrelic/rpm/blob/master/lib/new_relic/agent/instrumentation/active_record.rb
@@ -438,10 +449,10 @@ end
 # source://rack-mini-profiler//lib/mini_profiler/version.rb#3
 module Rack
   class << self
-    # source://rack/2.2.6.4/lib/rack/version.rb#26
+    # source://rack/2.2.7/lib/rack/version.rb#26
     def release; end
 
-    # source://rack/2.2.6.4/lib/rack/version.rb#19
+    # source://rack/2.2.7/lib/rack/version.rb#19
     def version; end
   end
 end
@@ -455,47 +466,47 @@ class Rack::MiniProfiler
   #
   # @return [MiniProfiler] a new instance of MiniProfiler
   #
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#115
+  # source://rack-mini-profiler//lib/mini_profiler.rb#126
   def initialize(app, config = T.unsafe(nil)); end
 
   # @return [Boolean]
   #
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#206
+  # source://rack-mini-profiler//lib/mini_profiler.rb#217
   def advanced_debugging_enabled?; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#575
+  # source://rack-mini-profiler//lib/mini_profiler.rb#595
   def analyze_memory; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#792
+  # source://rack-mini-profiler//lib/mini_profiler.rb#819
   def cache_control_value; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#214
+  # source://rack-mini-profiler//lib/mini_profiler.rb#225
   def call(env); end
 
   # cancels automatic injection of profile script for the current page
   #
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#788
+  # source://rack-mini-profiler//lib/mini_profiler.rb#815
   def cancel_auto_inject(env); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#202
+  # source://rack-mini-profiler//lib/mini_profiler.rb#213
   def config; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#194
+  # source://rack-mini-profiler//lib/mini_profiler.rb#205
   def current; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#198
+  # source://rack-mini-profiler//lib/mini_profiler.rb#209
   def current=(c); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#547
+  # source://rack-mini-profiler//lib/mini_profiler.rb#567
   def dump_env(env); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#529
+  # source://rack-mini-profiler//lib/mini_profiler.rb#549
   def dump_exceptions(exceptions); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#682
+  # source://rack-mini-profiler//lib/mini_profiler.rb#708
   def flamegraph(graph, path); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#167
+  # source://rack-mini-profiler//lib/mini_profiler.rb#178
   def generate_html(page_struct, env, result_json = T.unsafe(nil)); end
 
   # get_profile_script returns script to be injected inside current html page
@@ -505,150 +516,150 @@ class Rack::MiniProfiler
   # * you have disabled auto append behaviour throught :auto_inject => false flag
   # * you do not want script to be automatically appended for the current page. You can also call cancel_auto_inject
   #
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#730
+  # source://rack-mini-profiler//lib/mini_profiler.rb#757
   def get_profile_script(env); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#651
+  # source://rack-mini-profiler//lib/mini_profiler.rb#671
   def help(client_settings, env); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#711
+  # source://rack-mini-profiler//lib/mini_profiler.rb#738
   def ids(env); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#720
+  # source://rack-mini-profiler//lib/mini_profiler.rb#747
   def ids_comma_separated(env); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#508
+  # source://rack-mini-profiler//lib/mini_profiler.rb#528
   def inject(fragment, script); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#474
+  # source://rack-mini-profiler//lib/mini_profiler.rb#494
   def inject_profiler(env, status, headers, body); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#646
+  # source://rack-mini-profiler//lib/mini_profiler.rb#666
   def make_link(postfix, env); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#179
+  # source://rack-mini-profiler//lib/mini_profiler.rb#190
   def serve_html(env); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#130
+  # source://rack-mini-profiler//lib/mini_profiler.rb#141
   def serve_results(env); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#641
-  def text_result(body); end
+  # source://rack-mini-profiler//lib/mini_profiler.rb#661
+  def text_result(body, status: T.unsafe(nil), headers: T.unsafe(nil)); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#210
+  # source://rack-mini-profiler//lib/mini_profiler.rb#221
   def tool_disabled_message(client_settings); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#569
+  # source://rack-mini-profiler//lib/mini_profiler.rb#589
   def trim_strings(strings, max_size); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#126
+  # source://rack-mini-profiler//lib/mini_profiler.rb#137
   def user(env); end
 
   private
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#798
+  # source://rack-mini-profiler//lib/mini_profiler.rb#825
   def handle_snapshots_request(env); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#863
+  # source://rack-mini-profiler//lib/mini_profiler.rb#893
   def rails_route_from_path(path, method); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#845
+  # source://rack-mini-profiler//lib/mini_profiler.rb#875
   def serve_flamegraph(env); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#890
+  # source://rack-mini-profiler//lib/mini_profiler.rb#920
   def take_snapshot(env, start); end
 
   # @return [Boolean]
   #
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#884
+  # source://rack-mini-profiler//lib/mini_profiler.rb#914
   def take_snapshot?(path); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#879
+  # source://rack-mini-profiler//lib/mini_profiler.rb#909
   def url_for_snapshot(id, group_name); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#874
+  # source://rack-mini-profiler//lib/mini_profiler.rb#904
   def url_for_snapshots_group(group_name); end
 
   class << self
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#48
+    # source://rack-mini-profiler//lib/mini_profiler.rb#59
     def add_snapshot_custom_field(key, value); end
 
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#84
+    # source://rack-mini-profiler//lib/mini_profiler.rb#95
     def advanced_tools_message; end
 
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#72
+    # source://rack-mini-profiler//lib/mini_profiler.rb#83
     def authorize_request; end
 
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#90
+    # source://rack-mini-profiler//lib/mini_profiler.rb#101
     def binds_to_params(binds); end
 
     # So we can change the configuration if we want
     #
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#25
+    # source://rack-mini-profiler//lib/mini_profiler.rb#36
     def config; end
 
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#63
+    # source://rack-mini-profiler//lib/mini_profiler.rb#74
     def create_current(env = T.unsafe(nil), options = T.unsafe(nil)); end
 
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#37
+    # source://rack-mini-profiler//lib/mini_profiler.rb#48
     def current; end
 
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#41
+    # source://rack-mini-profiler//lib/mini_profiler.rb#52
     def current=(c); end
 
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#76
+    # source://rack-mini-profiler//lib/mini_profiler.rb#87
     def deauthorize_request; end
 
     # discard existing results, don't track this request
     #
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#59
+    # source://rack-mini-profiler//lib/mini_profiler.rb#70
     def discard_results; end
 
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#16
+    # source://rack-mini-profiler//lib/mini_profiler.rb#27
     def generate_id; end
 
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#54
+    # source://rack-mini-profiler//lib/mini_profiler.rb#65
     def get_snapshot_custom_fields; end
 
     # @return [Boolean]
     #
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#12
+    # source://rack-mini-profiler//lib/mini_profiler.rb#23
     def patch_rails?; end
 
     # @return [Boolean]
     #
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#106
+    # source://rack-mini-profiler//lib/mini_profiler.rb#117
     def redact_sql_queries?; end
 
     # @return [Boolean]
     #
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#80
+    # source://rack-mini-profiler//lib/mini_profiler.rb#91
     def request_authorized?; end
 
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#20
+    # source://rack-mini-profiler//lib/mini_profiler.rb#31
     def reset_config; end
 
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#29
+    # source://rack-mini-profiler//lib/mini_profiler.rb#40
     def resources_root; end
 
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#33
+    # source://rack-mini-profiler//lib/mini_profiler.rb#44
     def share_template; end
 
     # @return [Boolean]
     #
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#101
+    # source://rack-mini-profiler//lib/mini_profiler.rb#112
     def snapshots_transporter?; end
 
     # Returns the value of attribute subscribe_sql_active_record.
     #
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#10
+    # source://rack-mini-profiler//lib/mini_profiler.rb#21
     def subscribe_sql_active_record; end
 
     # Sets the attribute subscribe_sql_active_record
     #
     # @param value the value to set the attribute subscribe_sql_active_record to.
     #
-    # source://rack-mini-profiler//lib/mini_profiler/profiler.rb#10
+    # source://rack-mini-profiler//lib/mini_profiler.rb#21
     def subscribe_sql_active_record=(_arg0); end
   end
 end
@@ -826,10 +837,10 @@ Rack::MiniProfiler::ClientSettings::COOKIE_NAME = T.let(T.unsafe(nil), String)
 class Rack::MiniProfiler::Config
   # Returns the value of attribute assets_url.
   #
-  # source://rack-mini-profiler//lib/mini_profiler/config.rb#93
+  # source://rack-mini-profiler//lib/mini_profiler/config.rb#95
   def assets_url; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/config.rb#111
+  # source://rack-mini-profiler//lib/mini_profiler/config.rb#113
   def assets_url=(lmbda); end
 
   # Returns the value of attribute authorization_mode.
@@ -841,7 +852,7 @@ class Rack::MiniProfiler::Config
   #
   # @param value the value to set the attribute authorization_mode to.
   #
-  # source://rack-mini-profiler//lib/mini_profiler/config.rb#97
+  # source://rack-mini-profiler//lib/mini_profiler/config.rb#99
   def authorization_mode=(mode); end
 
   # Returns the value of attribute auto_inject.
@@ -1022,7 +1033,7 @@ class Rack::MiniProfiler::Config
   # source://rack-mini-profiler//lib/mini_profiler/config.rb#9
   def flamegraph_sample_rate=(_arg0); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/config.rb#122
+  # source://rack-mini-profiler//lib/mini_profiler/config.rb#124
   def horizontal_position; end
 
   # ui accessors
@@ -1089,7 +1100,7 @@ class Rack::MiniProfiler::Config
   # source://rack-mini-profiler//lib/mini_profiler/config.rb#9
   def max_traces_to_show=(_arg0); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/config.rb#126
+  # source://rack-mini-profiler//lib/mini_profiler/config.rb#128
   def merge!(config); end
 
   # ui accessors
@@ -1113,6 +1124,18 @@ class Rack::MiniProfiler::Config
   #
   # source://rack-mini-profiler//lib/mini_profiler/config.rb#9
   def pre_authorize_cb=(_arg0); end
+
+  # Returns the value of attribute profile_parameter.
+  #
+  # source://rack-mini-profiler//lib/mini_profiler/config.rb#9
+  def profile_parameter; end
+
+  # Sets the attribute profile_parameter
+  #
+  # @param value the value to set the attribute profile_parameter to.
+  #
+  # source://rack-mini-profiler//lib/mini_profiler/config.rb#9
+  def profile_parameter=(_arg0); end
 
   # ui accessors
   #
@@ -1352,7 +1375,7 @@ class Rack::MiniProfiler::Config
   # source://rack-mini-profiler//lib/mini_profiler/config.rb#9
   def user_provider=(_arg0); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/config.rb#118
+  # source://rack-mini-profiler//lib/mini_profiler/config.rb#120
   def vertical_position; end
 
   class << self
@@ -1471,65 +1494,65 @@ class Rack::MiniProfiler::Context
   def skip_backtrace=(_arg0); end
 end
 
-# source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#5
+# source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#7
 class Rack::MiniProfiler::FileStore < ::Rack::MiniProfiler::AbstractStore
   # @return [FileStore] a new instance of FileStore
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#49
+  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#51
   def initialize(args = T.unsafe(nil)); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#145
+  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#147
   def allowed_tokens; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#161
+  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#163
   def cleanup_cache; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#139
+  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#141
   def flush_tokens; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#133
+  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#135
   def get_unviewed_ids(user); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#102
+  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#104
   def load(id); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#96
+  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#98
   def save(page_struct); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#127
+  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#129
   def set_all_unviewed(user, ids); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#108
+  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#110
   def set_unviewed(user, id); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#117
+  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#119
   def set_viewed(user, id); end
 end
 
 # Sub-class thread so we have a named thread (useful for debugging in Thread.list).
 #
-# source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#8
+# source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#10
 class Rack::MiniProfiler::FileStore::CacheCleanupThread < ::Thread; end
 
-# source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#47
+# source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#49
 Rack::MiniProfiler::FileStore::EXPIRES_IN_SECONDS = T.let(T.unsafe(nil), Integer)
 
-# source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#11
+# source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#13
 class Rack::MiniProfiler::FileStore::FileCache
   # @return [FileCache] a new instance of FileCache
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#12
+  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#14
   def initialize(path, prefix); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#17
+  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#19
   def [](key); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#28
+  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#30
   def []=(key, val); end
 
   private
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#41
+  # source://rack-mini-profiler//lib/mini_profiler/storage/file_store.rb#43
   def path(key); end
 end
 
@@ -1597,97 +1620,97 @@ Rack::MiniProfiler::MemcacheStore::EXPIRES_IN_SECONDS = T.let(T.unsafe(nil), Int
 # source://rack-mini-profiler//lib/mini_profiler/storage/memcache_store.rb#8
 Rack::MiniProfiler::MemcacheStore::MAX_RETRIES = T.let(T.unsafe(nil), Integer)
 
-# source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#5
+# source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#7
 class Rack::MiniProfiler::MemoryStore < ::Rack::MiniProfiler::AbstractStore
   # @return [MemoryStore] a new instance of MemoryStore
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#50
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#52
   def initialize(args = T.unsafe(nil)); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#130
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#132
   def allowed_tokens; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#123
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#125
   def cleanup_cache; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#202
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#204
   def fetch_snapshots_group(group_name); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#188
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#190
   def fetch_snapshots_overview; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#117
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#119
   def get_unviewed_ids(user); end
 
   # FIXME: use weak ref, trouble it may be broken in 1.9 so need to use the 'ref' gem
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#74
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#76
   def initialize_cleanup_thread(args = T.unsafe(nil)); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#63
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#65
   def initialize_locks; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#91
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#93
   def load(id); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#213
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#215
   def load_snapshot(id, group_name); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#156
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#158
   def push_snapshot(page_struct, group_name, config); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#85
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#87
   def save(page_struct); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#111
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#113
   def set_all_unviewed(user, ids); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#97
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#99
   def set_unviewed(user, id); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#104
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#106
   def set_viewed(user, id); end
 
   # @return [Boolean]
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#144
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#146
   def should_take_snapshot?(period); end
 
   private
 
   # used in tests only
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#225
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#227
   def wipe_snapshots_data; end
 end
 
-# source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#48
+# source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#50
 Rack::MiniProfiler::MemoryStore::CLEANUP_CYCLE = T.let(T.unsafe(nil), Integer)
 
-# source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#47
+# source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#49
 Rack::MiniProfiler::MemoryStore::CLEANUP_INTERVAL = T.let(T.unsafe(nil), Integer)
 
 # Sub-class thread so we have a named thread (useful for debugging in Thread.list).
 #
-# source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#8
+# source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#10
 class Rack::MiniProfiler::MemoryStore::CacheCleanupThread < ::Thread
   # @return [CacheCleanupThread] a new instance of CacheCleanupThread
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#10
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#12
   def initialize(interval, cycle, store); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#32
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#34
   def cleanup; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#37
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#39
   def cycle_count; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#41
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#43
   def increment_cycle; end
 
   # @return [Boolean]
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#18
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#20
   def should_cleanup?; end
 
   # We don't want to hit the filesystem every 10s to clean up the cache so we need to do a bit of
@@ -1695,11 +1718,11 @@ class Rack::MiniProfiler::MemoryStore::CacheCleanupThread < ::Thread
   # it means the thread will stay live in hot deployment scenarios, keeping a potentially large memory
   # graph from being garbage collected upon undeploy.
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#26
+  # source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#28
   def sleepy_run; end
 end
 
-# source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#46
+# source://rack-mini-profiler//lib/mini_profiler/storage/memory_store.rb#48
 Rack::MiniProfiler::MemoryStore::EXPIRES_IN_SECONDS = T.let(T.unsafe(nil), Integer)
 
 # source://rack-mini-profiler//lib/mini_profiler/profiling_methods.rb#5
@@ -1757,111 +1780,111 @@ module Rack::MiniProfiler::ProfilingMethods
   def clean_method_name(method); end
 end
 
-# source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#7
+# source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#8
 class Rack::MiniProfiler::RedisStore < ::Rack::MiniProfiler::AbstractStore
   # @return [RedisStore] a new instance of RedisStore
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#13
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#14
   def initialize(args = T.unsafe(nil)); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#87
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#88
   def allowed_tokens; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#70
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#71
   def diagnostics(user); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#230
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#231
   def fetch_snapshots_group(group_name); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#206
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#207
   def fetch_snapshots_overview; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#78
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#79
   def flush_tokens; end
 
   # Remove expired ids from the unviewed sorted set and return the remaining ids
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#64
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#65
   def get_unviewed_ids(user); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#24
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#25
   def load(id); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#247
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#248
   def load_snapshot(id, group_name); end
 
   # Returns the value of attribute prefix.
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#9
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#10
   def prefix; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#136
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#137
   def push_snapshot(page_struct, group_name, config); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#20
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#21
   def save(page_struct); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#47
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#48
   def set_all_unviewed(user, ids); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#38
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#39
   def set_unviewed(user, id); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#59
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#60
   def set_viewed(user, id); end
 
   # @return [Boolean]
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#126
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#127
   def should_take_snapshot?(period); end
 
   # Only used for testing
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#83
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#84
   def simulate_expire; end
 
   private
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#298
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#299
   def cached_redis_eval(script, script_sha, reraise: T.unsafe(nil), argv: T.unsafe(nil), keys: T.unsafe(nil)); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#310
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#311
   def cleanup_corrupt_snapshots(corrupt_snapshots_ids, group_name); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#288
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#289
   def group_snapshot_hash_key(group_name); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#282
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#283
   def group_snapshot_zset_key(group_name); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#267
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#268
   def prefixed_id(id); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#271
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#272
   def redis; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#278
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#279
   def snapshot_counter_key; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#294
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#295
   def snapshot_overview_zset_key; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#263
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#264
   def user_key(user); end
 
   # only used in tests
   #
-  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#341
+  # source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#342
   def wipe_snapshots_data; end
 end
 
-# source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#115
+# source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#116
 Rack::MiniProfiler::RedisStore::COUNTER_LUA = T.let(T.unsafe(nil), String)
 
-# source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#124
+# source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#125
 Rack::MiniProfiler::RedisStore::COUNTER_LUA_SHA = T.let(T.unsafe(nil), String)
 
-# source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#11
+# source://rack-mini-profiler//lib/mini_profiler/storage/redis_store.rb#12
 Rack::MiniProfiler::RedisStore::EXPIRES_IN_SECONDS = T.let(T.unsafe(nil), Integer)
 
 # source://rack-mini-profiler//lib/mini_profiler/version.rb#6
@@ -1937,31 +1960,31 @@ end
 
 # Timing system for a SQL query
 #
-# source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#5
+# source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#7
 module Rack::MiniProfiler::TimerStruct; end
 
 # A base class for timing structures
 #
-# source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#7
+# source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#9
 class Rack::MiniProfiler::TimerStruct::Base
   # @return [Base] a new instance of Base
   #
-  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#9
+  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#11
   def initialize(attrs = T.unsafe(nil)); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#17
+  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#19
   def [](name); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#21
+  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#23
   def []=(name, val); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#32
+  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#34
   def as_json(options = T.unsafe(nil)); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#13
+  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#15
   def attributes; end
 
-  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#26
+  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/base.rb#28
   def to_json(*a); end
 end
 
@@ -2170,29 +2193,29 @@ class Rack::MiniProfiler::TimerStruct::Request < ::Rack::MiniProfiler::TimerStru
   end
 end
 
-# source://rack-mini-profiler//lib/mini_profiler/timer_struct/sql.rb#8
+# source://rack-mini-profiler//lib/mini_profiler/timer_struct/sql.rb#10
 class Rack::MiniProfiler::TimerStruct::Sql < ::Rack::MiniProfiler::TimerStruct::Base
   # @return [Sql] a new instance of Sql
   #
-  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/sql.rb#11
+  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/sql.rb#13
   def initialize(query, duration_ms, page, parent, params = T.unsafe(nil), skip_backtrace = T.unsafe(nil), full_backtrace = T.unsafe(nil)); end
 
   # Returns the value of attribute parent.
   #
-  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/sql.rb#9
+  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/sql.rb#11
   def parent; end
 
   # Sets the attribute parent
   #
   # @param value the value to set the attribute parent to.
   #
-  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/sql.rb#9
+  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/sql.rb#11
   def parent=(_arg0); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/sql.rb#52
+  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/sql.rb#54
   def report_reader_duration(elapsed_ms); end
 
-  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/sql.rb#60
+  # source://rack-mini-profiler//lib/mini_profiler/timer_struct/sql.rb#62
   def trim_binds(binds); end
 end
 
