@@ -40,7 +40,7 @@ jobs:
           bundler-cache: true
       - name: Prepare database
         env:
-          DATABASE_URL: postgres://postgres@localhost:5432/comic_booked_test
+          DATABASE_URL: postgres://postgres@localhost:5432/decompery_test
           RAILS_ENV: test
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: bin/rails db:prepare
@@ -69,7 +69,7 @@ jobs:
           bundler-cache: true
       - name: Prepare database
         env:
-          DATABASE_URL: postgres://postgres@localhost:5432/comic_booked_development
+          DATABASE_URL: postgres://postgres@localhost:5432/decomper_development
           RAILS_ENV: development
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
         run: bin/rails db:prepare
