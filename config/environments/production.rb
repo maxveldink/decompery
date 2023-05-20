@@ -91,8 +91,10 @@ Rails.application.configure do
   config.good_job.enable_cron = true
 
   config.good_job.cron = {
-    cron: "every day at midnight",
-    class: "CleanupDecompsJob",
-    description: "Delete decomps that are more than a week old."
+    cleanup_decomps: {
+      cron: "every day at midnight",
+      class: "CleanupDecompsJob",
+      description: "Delete decomps that are more than a week old."
+    }
   }
 end

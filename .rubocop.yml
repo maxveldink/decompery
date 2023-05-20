@@ -31,6 +31,10 @@ Metrics/AbcSize:
   Exclude:
     - db/migrate/*.rb
 
+Metrics/BlockLength:
+  Exclude:
+    - config/**/*.rb
+
 Metrics/MethodLength:
   Exclude:
     - db/migrate/*.rb
