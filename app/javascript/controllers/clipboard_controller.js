@@ -5,6 +5,10 @@ export default class extends Controller {
     contentsToCopy: String
   }
 
+  connect() {
+    this.copy()
+  }
+
   async copy() {
     await navigator.clipboard.writeText(this.contentsToCopyValue)
 
