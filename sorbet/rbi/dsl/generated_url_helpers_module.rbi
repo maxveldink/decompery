@@ -27,6 +27,9 @@ module GeneratedUrlHelpersModule
   def decomps_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def display_decomp_estimates_url(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def edit_rails_conductor_inbound_email_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -124,9 +127,6 @@ module GeneratedUrlHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def root_url(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
-  def toggle_decomp_estimates_url(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def turbo_recede_historical_location_url(*args); end

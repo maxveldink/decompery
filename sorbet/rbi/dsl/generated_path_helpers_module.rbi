@@ -27,6 +27,9 @@ module GeneratedPathHelpersModule
   def decomps_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
+  def display_decomp_estimates_path(*args); end
+
+  sig { params(args: T.untyped).returns(String) }
   def edit_rails_conductor_inbound_email_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
@@ -124,9 +127,6 @@ module GeneratedPathHelpersModule
 
   sig { params(args: T.untyped).returns(String) }
   def root_path(*args); end
-
-  sig { params(args: T.untyped).returns(String) }
-  def toggle_decomp_estimates_path(*args); end
 
   sig { params(args: T.untyped).returns(String) }
   def turbo_recede_historical_location_path(*args); end
