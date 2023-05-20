@@ -87,4 +87,12 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.good_job.enable_cron = true
+
+  config.good_job.cron = {
+    cron: "every day at midnight",
+    class: "CleanupDecompsJob",
+    description: "Delete decomps that are more than a week old."
+  }
 end
