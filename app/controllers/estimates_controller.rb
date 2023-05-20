@@ -4,6 +4,15 @@
 class EstimatesController < ApplicationController
   before_action :set_decomp
 
+  def display
+    @decomp.update(show_estimates: true)
+
+    respond_to do |format|
+      format.html { redirect_to decomp_url(@decomp) }
+      format.turbo_stream { render :create }
+    end
+  end
+
   def create
     @estimate = Estimate.find_or_initialize_by(decomp: @decomp, user: User.find(estimate_params[:user_id]))
     @estimate.story_point = estimate_params[:story_point]
@@ -15,17 +24,9 @@ class EstimatesController < ApplicationController
     end
   end
 
-  def toggle
-    @decomp.update(show_estimates: !@decomp.show_estimates)
-
-    respond_to do |format|
-      format.html { redirect_to decomp_url(@decomp) }
-      format.turbo_stream { render :create }
-    end
-  end
-
   def clear
     @decomp.estimates.destroy_all
+    @decomp.update(show_estimates: false)
 
     respond_to do |format|
       format.html { redirect_to decomp_url(@decomp) }

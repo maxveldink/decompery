@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :decomps, only: %i[show create] do
     resources :estimates, only: %i[create] do
-      get :toggle, on: :collection
+      get :display, on: :collection
       delete :clear, on: :collection
     end
 

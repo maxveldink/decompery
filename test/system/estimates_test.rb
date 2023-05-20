@@ -26,7 +26,7 @@ class EstimatesTest < ApplicationSystemTestCase
     assert_selector(:xpath, "//div[@data-testid='estimate']", count: 2)
   end
 
-  test "it handles toggling estimates" do
+  test "it handles displaying estimates" do
     visit decomp_path(@decomp) + "?invite_token=#{@decomp.invite_token}"
 
     click_on "5"
@@ -40,7 +40,7 @@ class EstimatesTest < ApplicationSystemTestCase
 
       assert_selector(:xpath, "//div[@data-testid='estimate']", count: 2, text: "?")
 
-      click_on "Toggle Estimates"
+      click_on "Show Estimates"
 
       assert_selector(:xpath, "//div[@data-testid='estimate']", text: "5")
     end
@@ -52,6 +52,8 @@ class EstimatesTest < ApplicationSystemTestCase
     visit decomp_path(@decomp) + "?invite_token=#{@decomp.invite_token}"
 
     click_on "5"
+
+    click_on "Show Estimates"
 
     assert_selector(:xpath, "//div[@data-testid='estimate']", count: 1)
 

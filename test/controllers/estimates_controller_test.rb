@@ -31,25 +31,18 @@ class EstimatesControllerTest < ActionDispatch::IntegrationTest
     assert_equal(5, @decomp.estimates.first.story_point)
   end
 
-  test "toggle changes false show estimates to true" do
-    get toggle_decomp_estimates_path(@decomp)
+  test "display changes false show estimates to true" do
+    get display_decomp_estimates_path(@decomp)
 
     assert @decomp.reload.show_estimates
   end
 
-  test "toggle changes true show estimates to false" do
-    decomp = FactoryBot.create(:decomp, show_estimates: true)
-
-    get toggle_decomp_estimates_path(decomp)
-
-    assert_not decomp.reload.show_estimates
-  end
-
-  test "clear removes all estimates" do
+  test "clear removes all estimates and sets show estimates to false" do
     FactoryBot.create(:estimate, decomp: @decomp)
 
     delete clear_decomp_estimates_path(@decomp)
 
     assert_empty(@decomp.reload.estimates)
+    assert_not @decomp.reload.show_estimates
   end
 end

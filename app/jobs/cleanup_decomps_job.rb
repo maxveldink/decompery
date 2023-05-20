@@ -1,4 +1,5 @@
 # typed: true
+# frozen_string_literal: true
 
 class CleanupDecompsJob < ApplicationJob
   queue_as :default

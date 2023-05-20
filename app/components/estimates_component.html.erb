@@ -1,3 +1,12 @@
+<h2 class="text-2xl flex flex-col md:flex-row items-center mb-4">
+  <span class="mr-4 mb-2 md:mb-0">Deliberation</span>
+  <% if decomp.show_estimates %>
+    <%= button_to 'Clear Estimates', clear_decomp_estimates_path(decomp), method: :delete, class: "btn-rose mr-4 text-sm mb-2 md:mb-0" %>
+  <% else %>
+    <%= button_to "Show Estimates", display_decomp_estimates_path(decomp), method: :get, class: "btn-emerald mr-4 text-sm mb-2 md:mb-0" %>
+  <% end %>
+</h2>
+
 <div class="flex flex-row flex-wrap gap-4 justify-around">
   <% decomp.estimates.each do |estimate| %>
     <div data-testid="estimate" class="text-center text-3xl flex flex-col">
@@ -7,7 +16,7 @@
   <% end %>
 </div>
 
-<% if decomp.show_estimates %>
+<% if decomp.show_estimates && decomp.estimates.count > 0 %>
   <div class="flex flex-row">
     <div class="w-1/4"></div>
     <p data-testid="prompt" class="rounded my-4 text-center py-2 px-4 bg-sky-500 text-white w-1/2">

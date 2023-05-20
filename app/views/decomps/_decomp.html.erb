@@ -36,12 +36,6 @@
 
   <hr class="my-4">
 
-  <h2 class="text-2xl flex flex-col md:flex-row items-center mb-4">
-    <span class="mr-4 mb-2 md:mb-0">Deliberation</span>
-    <%= button_to "Toggle Estimates", toggle_decomp_estimates_path(decomp), method: :get, class: "btn-emerald mr-4 text-sm mb-2 md:mb-0" %>
-    <%= button_to 'Clear Estimates', clear_decomp_estimates_path(decomp), method: :delete, class: "btn-rose mr-4 text-sm mb-2 md:mb-0" %>
-  </h2>
-
   <%= turbo_frame_tag "estimates" do %>
     <%= render EstimatesComponent.new(decomp:) %>
   <% end %>
