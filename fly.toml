@@ -1,10 +1,15 @@
-app = "decompery"
-kill_signal = "SIGINT"
-kill_timeout = 5
+# fly.toml app configuration file generated for decompery on 2023-05-20T06:12:04-04:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-[processes]
-  web = "bin/rails fly:server"
-  worker = "bundle exec good_job start"
+app = "decompery"
+primary_region = "iad"
+kill_signal = "SIGINT"
+kill_timeout = "5s"
+
+[experimental]
+  auto_rollback = true
 
 [build]
   [build.args]
@@ -17,35 +22,33 @@ kill_timeout = 5
 [env]
   PORT = "8080"
 
-[experimental]
-  allowed_public_ports = []
-  auto_rollback = true
+[processes]
+  web = "bin/rails fly:server"
+  worker = "bundle exec good_job start"
 
 [[services]]
-  http_checks = []
+  protocol = "tcp"
   internal_port = 8080
   processes = ["web"]
-  protocol = "tcp"
-  script_checks = []
+
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
   [services.concurrency]
+    type = "connections"
     hard_limit = 25
     soft_limit = 20
-    type = "connections"
-
-  [[services.ports]]
-    force_https = true
-    handlers = ["http"]
-    port = 80
-
-  [[services.ports]]
-    handlers = ["tls", "http"]
-    port = 443
 
   [[services.tcp_checks]]
-    grace_period = "1s"
     interval = "15s"
-    restart_limit = 0
     timeout = "2s"
+    grace_period = "1s"
+    restart_limit = 0
 
 [[statics]]
   guest_path = "/app/public"
